@@ -156,13 +156,320 @@
       }
     }
   },
+  "product": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "sku": "SKU: {sku}",
+    "stock": {
+      "inStock": "In stock (EU hub)",
+      "backorder": "Available on backorder",
+      "soldOut": "Sold out"
+    },
+    "gallery": {
+      "readyToDispatch": "Ready to Dispatch",
+      "thumbnails": "Product images",
+      "show": "Show image {index}"
+    },
+    "purchase": {
+      "vat": "incl. VAT",
+      "was": "Was",
+      "quantity": "Quantity",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "addToCart": "Add to Cart — {price}",
+      "unavailable": "{value} (unavailable in this combination)",
+      "failed": "We couldn’t add this to your cart. Please try again."
+    },
+    "promises": {
+      "delivery": "Free EU Delivery Over €150",
+      "returns": "30-Day Ocean Guarantee",
+      "warranty": "2-Year Atelier Warranty"
+    },
+    "specs": {
+      "eyebrow": "Atelier Matrix",
+      "title": "Technical Specifications",
+      "boxEyebrow": "Included Package",
+      "boxTitle": "What’s in the Box",
+      "pledgeTitle": "Atelier Circularity Pledge",
+      "pledgeBody": "Every DRFT kite bag is constructed from 100% recycled ocean-bound PET ripstop. When your kite reaches the end of its flight life, return it for complimentary recycling in exchange for €150 fleet credit."
+    },
+    "related": {
+      "eyebrow": "Recommended Synergy",
+      "title": "Complete Your Setup",
+      "intro": "Precision gear calibrated by our test riders to unlock the full aerodynamic potential of the {name}.",
+      "viewAll": "View All Fleet Gear"
+    }
+  },
   "home": {
-    "title": "Defy gravity. Pure flight.",
-    "comingSoon": "The new DRFT store is under construction."
+    "hero": {
+      "label": "Featured stories",
+      "conditions": "Spot conditions",
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "pause": "Pause slideshow",
+      "play": "Play slideshow",
+      "slide": "Slide {index} of {count}",
+      "slides": {
+        "tarifa": {
+          "season": "Season 2025 // Aero Flight Dynamics",
+          "expedition": "Tarifa Expedition",
+          "title": "Defy gravity.\nPure flight.",
+          "body": "Ultra-modulus carbon airframes and precision freeride kites engineered for unmatched lift, raw acceleration, and effortless control.",
+          "primary": "Explore 2025 Fleet",
+          "secondary": "Watch Dispatch [2:40]",
+          "spot": "Valdevaqueros · Tarifa",
+          "wind": "Wind: 24.8 kts NE (31 kts gusts)",
+          "swell": "Swell: 1.8m @ 11s",
+          "baro": "Baro: 1018 hPa",
+          "water": "Water: 20.5°C",
+          "protocol": "Atlantic Protocol"
+        },
+        "atlantic": {
+          "season": "Field Test 2025 // Heavy Weather",
+          "expedition": "Cabo de São Vicente",
+          "title": "Built for the\nopen Atlantic.",
+          "body": "Reinforced leading edges and Teijin Quad-Tex canopies, proven in cold, heavy swell from Brittany to the Algarve.",
+          "primary": "Shop Kites",
+          "secondary": "Read Field Notes",
+          "spot": "Sagres · Algarve",
+          "wind": "Wind: 28.4 kts NW (36 kts gusts)",
+          "swell": "Swell: 3.2m @ 14s",
+          "baro": "Baro: 1006 hPa",
+          "water": "Water: 16.8°C",
+          "protocol": "Storm Protocol"
+        },
+        "lagoon": {
+          "season": "Season 2025 // Freeride Collection",
+          "expedition": "Lagoon Sessions",
+          "title": "Effortless lift.\nEndless sessions.",
+          "body": "Sheet-and-go power, sub-3s relaunch and a wind range that keeps you riding from the first breeze to the last light.",
+          "primary": "Configure Aero V3",
+          "secondary": "Watch Dispatch [1:55]",
+          "spot": "Lagoa de Óbidos · Portugal",
+          "wind": "Wind: 16.2 kts N (19 kts gusts)",
+          "swell": "Swell: Flat water",
+          "baro": "Baro: 1021 hPa",
+          "water": "Water: 19.1°C",
+          "protocol": "Lagoon Protocol"
+        }
+      }
+    },
+    "fleet": {
+      "eyebrow": "Engineering Release",
+      "title": "The 2025 Fleet",
+      "intro": "Engineered for pure freeride flight, crisp steering, and effortless relaunch in all wind conditions.",
+      "viewAll": "View All {count} Products",
+      "from": "From {price}",
+      "was": "Was",
+      "colours": "Available colours",
+      "view": "View product",
+      "soldOut": "Sold out"
+    },
+    "philosophy": {
+      "eyebrow": "Design Philosophy",
+      "quote": "“We craft equipment that disappears beneath you, leaving only wind, water, and momentum.”",
+      "innovation": {
+        "label": "01 / Innovation",
+        "title": "Refined Hydrodynamics",
+        "body": "Minimal drag airframes and calibrated foil profiles tested across cold northern waters to ensure maximum glide in marginal knots.",
+        "note": "Hydrodynamic lab verified"
+      },
+      "sensation": {
+        "label": "02 / Sensation",
+        "title": "Direct Tactile Feedback",
+        "body": "Pulleyless bridle systems and monocoque carbon bars engineered for immediate mechanical response and zero line lag.",
+        "note": "Zero-lag tactile response"
+      },
+      "craft": {
+        "label": "03 / Craft",
+        "title": "European Atelier Rigging",
+        "body": "Every kite, foil, and control bar is individually hand-inspected and pre-flight tensioned before final dispatch to riders.",
+        "note": "Individually certified"
+      }
+    },
+    "fieldNotes": {
+      "eyebrow": "Field Notes · 54° North",
+      "title": "The North Sea Protocol",
+      "body": "Tested from Scheveningen to Nazaré. Built to withstand punishing salt encrustation, shifting sand bars, and sustained 35-knot gale gusts.",
+      "cta": "Read the Design Journal",
+      "dispatch": "Dispatch #14"
+    },
+    "disciplines": {
+      "eyebrow": "Ecosystem",
+      "title": "Disciplines & Systems",
+      "intro": "Complete aerodynamic and hydrodynamic packages configured for high-speed progression.",
+      "kites": {
+        "label": "01 / Aerodynamics",
+        "title": "Kites & Airframes",
+        "body": "Freeride, Big Air, and lightwind canopy setups engineered for stable loft.",
+        "cta": "Explore Kites"
+      },
+      "foils": {
+        "label": "02 / Hydrodynamics",
+        "title": "Foil Boards & Wings",
+        "body": "Carbon modular foils and compact carving boards tuned for friction-free flight.",
+        "cta": "Explore Foils"
+      },
+      "control": {
+        "label": "03 / Transmission",
+        "title": "TwinTips & Control",
+        "body": "Precision carbon twin tips and Sentry Pro ISO-certified bar systems.",
+        "cta": "Explore Control"
+      }
+    },
+    "spotlight": {
+      "eyebrow": "Flagship Innovation",
+      "body": "Designed for effortless progression. The third generation Aero redefines wind range with an ultra-rigid airframe that absorbs gusts without unsettling your stance.",
+      "points": {
+        "frame": {
+          "title": "Tri-Strut Low-Profile Frame",
+          "body": "Reduces airframe drag by 14% for quicker climbing through the wind window."
+        },
+        "relaunch": {
+          "title": "Sub-3s Relaunch Dynamics",
+          "body": "Curved wingtips roll the kite onto the tip instantly upon bar release."
+        },
+        "pressure": {
+          "title": "-18% Bar Pressure Fatigue",
+          "body": "Direct pulleys eliminate friction so you feel every knot of clean power."
+        }
+      },
+      "currency": "EUR",
+      "vat": "incl. VAT",
+      "configure": "Configure Aero V3",
+      "materialTitle": "Teijin Quad-Tex 4x4",
+      "materialBody": "300% lower bias stretch over lifetime",
+      "imageAlt": "Close-up of the {name} canopy seam"
+    },
+    "journal": {
+      "eyebrow": "Editorial & Dispatches",
+      "title": "The Wind Journal",
+      "viewAll": "Explore All Articles",
+      "readStory": "Read story",
+      "posts": {
+        "brittany": {
+          "tag": "Destinations",
+          "meta": "Dispatch · 4 min read",
+          "title": "The Perfect Wind Window: 48 Hours in Western Brittany",
+          "excerpt": "Chasing a rapid low-pressure system across the Finistère coastline with team riders Leo and Marion."
+        },
+        "tuning": {
+          "tag": "Tuning",
+          "meta": "Technical Guide · 6 min read",
+          "title": "Hydrofoil Tuning: Finding Equilibrium in Variable Chop",
+          "excerpt": "Stabilizer angle shimming, mast placement calibration, and pitch balance adjustments for rolling swell."
+        },
+        "circularity": {
+          "tag": "Materials",
+          "meta": "Sustainability · 3 min read",
+          "title": "Circularity in Watersports: Recycling Canopy Dacron",
+          "excerpt": "How our European repair workshop partners convert decommissioned wings into technical travel luggage."
+        }
+      }
+    },
+    "newsletter": {
+      "eyebrow": "The Wind Journal Dispatch",
+      "title": "Stay on the pulse of the wind.",
+      "body": "Seasonal fleet releases, Atlantic swell forecasts, atelier telemetry, and firsthand rider field notes delivered directly from our test stations in Tarifa and Brittany.",
+      "perks": {
+        "biweekly": "Bi-weekly dispatches",
+        "noNoise": "No commercial noise",
+        "unsubscribe": "Unsubscribe anytime"
+      },
+      "submit": "Join Fleet",
+      "consent": "By registering, you agree to our <link>Privacy Policy</link>. We safeguard your rider telemetry."
+    },
+    "trust": {
+      "label": "Our promises",
+      "shipping": {
+        "title": "Complimentary EU Shipping",
+        "body": "Carbon-neutral courier delivery on orders over €150."
+      },
+      "trial": {
+        "title": "30-Day Ocean Trial",
+        "body": "Rig it and ride on water. Hassle-free return or size swap."
+      },
+      "warranty": {
+        "title": "2-Year Atelier Warranty",
+        "body": "Full material coverage backed by our workshop team."
+      },
+      "advisory": {
+        "title": "Expert Rider Advisory",
+        "body": "Direct spot advice and setup tuning from test riders."
+      }
+    }
   },
   "notFound": {
     "title": "Page not found",
     "description": "The page you are looking for does not exist or has moved.",
     "backHome": "Back to home"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "description": "Items in your cart, recommendations and order total",
+    "close": "Close cart",
+    "count": "{count, plural, one {# item} other {# items}}",
+    "loading": "Loading your cart…",
+    "error": "We couldn’t load your cart. Please try again.",
+    "retry": "Try again",
+    "shipping": {
+      "unlocked": "Complimentary EU Express Shipping unlocked",
+      "qualified": "Qualified ({threshold}+)",
+      "dispatch": "Your order will be dispatched via carbon-neutral express within 24 hours.",
+      "almost": "Add {remaining} for complimentary EU express shipping",
+      "toGo": "{remaining} to go",
+      "progress": "Progress to free shipping"
+    },
+    "items": {
+      "title": "Selected Equipment",
+      "each": "{price} each",
+      "quantity": "Quantity of {name}",
+      "decrease": "Decrease quantity",
+      "increase": "Increase quantity",
+      "remove": "Remove",
+      "removeLabel": "Remove {name} from cart",
+      "unavailable": "No longer available. Please remove it to check out.",
+      "limited": "Only {count} available. We’ll adjust the quantity at checkout."
+    },
+    "recommendations": {
+      "title": "Curated for your setup",
+      "badge": "Recommended",
+      "add": "Add to Setup",
+      "view": "Choose options",
+      "from": "From {price}"
+    },
+    "trust": {
+      "trial": {
+        "title": "30-Day Ocean Trial",
+        "body": "Ride and test on water"
+      },
+      "warranty": {
+        "title": "2-Year Atelier Warranty",
+        "body": "Handcrafted longevity"
+      },
+      "climate": {
+        "title": "Climate-Neutral",
+        "body": "100% recycled packaging"
+      }
+    },
+    "summary": {
+      "subtotal": "Subtotal",
+      "delivery": "EU Express Delivery",
+      "free": "Free",
+      "shipping": "Shipping",
+      "atCheckout": "Calculated at checkout",
+      "vat": "Estimated VAT ({rate}% included)",
+      "total": "Total",
+      "totalNoteFree": "VAT included · free EU express delivery",
+      "totalNote": "VAT included · shipping calculated at checkout",
+      "checkout": "Proceed to Secure Checkout"
+    },
+    "empty": {
+      "title": "Your cart is empty",
+      "body": "Kites, boards and foils engineered for progression are one click away.",
+      "cta": "Explore the 2025 Fleet"
+    },
+    "added": "Added to your cart",
+    "failed": "Something went wrong. Please try again."
   }
 }

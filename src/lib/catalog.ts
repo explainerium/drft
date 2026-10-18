@@ -1,7 +1,7 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
-import type { CategoryNode, PageMeta, ProductCard, ProductSort } from "@/types/catalog";
-import { apiGet } from "./api/server";
+import type { CategoryNode, PageMeta, ProductCard, ProductDetail, ProductSort } from "@/types/catalog";
+import { ApiRequestError, apiGet } from "./api/server";
 
 /**
  * Cached catalog reads for Server Components. Tags let an admin save
@@ -42,4 +42,17 @@ export async function getProducts(query: ProductQuery): Promise<{ data: ProductC
   cacheLife("minutes");
   cacheTag("products");
   return apiGet<ProductCard[], PageMeta>("/products", { ...query });
+}
+
+/** One published product, or null when the slug is unknown (or not published). */
+export async function getProduct(slug: string): Promise<ProductDetail | null> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag("products", `product:${slug}`);
+  try {
+    return (await apiGet<ProductDetail>(`/products/${encodeURIComponent(slug)}`)).data;
+  } catch (err) {
+    if (err instanceof ApiRequestError && err.status === 404) return null;
+    throw err;
+  }
 }

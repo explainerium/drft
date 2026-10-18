@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import type { FormEvent } from "react";
+import type { FormEvent, ReactNode } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 const email = z.email();
 
 // UI only: the newsletter API (double opt-in) is built in M6.
-export function NewsletterForm() {
+export function NewsletterForm({ submitLabel }: { submitLabel?: ReactNode }) {
   const t = useTranslations("layout.footer.newsletter");
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -34,7 +34,7 @@ export function NewsletterForm() {
         className="h-12 rounded-md bg-background px-4"
       />
       <Button type="submit" className="h-12 rounded-md px-6">
-        {t("subscribe")}
+        {submitLabel ?? t("subscribe")}
       </Button>
     </form>
   );

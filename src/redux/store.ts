@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./api/baseApi";
+import { cartUiReducer } from "./slices/cartUiSlice";
 
 /**
  * Built once at module scope, not inside makeStore: combineReducers probes the
@@ -8,6 +9,7 @@ import { baseApi } from "./api/baseApi";
  */
 const rootReducer = combineReducers({
   [baseApi.reducerPath]: baseApi.reducer,
+  cartUi: cartUiReducer,
 });
 
 /** A fresh store per request on the server, one per tab in the browser (see StoreProvider). */

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Toaster } from "sonner";
+import { CartDrawer } from "@/components/cart/CartDrawer";
 import { StoreProvider } from "@/components/providers/StoreProvider";
 import { AnnouncementBar } from "@/components/shared/layout/AnnouncementBar";
 import { SiteFooter } from "@/components/shared/layout/SiteFooter";
@@ -36,6 +37,7 @@ export default async function LocaleLayout({ children }: LayoutProps<"/[locale]"
             <SiteHeader />
             <div className="flex flex-1 flex-col">{children}</div>
             <SiteFooter />
+            <CartDrawer />
           </StoreProvider>
           <Toaster position="top-right" />
         </NextIntlClientProvider>

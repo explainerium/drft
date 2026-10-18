@@ -1,13 +1,33 @@
-import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import { DesignPhilosophy } from "@/components/home/DesignPhilosophy";
+import { Disciplines } from "@/components/home/Disciplines";
+import { FeaturedFleet, FeaturedFleetSkeleton } from "@/components/home/FeaturedFleet";
+import { FieldNotes } from "@/components/home/FieldNotes";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HomeNewsletter } from "@/components/home/HomeNewsletter";
+import { ProductSpotlight } from "@/components/home/ProductSpotlight";
+import { TrustStrip } from "@/components/home/TrustStrip";
+import { WindJournal } from "@/components/home/WindJournal";
 
-// Placeholder until the Home design is built (M2).
-export default async function HomePage() {
-  const t = await getTranslations("home");
-
+// Catalog sections stream in from the cached reads; the rest is static copy.
+export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 bg-surface px-4 text-center">
-      <h1 className="font-heading text-4xl font-semibold uppercase tracking-tight md:text-6xl">{t("title")}</h1>
-      <p className="text-muted-foreground">{t("comingSoon")}</p>
+    <main className="flex-1">
+      <HomeHero />
+      <Suspense fallback={<FeaturedFleetSkeleton />}>
+        <FeaturedFleet />
+      </Suspense>
+      <DesignPhilosophy />
+      <FieldNotes />
+      <Suspense>
+        <Disciplines />
+      </Suspense>
+      <Suspense>
+        <ProductSpotlight />
+      </Suspense>
+      <WindJournal />
+      <HomeNewsletter />
+      <TrustStrip />
     </main>
   );
 }

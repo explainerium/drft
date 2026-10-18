@@ -1,16 +1,23 @@
 import { ArrowRightIcon, CirclePlayIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import seaImage from "@/assets/images/shop/editorial-banner.jpg";
 import { Link } from "@/i18n/navigation";
 
-// TODO: the Figma banner has a black-and-white sea photo behind the gradient; add it once the image is exported.
 export function EditorialBanner() {
   const t = useTranslations("shop.editorial");
 
   return (
-    <section
-      aria-labelledby="editorial-title"
-      className="relative overflow-hidden rounded-lg bg-[radial-gradient(120%_120%_at_80%_20%,#3a3a3a_0%,#0a0a0a_55%,#000_100%)] text-white"
-    >
+    <section aria-labelledby="editorial-title" className="relative overflow-hidden rounded-lg bg-black text-white">
+      <Image
+        src={seaImage}
+        alt=""
+        fill
+        sizes="(min-width: 1280px) 1152px, 100vw"
+        placeholder="blur"
+        className="object-cover"
+      />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
       <div className="relative flex min-h-[480px] flex-col justify-center px-6 py-16 md:px-20 lg:min-h-[560px]">
         <p className="inline-flex items-center gap-2 self-start rounded-xl bg-white/15 px-3 py-1 text-xs font-medium tracking-[0.1em] text-accent uppercase">
           <span className="size-1.5 rounded-full bg-brand-soft" aria-hidden />
@@ -40,7 +47,9 @@ export function EditorialBanner() {
         </div>
 
         <p className="mt-10 text-right md:absolute md:right-16 md:bottom-20 md:mt-0">
-          <span className="block text-xs font-medium tracking-[0.05em] text-[#c4c7c7] uppercase">{t("locationLabel")}</span>
+          <span className="block text-xs font-medium tracking-[0.05em] text-[#c4c7c7] uppercase">
+            {t("locationLabel")}
+          </span>
           <span className="block text-sm text-border">{t("location")}</span>
         </p>
       </div>
