@@ -5,7 +5,7 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 // Backend origin (server-only). The browser always calls /api/v1 on this
 // domain and Next proxies it there.
-const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:5000";
+const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:5005";
 
 const nextConfig: NextConfig = {
   async rewrites() {

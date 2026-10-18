@@ -3,6 +3,159 @@
     "title": "DRFT — Kitesurf & Foil Equipment",
     "description": "High-performance kites, boards and foils, engineered for riders."
   },
+  "layout": {
+    "home": "DRFT home",
+    "announcement": "Complimentary EU shipping on orders over €150 · 30-day return policy",
+    "nav": {
+      "label": "Main",
+      "kites": "Kites",
+      "boards": "Boards",
+      "foilWings": "Foil & Wings",
+      "stories": "Stories",
+      "about": "About"
+    },
+    "mobileNav": {
+      "open": "Open menu",
+      "description": "Site navigation"
+    },
+    "search": {
+      "open": "Search",
+      "title": "Search the store",
+      "description": "Search kites, boards, foils and accessories",
+      "placeholder": "Search kites, boards, foils…",
+      "submit": "Search"
+    },
+    "account": {
+      "label": "Account",
+      "menu": "Account menu",
+      "signIn": "Sign in",
+      "register": "Create account",
+      "myAccount": "My account",
+      "orders": "Orders"
+    },
+    "cart": {
+      "text": "Cart ({count})",
+      "label": "Cart, {count, plural, =0 {empty} one {# item} other {# items}}"
+    },
+    "footer": {
+      "home": "DRFT home",
+      "tagline": "High-performance watersports equipment engineered for progression, freedom, and the elements.",
+      "newsletter": {
+        "title": "The Wind Journal",
+        "placeholder": "Your email address",
+        "subscribe": "Subscribe",
+        "invalid": "Please enter a valid email address.",
+        "comingSoon": "Newsletter sign-up opens soon."
+      },
+      "columns": {
+        "shop": "Shop",
+        "about": "About & Editorial",
+        "support": "Support"
+      },
+      "links": {
+        "kites": "Kites",
+        "foilBoards": "Foil Boards",
+        "controlBars": "Control Bars",
+        "wings": "Wings",
+        "harnesses": "Harnesses",
+        "accessories": "Accessories",
+        "ourStory": "Our Story",
+        "sustainability": "Sustainability",
+        "journal": "The Journal",
+        "teamRiders": "Team Riders",
+        "retailers": "Retailers",
+        "shippingReturns": "Shipping & Returns",
+        "kiteCare": "Kite Care & Repair",
+        "warranty": "Warranty",
+        "faq": "FAQ",
+        "contact": "Contact Us"
+      },
+      "copyright": "© {year} DRFT Sports BV. All rights reserved.",
+      "currency": "EUR €",
+      "legal": {
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Settings"
+      }
+    }
+  },
+  "shop": {
+    "title": "Kitesurf Equipment",
+    "eyebrow": "The 2025 Fleet",
+    "description": "Purpose-built kites, performance foil boards, and control systems designed for freeride progression and open-water freedom across European shorelines.",
+    "categoryDescription": "{name}, engineered in Europe and tested in Tarifa and Klitmøller.",
+    "breadcrumb": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "shop": "Shop"
+    },
+    "proof": {
+      "tested": "Tested in Tarifa & Klitmøller",
+      "handFinished": "Hand-Finished"
+    },
+    "filters": {
+      "label": "Categories",
+      "all": "All Equipment"
+    },
+    "results": {
+      "label": "Products",
+      "count": "{count, plural, =0 {No products} one {Showing # product} other {Showing # products}}",
+      "search": "{count, plural, =0 {No results} one {# result} other {# results}} for “{q}”"
+    },
+    "sort": {
+      "label": "Sort by",
+      "featured": "Featured",
+      "newest": "Newest",
+      "price_asc": "Price: low to high",
+      "price_desc": "Price: high to low",
+      "name": "Name: A–Z"
+    },
+    "card": {
+      "view": "View product",
+      "soldOut": "Sold out",
+      "was": "Was"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    },
+    "empty": {
+      "title": "Nothing here yet",
+      "search": "We couldn’t find anything for “{q}”. Try another word or browse all equipment.",
+      "category": "There are no products in this category right now.",
+      "reset": "Browse all equipment"
+    },
+    "editorial": {
+      "eyebrow": "DRFT Design Philosophy",
+      "title": "Made for days you remember.",
+      "body": "We craft equipment that disappears beneath you, leaving only wind, water, and momentum. Tested rigorously against the Atlantic chop and Mediterranean thermals to deliver uncompromised feel.",
+      "journal": "Read the DRFT Journal",
+      "sessions": "Watch the Tarifa Sessions",
+      "locationLabel": "Location",
+      "location": "Punta Paloma, 36.01° N"
+    },
+    "reassurance": {
+      "label": "Why shop with DRFT",
+      "shipping": {
+        "title": "Complimentary EU Shipping",
+        "body": "Orders over €150 delivered via carbon-neutral transit within 2–4 business days."
+      },
+      "returns": {
+        "title": "30-Day Ocean Guarantee",
+        "body": "Rig it, ride it on the open water. Complete exchange or full return if it doesn’t fit your style."
+      },
+      "warranty": {
+        "title": "2-Year Craftsmanship Warranty",
+        "body": "Direct European workshop support and dedicated canopy repair service for extended lifespan."
+      },
+      "advice": {
+        "title": "Expert Kite Advisory",
+        "body": "Chat with our dedicated riders in Tarifa to dial in your kite size and mast setup."
+      }
+    }
+  },
   "home": {
     "title": "Defy gravity. Pure flight.",
     "comingSoon": "The new DRFT store is under construction."
