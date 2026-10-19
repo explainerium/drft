@@ -53,6 +53,8 @@ export const LEGAL_LINKS = [
 export const ACCOUNT_LINKS = {
   account: "/account",
   orders: "/account/orders",
+  addresses: "/account/addresses",
+  wishlist: "/account/wishlist",
   login: "/login",
   register: "/register",
   cart: "/cart",

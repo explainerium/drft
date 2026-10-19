@@ -1,6 +1,7 @@
 import { ArrowRightIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { CatalogImageView } from "@/components/shared/CatalogImageView";
+import { WishlistButton } from "@/components/wishlist/WishlistButton";
 import { Link } from "@/i18n/navigation";
 import type { ProductCard } from "@/types/catalog";
 import { formatPrice } from "@/utils/format";
@@ -28,6 +29,8 @@ export function FleetCard({ product, priority = false }: { product: ProductCard;
             {product.inStock ? product.badge : t("soldOut")}
           </span>
         )}
+        {/* Above the card-wide product link. */}
+        <WishlistButton productId={product.id} productName={product.name} className="absolute top-4 right-4 z-10" />
       </div>
 
       <div className="flex flex-1 flex-col p-6">

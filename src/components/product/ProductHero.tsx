@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useState, type ReactNode } from "react";
 import { toast } from "sonner";
 import { Container } from "@/components/shared/Container";
+import { WishlistButton } from "@/components/wishlist/WishlistButton";
 import { cn } from "@/lib/utils";
 import { useAddCartItemMutation } from "@/redux/api/cartApi";
 import { useAppDispatch } from "@/redux/hooks";
@@ -63,8 +64,15 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
           {variant && (
             <p className="flex items-center gap-3 text-muted-foreground">
               <span className="flex items-center gap-1.5">
-                <span className={cn("size-1.5 rounded-full", purchasable ? "bg-success" : "bg-destructive")} aria-hidden />
-                {variant.inStock ? t("stock.inStock") : variant.allowBackorder ? t("stock.backorder") : t("stock.soldOut")}
+                <span
+                  className={cn("size-1.5 rounded-full", purchasable ? "bg-success" : "bg-destructive")}
+                  aria-hidden
+                />
+                {variant.inStock
+                  ? t("stock.inStock")
+                  : variant.allowBackorder
+                    ? t("stock.backorder")
+                    : t("stock.soldOut")}
               </span>
               {variant.sku && (
                 <>
@@ -101,7 +109,9 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
           )}
 
           <div className="rounded-lg bg-card p-6 max-lg:row-start-2 lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:p-7">
-            {eyebrow && <p className="text-xs font-medium tracking-[0.05em] text-muted-foreground uppercase">{eyebrow}</p>}
+            {eyebrow && (
+              <p className="text-xs font-medium tracking-[0.05em] text-muted-foreground uppercase">{eyebrow}</p>
+            )}
             <h1 className="mt-2 font-heading text-3xl leading-tight font-medium tracking-[-0.025em] md:text-4xl md:leading-[44px]">
               {product.name}
             </h1>
@@ -156,7 +166,10 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
                             !available && "opacity-40",
                           )}
                         >
-                          <span className="size-8 rounded-[10px]" style={{ backgroundColor: value.hexColor ?? undefined }} />
+                          <span
+                            className="size-8 rounded-[10px]"
+                            style={{ backgroundColor: value.hexColor ?? undefined }}
+                          />
                         </button>
                       ) : (
                         <button
@@ -180,7 +193,11 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
             })}
 
             <div className="mt-8 flex gap-3">
-              <div className="flex h-12 items-center rounded-md bg-secondary" role="group" aria-label={t("purchase.quantity")}>
+              <div
+                className="flex h-12 items-center rounded-md bg-secondary"
+                role="group"
+                aria-label={t("purchase.quantity")}
+              >
                 <button
                   type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -208,13 +225,27 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
                 onClick={addToCart}
                 disabled={!purchasable || adding}
                 aria-busy={adding}
-                className="flex h-12 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-3 text-sm font-medium whitespace-nowrap text-primary-foreground transition-colors hover:bg-primary/85 disabled:cursor-not-allowed disabled:bg-subtle-foreground"
+                className="flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-3 text-sm font-medium whitespace-nowrap text-primary-foreground transition-colors hover:bg-primary/85 disabled:cursor-not-allowed disabled:bg-subtle-foreground"
               >
                 <ShoppingBagIcon className="hidden size-4 min-[400px]:block" />
-                {purchasable
-                  ? t("purchase.addToCart", { price: price ? formatPrice(price, locale) : "" })
-                  : t("stock.soldOut")}
+                {purchasable ? (
+                  <>
+                    {/* The price is right above; narrow screens drop it from the label. */}
+                    <span className="sm:hidden">{t("purchase.add")}</span>
+                    <span className="hidden sm:inline">
+                      {t("purchase.addToCart", { price: price ? formatPrice(price, locale) : "" })}
+                    </span>
+                  </>
+                ) : (
+                  t("stock.soldOut")
+                )}
               </button>
+              <WishlistButton
+                productId={product.id}
+                productName={product.name}
+                variantId={variant?.id}
+                className="size-12 shrink-0 rounded-md bg-secondary shadow-none hover:bg-accent"
+              />
             </div>
 
             <ul className="mt-6 grid grid-cols-3 gap-2 text-center text-[11px] leading-[14px] text-muted-foreground">

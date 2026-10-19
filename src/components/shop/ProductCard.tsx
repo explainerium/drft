@@ -1,6 +1,7 @@
 import { ArrowRightIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { CatalogImageView } from "@/components/shared/CatalogImageView";
+import { WishlistButton } from "@/components/wishlist/WishlistButton";
 import { Link } from "@/i18n/navigation";
 import type { ProductCard as ProductCardData } from "@/types/catalog";
 import { formatPrice } from "@/utils/format";
@@ -23,7 +24,10 @@ export function ProductCard({ product, priority = false }: { product: ProductCar
             className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           />
         ) : (
-          <div aria-hidden className="flex size-full items-center justify-center font-heading text-2xl text-subtle-foreground/40">
+          <div
+            aria-hidden
+            className="flex size-full items-center justify-center font-heading text-2xl text-subtle-foreground/40"
+          >
             DRFT
           </div>
         )}
@@ -32,6 +36,8 @@ export function ProductCard({ product, priority = false }: { product: ProductCar
             {product.inStock ? product.badge : t("soldOut")}
           </span>
         )}
+        {/* Above the card-wide product link. */}
+        <WishlistButton productId={product.id} productName={product.name} className="absolute top-3 right-3 z-10" />
       </div>
 
       <div className="flex flex-1 flex-col px-2 pt-4 pb-2">

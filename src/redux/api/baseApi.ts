@@ -19,6 +19,9 @@ const refreshSession = (api: Parameters<BaseQueryFn>[1], extraOptions: object) =
       refreshing = null;
     }));
 
+// Where a 401 means wrong credentials or a dead session, not an expired access token.
+const NO_REFRESH = /^\/auth\/(login|register|refresh|logout|forgot-password|reset-password|verify-email)\b/;
+
 /** The access token lives 15 minutes; on a 401, refresh once and retry. */
 const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQueryError> = async (
   args,
@@ -28,7 +31,7 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
   let result = await rawBaseQuery(args, api, extraOptions);
 
   const url = typeof args === "string" ? args : args.url;
-  if (result.error?.status === 401 && !url.startsWith("/auth/")) {
+  if (result.error?.status === 401 && !NO_REFRESH.test(url)) {
     if (await refreshSession(api, extraOptions)) {
       result = await rawBaseQuery(args, api, extraOptions);
     }

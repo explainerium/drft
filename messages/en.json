@@ -31,7 +31,11 @@
       "signIn": "Sign in",
       "register": "Create account",
       "myAccount": "My account",
-      "orders": "Orders"
+      "orders": "Orders",
+      "signOut": "Sign out",
+      "signedOut": "You’re signed out",
+      "greeting": "Hi, {name}",
+      "wishlist": "Wishlist"
     },
     "cart": {
       "text": "Cart ({count})",
@@ -178,7 +182,8 @@
       "increase": "Increase quantity",
       "addToCart": "Add to Cart — {price}",
       "unavailable": "{value} (unavailable in this combination)",
-      "failed": "We couldn’t add this to your cart. Please try again."
+      "failed": "We couldn’t add this to your cart. Please try again.",
+      "add": "Add to Cart"
     },
     "promises": {
       "delivery": "Free EU Delivery Over €150",
@@ -429,7 +434,11 @@
       "remove": "Remove",
       "removeLabel": "Remove {name} from cart",
       "unavailable": "No longer available. Please remove it to check out.",
-      "limited": "Only {count} available. We’ll adjust the quantity at checkout."
+      "limited": "Only {count} available. We’ll adjust the quantity at checkout.",
+      "save": "Save",
+      "saveLabel": "Save {name} for later",
+      "saved": "{name} moved to your wishlist",
+      "signInToSave": "Sign in to save products for later"
     },
     "recommendations": {
       "title": "Curated for your setup",
@@ -471,5 +480,597 @@
     },
     "added": "Added to your cart",
     "failed": "Something went wrong. Please try again."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "description": "Contact, delivery address, shipping method and payment",
+    "steps": {
+      "label": "Checkout progress",
+      "cart": "Cart",
+      "information": "Information",
+      "shipping": "Shipping",
+      "payment": "Payment"
+    },
+    "error": "We couldn’t load checkout. Please try again.",
+    "retry": "Try again",
+    "empty": {
+      "title": "Your cart is empty",
+      "body": "Add some gear to your cart before checking out.",
+      "cta": "Explore the 2025 Fleet"
+    },
+    "contact": {
+      "title": "Customer Contact",
+      "login": "Already have an account? Log in",
+      "email": "Email address for tracking",
+      "marketing": "Keep me updated on DRFT gear drops, wind alerts, and ocean stories",
+      "signedIn": "Signed in as {email}"
+    },
+    "address": {
+      "title": "Delivery & Shipping Address",
+      "country": "Country / Region",
+      "countryPlaceholder": "Select a country",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "company": "Company (optional)",
+      "street1": "Street address",
+      "street2": "Apartment, suite, etc. (optional)",
+      "postcode": "Postal code",
+      "city": "City",
+      "phone": "Phone number for courier updates",
+      "phoneHint": "SMS delivery dispatch notification",
+      "save": "Save this address to my account"
+    },
+    "shipping": {
+      "title": "Shipping Method",
+      "chooseCountry": "Choose a country to see delivery options.",
+      "none": "We don’t ship to this country yet.",
+      "free": "Free",
+      "included": "Included"
+    },
+    "payment": {
+      "title": "Payment Method",
+      "compliance": "PCI-DSS Level 1 Compliant",
+      "STRIPE": "Credit or Debit Card",
+      "STRIPEBody": "Visa, Mastercard, Amex, Klarna, iDEAL and more",
+      "PAYPAL": "PayPal",
+      "PAYPALBody": "Pay with your PayPal account",
+      "notConnected": "Online payment isn’t connected yet. Completing the order reserves your items for 30 minutes without charging you.",
+      "billing": "Billing Address",
+      "billingSame": "Same as shipping address",
+      "billingDifferent": "Use a different billing address"
+    },
+    "place": "Complete order — {total}",
+    "placing": "Placing your order…",
+    "blocked": "Some items in your cart are no longer available.",
+    "reviewCart": "Review your cart",
+    "legal": "By confirming your purchase, you agree to DRFT’s <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    "trust": {
+      "trial": "30-Day Ocean Trial",
+      "warranty": "2-Year Atelier Warranty",
+      "returns": "Complimentary EU Returns"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "count": "{count, plural, one {# Product} other {# Products}}",
+      "quantity": "Quantity: {count}",
+      "inStock": "In stock",
+      "unavailable": "No longer available",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "shippingPending": "Enter your address",
+      "free": "Free",
+      "vat": "Included VAT ({rate}%)",
+      "total": "Total Due",
+      "totalNote": "EUR · Incl. taxes"
+    },
+    "commitment": {
+      "title": "The DRFT Commitment",
+      "subtitle": "Crafted & tested across cold seas",
+      "rigged": "Pre-flight Rigged:",
+      "riggedBody": "Every kite and bar system undergoes canopy tension calibration in our Dutch workshop before packaging.",
+      "exchange": "Size Exchange Guarantee:",
+      "exchangeBody": "If the wind range doesn’t suit your home spot, exchange sizes free of charge within 30 days.",
+      "help": "Need bar tuning advice?",
+      "helpBody": "Speak with our test riders",
+      "helpCta": "Contact us"
+    },
+    "errors": {
+      "required": "Required",
+      "email": "Enter a valid email address",
+      "phone": "Enter a phone number for the courier",
+      "country": "Choose a country we ship to",
+      "shipping": "Choose a shipping method",
+      "failed": "We couldn’t place your order. Please try again."
+    }
+  },
+  "order": {
+    "error": "We couldn’t load your order.",
+    "retry": "Try again",
+    "notFound": {
+      "title": "We couldn’t find this order",
+      "body": "Order pages open in the browser the order was placed from, or in your account.",
+      "cta": "Continue shopping"
+    },
+    "thanks": "Thank you, {name}",
+    "placed": "Order {number} is placed. Updates go to {email}.",
+    "status": {
+      "PENDING_PAYMENT": "Awaiting payment",
+      "PAID": "Paid",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled",
+      "REFUNDED": "Refunded",
+      "PARTIALLY_REFUNDED": "Partially refunded"
+    },
+    "pending": "Your items are reserved until {time}. Payment isn’t connected yet, so nothing was charged.",
+    "cancelled": "This order was cancelled and its items released.",
+    "items": "Items",
+    "quantity": "Qty {count}",
+    "delivery": "Delivery",
+    "shippingTo": "Shipping address",
+    "billingTo": "Billing address",
+    "method": "Shipping method",
+    "contact": "Contact",
+    "summary": {
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "free": "Free",
+      "vat": "Included VAT ({rate}%)",
+      "total": "Total"
+    },
+    "continue": "Continue shopping",
+    "heading": "Order {number}",
+    "placedOn": "Placed on {date}",
+    "backToOrders": "All orders"
+  },
+  "auth": {
+    "side": {
+      "eyebrow": "DRFT Rider Account",
+      "title": "Your setup, your orders, one place.",
+      "body": "Track deliveries, check out faster with saved addresses and pick up your cart on any device."
+    },
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "login": {
+      "title": "Sign in",
+      "subtitle": "Welcome back to DRFT.",
+      "email": "Email address",
+      "password": "Password",
+      "forgot": "Forgot password?",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "noAccount": "New to DRFT?",
+      "register": "Create an account",
+      "welcome": "Welcome back, {name}"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Save addresses, follow your orders and keep your cart on every device.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email address",
+      "password": "Password",
+      "passwordHint": "At least 8 characters",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "login": "Sign in",
+      "welcome": "Welcome to DRFT, {name}. Check your inbox to verify your email.",
+      "legal": "By creating an account, you agree to DRFT’s <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we’ll send you a link to choose a new password.",
+      "email": "Email address",
+      "submit": "Send reset link",
+      "submitting": "Sending…",
+      "sentTitle": "Check your inbox",
+      "sentBody": "If an account exists for {email}, a reset link is on its way. It expires in 1 hour.",
+      "back": "Back to sign in"
+    },
+    "reset": {
+      "title": "Choose a new password",
+      "subtitle": "Use at least 8 characters. You’ll be signed out everywhere.",
+      "password": "New password",
+      "confirm": "Confirm new password",
+      "submit": "Update password",
+      "submitting": "Updating…",
+      "done": "Password updated. Sign in with your new password.",
+      "missing": "This reset link is incomplete. Request a new one.",
+      "request": "Request a new link"
+    },
+    "verify": {
+      "title": "Verify your email",
+      "verifying": "Verifying your email…",
+      "done": "Your email is verified. Thanks!",
+      "failed": "This verification link is invalid or has expired.",
+      "missing": "This verification link is incomplete.",
+      "account": "Go to your account",
+      "resend": "Send a new link",
+      "resent": "A new verification link is on its way.",
+      "signInToResend": "Sign in to get a new link."
+    },
+    "errors": {
+      "required": "Required",
+      "email": "Enter a valid email address",
+      "passwordLength": "Use at least 8 characters",
+      "passwordMatch": "Passwords don’t match",
+      "failed": "Something went wrong. Please try again."
+    }
+  },
+  "account": {
+    "title": "My account",
+    "nav": {
+      "label": "Account",
+      "overview": "Overview",
+      "orders": "Orders",
+      "addresses": "Addresses",
+      "signOut": "Sign out",
+      "wishlist": "Wishlist"
+    },
+    "signInRequired": {
+      "title": "Please sign in",
+      "body": "Your session has ended. Sign in again to see your account.",
+      "cta": "Sign in"
+    },
+    "overview": {
+      "greeting": "Hi, {name}",
+      "memberSince": "Rider since {date}"
+    },
+    "verify": {
+      "title": "Verify your email",
+      "body": "We sent a link to {email}. Verified accounts can recover their password and get order updates.",
+      "resend": "Resend link",
+      "resent": "A new link is on its way."
+    },
+    "profile": {
+      "title": "Profile",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "emailHint": "Contact us to change it",
+      "phone": "Phone (optional)",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Profile updated"
+    },
+    "password": {
+      "title": "Password",
+      "body": "Changing your password signs you out on every device.",
+      "current": "Current password",
+      "new": "New password",
+      "submit": "Change password",
+      "submitting": "Changing…",
+      "done": "Password changed. Please sign in again."
+    },
+    "orders": {
+      "title": "Orders",
+      "empty": "You haven’t placed an order yet.",
+      "emptyCta": "Explore the 2025 Fleet",
+      "placed": "Placed {date}",
+      "items": "{count, plural, one {# item} other {# items}}",
+      "view": "View order",
+      "more": "+{count}",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page} of {total}",
+      "error": "We couldn’t load your orders.",
+      "retry": "Try again"
+    },
+    "addresses": {
+      "title": "Addresses",
+      "add": "Add address",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this address?",
+      "deleted": "Address deleted",
+      "saved": "Address saved",
+      "defaultShipping": "Default shipping",
+      "defaultBilling": "Default billing",
+      "makeDefaultShipping": "Use as default shipping address",
+      "makeDefaultBilling": "Use as default billing address",
+      "empty": "No saved addresses yet. Addresses you save at checkout appear here too.",
+      "newTitle": "New address",
+      "editTitle": "Edit address",
+      "cancel": "Cancel",
+      "save": "Save address",
+      "saving": "Saving…",
+      "error": "We couldn’t load your addresses.",
+      "retry": "Try again"
+    },
+    "address": {
+      "country": "Country / Region",
+      "countryPlaceholder": "Select a country",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "company": "Company (optional)",
+      "street1": "Street address",
+      "street2": "Apartment, suite, etc. (optional)",
+      "postcode": "Postal code",
+      "city": "City",
+      "phone": "Phone (optional)"
+    },
+    "errors": {
+      "required": "Required",
+      "passwordLength": "Use at least 8 characters",
+      "country": "Choose a country",
+      "failed": "Something went wrong. Please try again."
+    },
+    "wishlist": {
+      "title": "Wishlist",
+      "count": "{count, plural, one {# saved product} other {# saved products}}",
+      "empty": "Nothing saved yet. Tap the heart on any product to keep it here.",
+      "emptyCta": "Explore the 2025 Fleet",
+      "addToCart": "Add to cart",
+      "chooseOptions": "Choose options",
+      "soldOut": "Sold out",
+      "remove": "Remove",
+      "removeLabel": "Remove {name} from your wishlist",
+      "added": "{name} added to your cart",
+      "error": "We couldn’t load your wishlist.",
+      "retry": "Try again"
+    }
+  },
+  "wishlist": {
+    "saveLabel": "Save {name} to your wishlist",
+    "removeLabel": "Remove {name} from your wishlist",
+    "saved": "{name} saved to your wishlist",
+    "removed": "{name} removed from your wishlist",
+    "view": "View",
+    "signIn": "Sign in to save products to your wishlist",
+    "failed": "Something went wrong. Please try again."
+  },
+  "admin": {
+    "metadata": {
+      "title": "DRFT Admin",
+      "login": "Sign in",
+      "dashboard": "Dashboard",
+      "orders": "Orders",
+      "order": "Order",
+      "customers": "Customers",
+      "customer": "Customer"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "orders": "Orders",
+      "customers": "Customers",
+      "menu": "Staff menu",
+      "storefront": "View store",
+      "signOut": "Sign out",
+      "signedOut": "You’re signed out."
+    },
+    "login": {
+      "title": "Admin sign in",
+      "subtitle": "For DRFT staff accounts.",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "required": "Enter your password.",
+      "invalidEmail": "Enter a valid email address.",
+      "notStaff": "This account has no access to the admin.",
+      "failed": "Signing in didn’t work. Try again.",
+      "welcome": "Welcome back, {name}."
+    },
+    "common": {
+      "error": "This couldn’t be loaded.",
+      "retry": "Try again",
+      "pagination": "Pages",
+      "page": "Page {page} of {pages}",
+      "previous": "Previous",
+      "next": "Next",
+      "clearSearch": "Clear search"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "greeting": "Hello, {name}",
+      "subtitle": "How the store is doing.",
+      "rangeLabel": "Period",
+      "range": {
+        "7": "7 days",
+        "30": "30 days",
+        "90": "90 days"
+      },
+      "revenue": "Revenue",
+      "orders": "Paid orders",
+      "aov": "Average order",
+      "newCustomers": "New customers",
+      "changeValue": "{direction, select, up {+} other {−}}{change}%",
+      "vsPrevious": "vs the {days} days before",
+      "noComparison": "Nothing to compare with in the {days} days before",
+      "toFulfil": "To ship",
+      "toFulfilHint": "Paid orders waiting to be shipped",
+      "awaitingPayment": "Awaiting payment",
+      "awaitingHint": "Unpaid orders holding stock",
+      "sales": "Sales",
+      "salesHint": "Revenue per day, by payment date",
+      "noSales": "No sales in this period yet.",
+      "date": "Date",
+      "ordersCount": "{count, plural, one {# order} other {# orders}}",
+      "showTable": "Show as table",
+      "showChart": "Show as chart",
+      "recent": "Recent orders",
+      "viewAll": "View all",
+      "noOrders": "No orders yet.",
+      "lowStock": "Low stock",
+      "lowStockHint": "Tracked variants with {threshold} or fewer left",
+      "noLowStock": "Nothing is running low.",
+      "stockLeft": "{count} left",
+      "soldOut": "Sold out",
+      "backorder": "Backorder",
+      "topProducts": "Best sellers",
+      "noTopProducts": "No sales in this period yet.",
+      "units": "{count, plural, one {# unit} other {# units}}"
+    },
+    "orders": {
+      "title": "Orders",
+      "subtitle": "Every order placed in the store, newest first.",
+      "filter": "Filter by status",
+      "all": "All",
+      "status": {
+        "PENDING_PAYMENT": "Awaiting payment",
+        "PAID": "Paid",
+        "PROCESSING": "Processing",
+        "SHIPPED": "Shipped",
+        "DELIVERED": "Delivered",
+        "CANCELLED": "Cancelled",
+        "REFUNDED": "Refunded",
+        "PARTIALLY_REFUNDED": "Partially refunded"
+      },
+      "search": "Order number, email or last name",
+      "columns": {
+        "order": "Order",
+        "date": "Placed",
+        "customer": "Customer",
+        "status": "Status",
+        "total": "Total"
+      },
+      "items": "{count, plural, one {# item} other {# items}}",
+      "guest": "Guest · {email}",
+      "empty": "No orders match."
+    },
+    "order": {
+      "back": "Orders",
+      "notFoundTitle": "Order",
+      "notFound": "This order doesn’t exist.",
+      "placed": "Placed {date}",
+      "items": "{count, plural, one {# item} other {# items}}",
+      "sku": "SKU {sku}",
+      "unit": "{count} × {price}",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping ({method})",
+      "vat": "Incl. VAT ({rate}%)",
+      "total": "Total",
+      "status": "Status",
+      "paidAt": "Paid {date}",
+      "reservedUntil": "Not paid. Stock is held until {time}.",
+      "notPaid": "Not paid",
+      "paymentHint": "Payments are marked paid by Stripe or PayPal, never by hand.",
+      "noActions": "There are no further status changes for this order.",
+      "actions": {
+        "PROCESSING": "Start processing",
+        "SHIPPED": "Mark as shipped",
+        "DELIVERED": "Mark as delivered",
+        "CANCELLED": "Cancel order",
+        "PENDING_PAYMENT": "Set to awaiting payment",
+        "PAID": "Mark as paid",
+        "REFUNDED": "Refund",
+        "PARTIALLY_REFUNDED": "Partial refund"
+      },
+      "updated": "Order set to {status}.",
+      "failed": "That didn’t work. Try again.",
+      "shippedAt": "Shipped {date}",
+      "tracking": {
+        "title": "Tracking",
+        "edit": "Edit tracking",
+        "hint": "Corrects the details on the order page. The customer isn’t emailed again.",
+        "none": "No tracking added.",
+        "save": "Save tracking",
+        "saved": "Tracking saved."
+      },
+      "dialog": {
+        "description": "Order {number}",
+        "cancelWarning": "The order is cancelled and its reserved stock goes back on sale. This can’t be undone.",
+        "carrier": "Carrier",
+        "trackingNumber": "Tracking number",
+        "trackingUrl": "Tracking link",
+        "note": "Note (optional)",
+        "notePlaceholder": "Shown in the order history, for staff only.",
+        "notify": "Email the customer ({email})",
+        "notifyShipped": "Sends the tracking details.",
+        "notifyCancelled": "Tells them nothing was charged.",
+        "back": "Back",
+        "saving": "Saving…"
+      },
+      "customer": "Customer",
+      "viewCustomer": "View customer",
+      "accountOrders": "{count, plural, one {# order} other {# orders}} on this account",
+      "guest": "Guest checkout",
+      "marketing": "Accepts marketing",
+      "noMarketing": "No marketing",
+      "shippingAddress": "Shipping address",
+      "billingAddress": "Billing address",
+      "sameAsShipping": "Same as shipping",
+      "method": "Shipping method",
+      "history": "History",
+      "historyStatus": {
+        "PENDING_PAYMENT": "Placed, awaiting payment",
+        "PAID": "Paid",
+        "PROCESSING": "Processing",
+        "SHIPPED": "Shipped",
+        "DELIVERED": "Delivered",
+        "CANCELLED": "Cancelled",
+        "REFUNDED": "Refunded",
+        "PARTIALLY_REFUNDED": "Partially refunded"
+      },
+      "by": "by {name}",
+      "notes": {
+        "title": "Internal notes",
+        "hint": "Only staff see these.",
+        "placeholder": "Add a note…",
+        "add": "Add note",
+        "added": "Note added.",
+        "failed": "The note wasn’t saved. Try again.",
+        "empty": "No notes yet."
+      }
+    },
+    "customers": {
+      "title": "Customers",
+      "subtitle": "Customer accounts, newest first.",
+      "filter": "Filter by status",
+      "all": "All",
+      "status": {
+        "ACTIVE": "Active",
+        "SUSPENDED": "Suspended"
+      },
+      "unverified": "Unverified",
+      "search": "Name or email",
+      "columns": {
+        "name": "Customer",
+        "status": "Status",
+        "orders": "Orders",
+        "joined": "Joined",
+        "lastLogin": "Last sign-in"
+      },
+      "never": "Never",
+      "empty": "No customers match."
+    },
+    "customer": {
+      "back": "Customers",
+      "notFoundTitle": "Customer",
+      "notFound": "This customer doesn’t exist.",
+      "paidOrders": "Paid orders",
+      "totalSpent": "Total spent",
+      "customerSince": "Customer since",
+      "orders": "Orders",
+      "noOrders": "No orders yet.",
+      "profile": "Profile",
+      "email": "Email",
+      "phone": "Phone",
+      "none": "—",
+      "emailStatus": "Email address",
+      "verified": "Verified {date}",
+      "unverified": "Not verified yet",
+      "lastLogin": "Last sign-in",
+      "never": "Never",
+      "addresses": "Addresses",
+      "noAddresses": "No saved addresses.",
+      "defaultShipping": "Default shipping",
+      "defaultBilling": "Default billing",
+      "access": "Account access",
+      "suspendHint": "A suspended customer can still sign in to see their account, but can’t place orders.",
+      "suspendedHint": "This account is suspended: the customer can see their account but can’t place orders.",
+      "adminOnly": "Only an admin can change account access.",
+      "suspend": "Suspend account",
+      "confirmSuspend": "Suspend this account? The customer is signed out everywhere.",
+      "keep": "Keep active",
+      "reactivate": "Reactivate account",
+      "suspended": "Account suspended.",
+      "reactivated": "Account reactivated.",
+      "failed": "That didn’t work. Try again."
+    }
   }
 }

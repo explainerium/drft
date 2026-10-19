@@ -10,7 +10,8 @@ import { routing } from "./routing";
  * Server Actions — pass `locale` explicitly there (e.g. getTranslations({ locale })).
  */
 export default getRequestConfig(async ({ locale: explicit }) => {
-  const locale = explicit ?? (await rootParams.locale());
+  // The admin root layout has no [locale] segment, so no root param: it is English.
+  const locale = explicit ?? (await rootParams.locale()) ?? routing.defaultLocale;
 
   if (!hasLocale(routing.locales, locale)) notFound();
 

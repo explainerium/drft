@@ -1,12 +1,15 @@
 "use client";
 
-import { MinusIcon, PlusIcon, Trash2Icon, TriangleAlertIcon } from "lucide-react";
+import { BookmarkIcon, MinusIcon, PlusIcon, Trash2Icon, TriangleAlertIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { CatalogImageView } from "@/components/shared/CatalogImageView";
-import { Link } from "@/i18n/navigation";
+import { ACCOUNT_LINKS } from "@/constants/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { useSession } from "@/redux/api/authApi";
 import { useRemoveCartItemMutation, useUpdateCartItemMutation } from "@/redux/api/cartApi";
+import { useAddToWishlistMutation } from "@/redux/api/wishlistApi";
 import type { CartLine } from "@/types/cart";
 import { apiErrorMessage } from "@/utils/apiError";
 import { formatPrice } from "@/utils/format";
@@ -16,7 +19,10 @@ export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?
   const locale = useLocale();
   const [updateItem, update] = useUpdateCartItemMutation();
   const [removeItem, remove] = useRemoveCartItemMutation();
-  const busy = update.isLoading || remove.isLoading;
+  const [saveItem, save] = useAddToWishlistMutation();
+  const { user } = useSession();
+  const router = useRouter();
+  const busy = update.isLoading || remove.isLoading || save.isLoading;
   const href = `/products/${line.product.slug}`;
 
   const run = async (action: Promise<unknown>) => {
@@ -29,6 +35,23 @@ export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?
 
   const setQuantity = (quantity: number) => run(updateItem({ itemId: line.id, quantity }).unwrap());
 
+  /** "Save": moves the line to the wishlist, keeping its size/colour. Visitors sign in first. */
+  const saveForLater = () => {
+    if (!user) {
+      toast.info(t("items.signInToSave"));
+      onNavigate?.();
+      router.push(`${ACCOUNT_LINKS.login}?next=${encodeURIComponent(window.location.pathname)}`);
+      return;
+    }
+    return run(
+      (async () => {
+        await saveItem({ productId: line.product.id, variantId: line.variantId }).unwrap();
+        await removeItem({ itemId: line.id }).unwrap();
+        toast.success(t("items.saved", { name: line.product.name }));
+      })(),
+    );
+  };
+
   return (
     <li className={cn("flex gap-4 rounded-sm bg-card p-4 shadow-xs sm:gap-5 sm:p-5", busy && "opacity-70")}>
       <Link
@@ -38,9 +61,7 @@ export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?
         aria-hidden
         className="relative h-[120px] w-[92px] shrink-0 overflow-hidden rounded-sm bg-accent sm:h-36 sm:w-28"
       >
-        {line.image && (
-          <CatalogImageView image={line.image} alt="" sizes="112px" className="size-full object-cover" />
-        )}
+        {line.image && <CatalogImageView image={line.image} alt="" sizes="112px" className="size-full object-cover" />}
       </Link>
 
       <div className="flex min-w-0 flex-1 flex-col">
@@ -118,16 +139,28 @@ export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?
           ) : (
             <span />
           )}
-          <button
-            type="button"
-            onClick={() => run(removeItem({ itemId: line.id }).unwrap())}
-            disabled={busy}
-            aria-label={t("items.removeLabel", { name: line.product.name })}
-            className="flex items-center gap-1 text-xs font-medium tracking-[0.02em] text-destructive hover:underline disabled:opacity-50"
-          >
-            <Trash2Icon className="size-3.5" aria-hidden />
-            {t("items.remove")}
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={saveForLater}
+              disabled={busy}
+              aria-label={t("items.saveLabel", { name: line.product.name })}
+              className="flex items-center gap-1 text-xs font-medium tracking-[0.02em] text-muted-foreground hover:text-foreground hover:underline disabled:opacity-50"
+            >
+              <BookmarkIcon className="size-3.5" aria-hidden />
+              {t("items.save")}
+            </button>
+            <button
+              type="button"
+              onClick={() => run(removeItem({ itemId: line.id }).unwrap())}
+              disabled={busy}
+              aria-label={t("items.removeLabel", { name: line.product.name })}
+              className="flex items-center gap-1 text-xs font-medium tracking-[0.02em] text-destructive hover:underline disabled:opacity-50"
+            >
+              <Trash2Icon className="size-3.5" aria-hidden />
+              {t("items.remove")}
+            </button>
+          </div>
         </div>
       </div>
     </li>
