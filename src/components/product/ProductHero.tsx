@@ -12,7 +12,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setCartOpen } from "@/redux/slices/cartUiSlice";
 import type { ProductDetail } from "@/types/catalog";
 import { apiErrorMessage } from "@/utils/apiError";
-import { formatPrice, htmlToParagraphs } from "@/utils/format";
+import { formatPrice } from "@/utils/format";
 import { defaultVariant, isAvailable, pickVariant, selectionOf } from "@/utils/variants";
 import { ProductGallery } from "./ProductGallery";
 
@@ -39,7 +39,6 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
   const variantImage = variant?.image;
   const images = variantImage ? [variantImage, ...gallery.filter((i) => i.id !== variantImage.id)] : gallery;
 
-  const description = product.description ? htmlToParagraphs(product.description) : [];
   const eyebrow = [product.typeLabel, product.content.profile].filter(Boolean).join(" · ");
 
   const dispatch = useAppDispatch();
@@ -127,12 +126,12 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
               <span className="text-sm text-muted-foreground">{t("purchase.vat")}</span>
             </p>
 
-            {description.length > 0 && (
-              <div className="mt-5 flex flex-col gap-3 text-[15px] leading-6 text-muted-foreground">
-                {description.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
-              </div>
+            {product.description && (
+              <div
+                className="rich-text mt-5 text-[15px] leading-6 text-muted-foreground"
+                // Sanitized by the API (the editor's formatting only).
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
             )}
 
             {product.options.map((option) => {

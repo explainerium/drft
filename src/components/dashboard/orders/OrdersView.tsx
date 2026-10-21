@@ -4,7 +4,7 @@ import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { OrderStatusBadge } from "@/components/checkout/OrderStatusBadge";
+import { StatusPill } from "@/components/dashboard/orders/StatusPill";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ADMIN_LINKS } from "@/constants/admin";
@@ -60,7 +60,7 @@ export function OrdersView() {
       <PageHeader title={t("title")} description={t("subtitle")} />
 
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+        <div className="scrollbar-none -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
           <div role="group" aria-label={t("filter")} className="flex w-max gap-1.5">
             <StatusChip active={!status} label={t("all")} count={total} onClick={() => setParams({ status: undefined, page: undefined })} />
             {STATUSES.map((value) => (
@@ -86,7 +86,7 @@ export function OrdersView() {
       {isError ? (
         <QueryError onRetry={refetch} />
       ) : (
-        <div className="overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10">
+        <div className="overflow-hidden panel">
           <Table>
             <TableHeader>
               <TableRow>
@@ -136,8 +136,8 @@ function StatusChip({
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
-        active ? "bg-primary text-primary-foreground" : "bg-card ring-1 ring-foreground/10 hover:bg-accent",
+        "inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+        active ? "border-abyss bg-abyss text-white" : "border-border bg-card hover:bg-accent",
       )}
     >
       {label}
@@ -177,7 +177,7 @@ function OrderRow({ order }: { order: AdminOrderRow }) {
         </div>
       </TableCell>
       <TableCell>
-        <OrderStatusBadge status={order.status} />
+        <StatusPill status={order.status} />
       </TableCell>
       <TableCell className="pr-4 text-right font-medium tabular-nums">{f.money(order.total, order.currency)}</TableCell>
     </TableRow>

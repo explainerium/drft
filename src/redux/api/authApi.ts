@@ -6,7 +6,7 @@ interface Envelope<T> {
 }
 
 /** Tags whose data belongs to whoever is signed in: the cart merges on sign-in, orders are per customer. */
-const SESSION_TAGS = ["User", "Cart", "Order", "Address", "Wishlist", "Dashboard", "AdminOrder", "Customer"] as const;
+const SESSION_TAGS = ["User", "Cart", "Order", "Address", "Wishlist", "Dashboard", "AdminOrder", "Customer", "AdminProduct", "Media", "Shipping", "Vat", "Setting", "Staff"] as const;
 
 /**
  * Session cookies are httpOnly and set by the backend; the browser never sees

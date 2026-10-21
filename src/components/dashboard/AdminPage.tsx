@@ -33,7 +33,7 @@ export function PageHeader({
       )}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="flex min-w-0 flex-col gap-1">
-          <h1 className="font-heading text-2xl font-medium tracking-[-0.02em] sm:text-[28px]">{title}</h1>
+          <h1 className="font-heading text-2xl leading-tight font-semibold tracking-[-0.025em] sm:text-[30px]">{title}</h1>
           {description && <div className="text-sm text-muted-foreground">{description}</div>}
         </div>
         {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
@@ -47,7 +47,7 @@ export function QueryError({ onRetry, message }: { onRetry: () => void; message?
   return (
     <div
       role="alert"
-      className="flex flex-col items-start gap-3 rounded-xl bg-card p-6 text-sm ring-1 ring-foreground/10"
+      className="flex flex-col items-start gap-3 panel p-6 text-sm"
     >
       <p>{message ?? t("error")}</p>
       <Button variant="outline" size="sm" onClick={onRetry}>

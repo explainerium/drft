@@ -10,6 +10,14 @@ export const tagTypes = [
   "Dashboard",
   "AdminOrder",
   "Customer",
+  "AdminProduct",
+  "Attribute",
+  "Media",
+  "MediaFolder",
+  "Shipping",
+  "Vat",
+  "Setting",
+  "Staff",
 ] as const;
 
 export type TagType = (typeof tagTypes)[number];

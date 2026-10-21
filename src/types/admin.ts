@@ -17,6 +17,8 @@ export interface AdminOrderRow {
   customer: { name: string; email: string; isRegistered: boolean };
   country: string | null;
   itemCount: number;
+  /** The first line's product name. */
+  firstProduct: string | null;
   total: string;
   currency: string;
   paymentProvider: PaymentProvider | null;
@@ -30,6 +32,17 @@ export interface DashboardSummary {
   averageOrderValue: Metric<string>;
   newCustomers: Metric;
   series: { date: string; revenue: string; orders: number }[];
+  /** Where the orders placed in the period stand now. */
+  fulfilment: {
+    total: number;
+    delivered: number;
+    shipped: number;
+    toShip: number;
+    awaitingPayment: number;
+    cancelled: number;
+    /** Paid orders that have shipped, 0–100; null without paid orders. */
+    shippedPercent: number | null;
+  };
   toFulfil: number;
   awaitingPayment: number;
   recentOrders: AdminOrderRow[];

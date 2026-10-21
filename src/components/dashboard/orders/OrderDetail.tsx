@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { OrderStatusBadge } from "@/components/checkout/OrderStatusBadge";
+import { StatusPill } from "@/components/dashboard/orders/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -57,7 +57,7 @@ function OrderView({ order, back }: { order: AdminOrder; back: { href: string; l
         title={
           <span className="flex flex-wrap items-center gap-3">
             {order.number}
-            <OrderStatusBadge status={order.status} />
+            <StatusPill status={order.status} />
           </span>
         }
         description={t("placed", { date: f.dateTime(order.createdAt) })}
@@ -176,10 +176,11 @@ function StatusCard({ order }: { order: AdminOrder }) {
           <p className="text-sm text-muted-foreground">{t("noActions")}</p>
         ) : (
           <div className="flex flex-col gap-2">
-            {order.nextStatuses.map((status) => (
+            {order.nextStatuses.map((status, index) => (
               <Button
                 key={status}
-                variant={status === "CANCELLED" ? "outline" : "default"}
+                // The usual next step is the primary one.
+                variant={status === "CANCELLED" || index > 0 ? "outline" : "default"}
                 className={status === "CANCELLED" ? "text-destructive hover:text-destructive" : undefined}
                 onClick={() => setDialog(status)}
               >
@@ -281,11 +282,11 @@ function DeliveryCard({ order }: { order: AdminOrder }) {
       <CardContent className="flex flex-col gap-4 text-sm">
         <AddressLines address={order.shippingAddress} />
         <div className="flex flex-col gap-1 border-t pt-4">
-          <span className="text-xs font-medium text-muted-foreground uppercase">{t("billingAddress")}</span>
+          <span className="text-xs font-medium text-muted-foreground">{t("billingAddress")}</span>
           {sameBilling ? <span>{t("sameAsShipping")}</span> : <AddressLines address={order.billingAddress} />}
         </div>
         <div className="flex flex-col gap-1 border-t pt-4">
-          <span className="text-xs font-medium text-muted-foreground uppercase">{t("method")}</span>
+          <span className="text-xs font-medium text-muted-foreground">{t("method")}</span>
           <span>{order.shippingMethod}</span>
         </div>
       </CardContent>

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState } from "react";
 import { toast } from "sonner";
-import { OrderStatusBadge } from "@/components/checkout/OrderStatusBadge";
+import { StatusPill } from "@/components/dashboard/orders/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -121,7 +121,7 @@ function CustomerOrders({ userId }: { userId: string }) {
                     <span className="text-sm font-medium">{order.number}</span>
                     <span className="text-xs text-muted-foreground">{f.dateTime(order.createdAt)}</span>
                   </span>
-                  <OrderStatusBadge status={order.status} />
+                  <StatusPill status={order.status} />
                   <span className="w-24 text-right text-sm font-medium tabular-nums">
                     {f.money(order.total, order.currency)}
                   </span>

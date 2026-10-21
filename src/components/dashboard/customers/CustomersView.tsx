@@ -55,8 +55,8 @@ export function CustomersView() {
               aria-pressed={status === value}
               onClick={() => setParams({ status: value, page: undefined })}
               className={cn(
-                "inline-flex h-8 items-center rounded-full px-3 text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
-                status === value ? "bg-primary text-primary-foreground" : "bg-card ring-1 ring-foreground/10 hover:bg-accent",
+                "inline-flex h-8 items-center rounded-full border px-3 text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+                status === value ? "border-abyss bg-abyss text-white" : "border-border bg-card hover:bg-accent",
               )}
             >
               {value ? t(`status.${value}`) : t("all")}
@@ -75,7 +75,7 @@ export function CustomersView() {
       {isError ? (
         <QueryError onRetry={refetch} />
       ) : (
-        <div className="overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10">
+        <div className="overflow-hidden panel">
           <Table>
             <TableHeader>
               <TableRow>

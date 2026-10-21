@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -25,6 +26,22 @@ export function StaffOnly({ children }: { children: ReactNode }) {
 }
 
 const isStaff = (role: string | undefined) => !!role && (STAFF_ROLES as readonly string[]).includes(role);
+
+/**
+ * Inside StaffOnly: store setup pages render for ADMINs only; STAFF see why
+ * (the API refuses them anyway).
+ */
+export function AdminOnly({ children }: { children: ReactNode }) {
+  const t = useTranslations("admin.common");
+  const { user } = useSession();
+  if (user?.role === "ADMIN") return children;
+  return (
+    <div className="panel flex flex-col items-start gap-2 p-6">
+      <h1 className="font-heading text-xl font-semibold">{t("adminOnlyTitle")}</h1>
+      <p className="text-sm text-muted-foreground">{t("adminOnlyBody")}</p>
+    </div>
+  );
+}
 
 function StaffGate({ children }: { children: ReactNode }) {
   const { user, isLoading } = useSession();

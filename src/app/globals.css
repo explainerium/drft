@@ -4,6 +4,54 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Product descriptions (sanitized editor HTML) on the PDP and in the admin editor. */
+@utility rich-text {
+  & > * + * {
+    margin-top: 0.75rem;
+  }
+  & h2,
+  & h3,
+  & h4 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    color: var(--foreground);
+  }
+  & h2 {
+    font-size: 1.25rem;
+  }
+  & h3 {
+    font-size: 1.125rem;
+  }
+  & ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  & ol {
+    list-style: decimal;
+    padding-left: 1.25rem;
+  }
+  & strong {
+    font-weight: 600;
+    color: var(--foreground);
+  }
+  & a {
+    color: var(--brand);
+    text-decoration: underline;
+  }
+  & blockquote {
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+  }
+}
+
+/* Admin panels (tables, cards, lists): a hairline edge and a faint lift off the page. */
+@utility panel {
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  box-shadow: 0 1px 3px rgb(19 34 45 / 0.04);
+}
+
 /* Horizontal chip rows: still scrollable, no visible bar. */
 @utility scrollbar-none {
   scrollbar-width: none;
@@ -28,6 +76,10 @@
   --font-sans: var(--font-inter);
   --font-heading: var(--font-manrope);
   --color-brand: var(--brand);
+  --color-abyss: var(--abyss);
+  --color-abyss-soft: var(--abyss-soft);
+  --color-signal: var(--signal);
+  --color-signal-soft: var(--signal-soft);
   --color-brand-soft: var(--brand-soft);
   --color-brand-bright: var(--brand-bright);
   --color-surface: var(--surface);
@@ -167,4 +219,39 @@
   h6 {
     @apply font-heading;
   }
+}
+
+/*
+ * Admin dashboard (the admin root layout puts .admin on <body>): soft grey
+ * page, white rounded panels, a light sidebar, with the storefront ocean blue
+ * as the one accent. Storefront pages never get this class.
+ */
+.admin {
+  --background: #ffffff;
+  --surface: #f3f5f7;
+  --border: #e7ebee;
+  --input: #dde3e8;
+  --muted: #f1f4f6;
+  --accent: #eef3f6;
+  --secondary: #f1f4f6;
+  --muted-foreground: #5b6b76;
+  --subtle-foreground: #8a98a2;
+  --foreground: #13222d;
+  --card-foreground: #13222d;
+  --primary: #006398;
+  --primary-foreground: #ffffff;
+  --ring: #006398;
+  --brand-soft: #e1f0f8;
+  --abyss: #0b2b3a;
+  --abyss-soft: #123a4d;
+  --signal: #b4690e;
+  --signal-soft: #fdf1e1;
+  --sidebar: #fafbfc;
+  --sidebar-foreground: #3a4a55;
+  --sidebar-primary: #006398;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef2f5;
+  --sidebar-accent-foreground: #13222d;
+  --sidebar-border: #e7ebee;
+  --sidebar-ring: #006398;
 }

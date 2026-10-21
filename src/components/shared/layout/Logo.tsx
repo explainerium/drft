@@ -7,7 +7,17 @@ import { cn } from "@/lib/utils";
  * on a page its own `id`: gradient ids must be unique, and a reference into a
  * hidden copy renders nothing.
  */
-export function Logo({ id = "drft-logo", className }: { id?: string; className?: string }) {
+export function Logo({
+  id = "drft-logo",
+  className,
+  tone = "dark",
+}: {
+  id?: string;
+  className?: string;
+  /** "light" for dark backgrounds (the admin sidebar): light wordmark and inner sail. */
+  tone?: "dark" | "light";
+}) {
+  const light = tone === "light";
   return (
     <svg
       viewBox="5 0 114 32"
@@ -28,8 +38,8 @@ export function Logo({ id = "drft-logo", className }: { id?: string; className?:
           <stop offset="1" stopColor="#EF4444" />
         </linearGradient>
         <linearGradient id={`${id}-sail-c`} x1="5.68" y1="5.06" x2="21.57" y2="5.7" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0F172A" />
-          <stop offset="1" stopColor="#1E293B" />
+          <stop stopColor={light ? "#E2E8F0" : "#0F172A"} />
+          <stop offset="1" stopColor={light ? "#CBD5E1" : "#1E293B"} />
         </linearGradient>
         <linearGradient id={`${id}-line-a`} x1="0" y1="0" x2="1" y2="0">
           <stop stopColor="#0284C7" />
@@ -67,7 +77,7 @@ export function Logo({ id = "drft-logo", className }: { id?: string; className?:
         y="22.2"
         textLength="56"
         lengthAdjust="spacing"
-        fill="#0a0a0a"
+        fill={light ? "#ffffff" : "#0a0a0a"}
         style={{ fontFamily: "var(--font-manrope)", fontSize: 20.8, fontWeight: 600 }}
       >
         DRFT
@@ -79,7 +89,7 @@ export function Logo({ id = "drft-logo", className }: { id?: string; className?:
         y="28.3"
         textLength="50"
         lengthAdjust="spacing"
-        fill="#52525b"
+        fill={light ? "#9fb6c3" : "#52525b"}
         style={{ fontFamily: "var(--font-manrope)", fontSize: 4, fontWeight: 600 }}
       >
         AERODYNAMICS

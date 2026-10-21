@@ -20,24 +20,3 @@ export function formatPrice(amount: string, locale = "en", currency = "EUR", { c
   }
   return formatter.format(Number(amount));
 }
-
-/**
- * Product descriptions are HTML from the admin editor. Until that HTML is
- * sanitized on save (M5), the storefront shows them as plain paragraphs.
- */
-export function htmlToParagraphs(html: string): string[] {
-  return html
-    .split(/<\/p>|<br\s*\/?>|\n{2,}/i)
-    .map((part) =>
-      part
-        .replace(/<[^>]*>/g, "")
-        .replace(/&nbsp;/g, " ")
-        .replace(/&amp;/g, "&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .trim(),
-    )
-    .filter(Boolean);
-}

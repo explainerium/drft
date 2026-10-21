@@ -23,7 +23,7 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
   return (
     <html lang={ADMIN_LOCALE} className={`${fontVariables} h-full antialiased`}>
       {/* Browser extensions (e.g. Grammarly) add attributes to <body> before hydration. */}
-      <body className="flex min-h-full flex-col" suppressHydrationWarning>
+      <body className="admin flex min-h-full flex-col bg-surface" suppressHydrationWarning>
         <NextIntlClientProvider locale={ADMIN_LOCALE} messages={messages} timeZone={ADMIN_TIME_ZONE}>
           <StoreProvider>
             <TooltipProvider>{children}</TooltipProvider>
