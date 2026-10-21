@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
+import { revalidateTags } from "@/redux/api/adminCatalogApi";
 import { useSaveSettingsMutation, useSettingsGroup } from "@/redux/api/adminSettingsApi";
 import type { SettingGroup, SettingGroups } from "@/types/adminSettings";
 import { apiErrorMessage, apiFieldErrors } from "@/utils/apiError";
@@ -74,6 +75,8 @@ function useGroupSave<G extends SettingGroup>(group: G) {
     setErrors({});
     try {
       await save({ group, body }).unwrap();
+      // Store details, SEO and social links show on the storefront.
+      await revalidateTags(["settings"]);
       toast.success(t("saved", { group: t(`groups.${group as SettingGroup}.title`) }));
     } catch (error) {
       const fields = apiFieldErrors(error);

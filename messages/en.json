@@ -49,7 +49,8 @@
         "placeholder": "Your email address",
         "subscribe": "Subscribe",
         "invalid": "Please enter a valid email address.",
-        "comingSoon": "Newsletter sign-up opens soon."
+        "checkInbox": "Check your inbox: we sent a link to confirm your subscription.",
+        "failed": "That didn’t work. Try again in a moment."
       },
       "columns": {
         "shop": "Shop",
@@ -80,6 +81,13 @@
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
         "cookies": "Cookie Settings"
+      },
+      "social": {
+        "label": "DRFT on social media",
+        "instagram": "Instagram",
+        "youtube": "YouTube",
+        "facebook": "Facebook",
+        "tiktok": "TikTok"
       }
     }
   },
@@ -349,28 +357,7 @@
     "journal": {
       "eyebrow": "Editorial & Dispatches",
       "title": "The Wind Journal",
-      "viewAll": "Explore All Articles",
-      "readStory": "Read story",
-      "posts": {
-        "brittany": {
-          "tag": "Destinations",
-          "meta": "Dispatch · 4 min read",
-          "title": "The Perfect Wind Window: 48 Hours in Western Brittany",
-          "excerpt": "Chasing a rapid low-pressure system across the Finistère coastline with team riders Leo and Marion."
-        },
-        "tuning": {
-          "tag": "Tuning",
-          "meta": "Technical Guide · 6 min read",
-          "title": "Hydrofoil Tuning: Finding Equilibrium in Variable Chop",
-          "excerpt": "Stabilizer angle shimming, mast placement calibration, and pitch balance adjustments for rolling swell."
-        },
-        "circularity": {
-          "tag": "Materials",
-          "meta": "Sustainability · 3 min read",
-          "title": "Circularity in Watersports: Recycling Canopy Dacron",
-          "excerpt": "How our European repair workshop partners convert decommissioned wings into technical travel luggage."
-        }
-      }
+      "viewAll": "Explore All Articles"
     },
     "newsletter": {
       "eyebrow": "The Wind Journal Dispatch",
@@ -839,7 +826,16 @@
       "shipping": "Shipping",
       "vat": "VAT rates",
       "staff": "Staff",
-      "settings": "Settings"
+      "settings": "Settings",
+      "journal": "Journal",
+      "newPost": "New post",
+      "post": "Post",
+      "pages": "Pages",
+      "newPage": "New page",
+      "page": "Page",
+      "faq": "FAQ",
+      "newsletter": "Newsletter",
+      "messages": "Messages"
     },
     "nav": {
       "dashboard": "Dashboard",
@@ -857,7 +853,8 @@
         "store": "Store",
         "catalog": "Catalog",
         "shortcuts": "Shortcuts",
-        "setup": "Setup"
+        "setup": "Setup",
+        "content": "Content"
       },
       "toShip": "{count, plural, one {# order} other {# orders}} to ship",
       "roles": {
@@ -870,7 +867,12 @@
       "shipping": "Shipping",
       "vat": "VAT rates",
       "staff": "Staff",
-      "settings": "Settings"
+      "settings": "Settings",
+      "journal": "Journal",
+      "pages": "Pages",
+      "faq": "FAQ",
+      "newsletter": "Newsletter",
+      "messages": "Messages"
     },
     "login": {
       "title": "Sign in to the admin",
@@ -1706,6 +1708,244 @@
       "saving": "Saving…",
       "saved": "{group} saved.",
       "failed": "That didn’t work. Try again."
+    },
+    "contentEditor": {
+      "backJournal": "Journal",
+      "backPages": "Pages",
+      "notFoundTitle": "Not found",
+      "newPost": "New post",
+      "newPage": "New page",
+      "newPostHint": "Saved as a draft until you publish it.",
+      "newPageHint": "Shown at the address you choose, once published.",
+      "view": "View in store",
+      "save": "Save changes",
+      "create": "Create",
+      "saving": "Saving…",
+      "saved": "Saved. The store shows it on the next visit.",
+      "created": "Created.",
+      "failed": "That wasn’t saved. Try again.",
+      "invalid": "Some fields need attention.",
+      "status": {
+        "PUBLISHED": "Published",
+        "DRAFT": "Draft"
+      },
+      "publishing": "Publishing",
+      "publishingHint": "Drafts are only visible here.",
+      "cover": "Cover image",
+      "coverHint": "Shown on cards and at the top of the post.",
+      "chooseCover": "Choose image",
+      "changeCover": "Change",
+      "removeCover": "Remove",
+      "seo": "Search engines",
+      "seoHint": "Left empty, the title and summary are used.",
+      "fields": {
+        "title": "Title",
+        "excerpt": "Summary",
+        "excerptHint": "On cards and under the title.",
+        "intro": "Introduction",
+        "introHint": "The lead paragraph under the title.",
+        "body": "Text",
+        "status": "Status",
+        "slug": "Address",
+        "slugHintPost": "/journal/… Left empty, it is made from the title.",
+        "slugHintPage": "/… Lowercase letters, digits and dashes.",
+        "slugPlaceholder": "Made from the title",
+        "publishedAt": "Publish date",
+        "publishedAtHint": "Left empty, set when first published. A future date hides it until then.",
+        "tag": "Tag",
+        "author": "Author",
+        "metaTitle": "Page title",
+        "metaDescription": "Meta description"
+      },
+      "errors": {
+        "required": "Required.",
+        "tooLong": "Too long.",
+        "slug": "Lowercase letters, digits and dashes only."
+      },
+      "deletePost": "Delete post",
+      "deletePage": "Delete page",
+      "confirmTitle": "Delete {title}?",
+      "confirmPost": "It disappears from the journal. This can’t be undone.",
+      "confirmPage": "Its address will show the not-found page. This can’t be undone.",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "deleted": "{title} deleted."
+    },
+    "journal": {
+      "title": "Journal",
+      "subtitle": "Stories, guides and dispatches, last edited first.",
+      "new": "New post",
+      "filter": "Filter by status",
+      "all": "All",
+      "status": {
+        "PUBLISHED": "Published",
+        "DRAFT": "Draft"
+      },
+      "search": "Search titles",
+      "columns": {
+        "post": "Post",
+        "status": "Status",
+        "published": "Published",
+        "updated": "Updated"
+      },
+      "empty": "No posts match."
+    },
+    "pages": {
+      "title": "Pages",
+      "subtitle": "About, policies and other pages at the root of the store.",
+      "new": "New page",
+      "columns": {
+        "page": "Page",
+        "address": "Address",
+        "status": "Status",
+        "updated": "Updated"
+      },
+      "empty": "No pages yet.",
+      "hint": "Footer links point to these addresses. Legal and policy pages start as drafts with placeholder text: replace it before publishing."
+    },
+    "faq": {
+      "title": "FAQ",
+      "subtitle": "Questions on the FAQ page, in this order. Questions with the same group are shown together.",
+      "new": "New question",
+      "edit": "Edit question",
+      "empty": "No questions yet.",
+      "hidden": "Hidden",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "dialogHint": "Answers can use the same formatting as product descriptions.",
+      "fields": {
+        "question": "Question",
+        "answer": "Answer",
+        "group": "Group",
+        "groupHint": "Pick an existing group or type a new one.",
+        "published": "Show on the FAQ page"
+      },
+      "errors": {
+        "question": "Write the question.",
+        "answer": "Write an answer."
+      },
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "confirmDelete": "Delete question",
+      "keep": "Keep",
+      "saved": "Question saved.",
+      "deleted": "Question deleted.",
+      "failed": "That didn’t work. Try again."
+    },
+    "newsletter": {
+      "title": "Newsletter",
+      "subtitle": "People who signed up in the store. Only confirmed addresses get mail.",
+      "export": "Export CSV",
+      "exportFailed": "The export didn’t download. Try again.",
+      "filter": "Filter by status",
+      "all": "All",
+      "status": {
+        "SUBSCRIBED": "Subscribed",
+        "PENDING": "Not confirmed",
+        "UNSUBSCRIBED": "Unsubscribed"
+      },
+      "search": "Search email",
+      "columns": {
+        "email": "Email",
+        "status": "Status",
+        "source": "Signed up from",
+        "since": "Since",
+        "actions": "Actions"
+      },
+      "empty": "No subscribers match.",
+      "remove": "Remove {email}",
+      "removed": "{email} removed.",
+      "failed": "That didn’t work. Try again.",
+      "hint": "The export has confirmed subscribers only, ready to import into a mailing tool."
+    },
+    "messages": {
+      "title": "Messages",
+      "subtitle": "{count, plural, =0 {All read.} one {# unread message.} other {# unread messages.}}",
+      "subtitleLoading": "From the contact form.",
+      "filter": "Filter messages",
+      "all": "All",
+      "unread": "Unread",
+      "new": "Unread",
+      "search": "Name, email or subject",
+      "empty": "No messages.",
+      "noSubject": "No subject",
+      "pick": "Choose a message to read it.",
+      "order": "Order {number}",
+      "reply": "Reply by email",
+      "markRead": "Mark as read",
+      "markUnread": "Mark as unread",
+      "delete": "Delete",
+      "deleted": "Message deleted.",
+      "failed": "That didn’t work. Try again."
+    }
+  },
+  "content": {
+    "journal": {
+      "eyebrow": "Editorial & Dispatches",
+      "title": "The Wind Journal",
+      "intro": "Trips, tuning guides and workshop notes from the DRFT team and riders.",
+      "minutes": "{count} min read",
+      "by": "by {author}",
+      "back": "All stories",
+      "more": "More from the journal",
+      "empty": "No stories yet. Check back soon.",
+      "tags": "Filter stories by topic",
+      "allTags": "All stories",
+      "emptyTag": "No stories with this topic yet."
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "intro": "Orders, shipping and gear. If your question isn’t here, write to us.",
+      "other": "Other questions",
+      "empty": "No questions yet.",
+      "stillStuck": "Still have a question?",
+      "contact": "Contact us"
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "Questions about gear, an order or a repair? Write to us and the team replies within two working days.",
+      "emailUs": "Email",
+      "callUs": "Phone",
+      "visit": "Address",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "orderNumber": "Order number",
+      "optional": "Optional",
+      "message": "Message",
+      "honeypot": "Website",
+      "send": "Send message",
+      "sending": "Sending…",
+      "sentTitle": "Message sent",
+      "sentBody": "Thanks for writing. We’ll reply to the email address you gave.",
+      "another": "Send another message",
+      "failed": "The message wasn’t sent. Try again in a moment.",
+      "errors": {
+        "name": "Enter your name.",
+        "email": "Enter a valid email address.",
+        "message": "Write at least a few words."
+      }
+    },
+    "newsletter": {
+      "confirm": {
+        "metaTitle": "Confirm subscription",
+        "working": "Confirming your subscription…",
+        "doneTitle": "You’re subscribed",
+        "doneBody": "Thanks for confirming. Dispatches and new gear will land in your inbox.",
+        "failedTitle": "This link didn’t work",
+        "failedBody": "It may have been used already or replaced by a newer one. Sign up again from the footer.",
+        "home": "Back to the store"
+      },
+      "unsubscribe": {
+        "metaTitle": "Unsubscribe",
+        "working": "Unsubscribing…",
+        "doneTitle": "You’re unsubscribed",
+        "doneBody": "You won’t get the newsletter any more. You can sign up again any time.",
+        "failedTitle": "This link didn’t work",
+        "failedBody": "It may be from an old mail. Write to us and we’ll take you off the list.",
+        "home": "Back to the store"
+      }
     }
   }
 }

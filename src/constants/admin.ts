@@ -1,5 +1,10 @@
 import {
+  CircleHelpIcon,
+  FileTextIcon,
   FolderTreeIcon,
+  InboxIcon,
+  MailIcon,
+  NewspaperIcon,
   ImagesIcon,
   LayoutDashboardIcon,
   PackageIcon,
@@ -34,6 +39,15 @@ export const ADMIN_LINKS = {
   vat: "/admin/vat",
   staff: "/admin/staff",
   settings: "/admin/settings",
+  journal: "/admin/journal",
+  newPost: "/admin/journal/new",
+  post: (id: string) => `/admin/journal/${id}`,
+  pages: "/admin/pages",
+  newPage: "/admin/pages/new",
+  page: (id: string) => `/admin/pages/${id}`,
+  faq: "/admin/faq",
+  newsletter: "/admin/newsletter",
+  messages: "/admin/messages",
 } as const;
 
 type NavKey =
@@ -44,6 +58,11 @@ type NavKey =
   | "categories"
   | "attributes"
   | "media"
+  | "journal"
+  | "pages"
+  | "faq"
+  | "newsletter"
+  | "messages"
   | "shipping"
   | "vat"
   | "staff"
@@ -52,7 +71,7 @@ type NavKey =
 /** Sidebar groups; `key` is the label in messages (admin.nav). Sections join as they are built. */
 /** `adminOnly` groups are hidden from STAFF (the API refuses them too). */
 export const ADMIN_NAV: {
-  group: "store" | "catalog" | "setup";
+  group: "store" | "catalog" | "content" | "setup";
   adminOnly?: boolean;
   items: { key: NavKey; href: string; icon: LucideIcon }[];
 }[] = [
@@ -71,6 +90,16 @@ export const ADMIN_NAV: {
       { key: "categories", href: ADMIN_LINKS.categories, icon: FolderTreeIcon },
       { key: "attributes", href: ADMIN_LINKS.attributes, icon: SlidersHorizontalIcon },
       { key: "media", href: ADMIN_LINKS.media, icon: ImagesIcon },
+    ],
+  },
+  {
+    group: "content",
+    items: [
+      { key: "journal", href: ADMIN_LINKS.journal, icon: NewspaperIcon },
+      { key: "pages", href: ADMIN_LINKS.pages, icon: FileTextIcon },
+      { key: "faq", href: ADMIN_LINKS.faq, icon: CircleHelpIcon },
+      { key: "newsletter", href: ADMIN_LINKS.newsletter, icon: MailIcon },
+      { key: "messages", href: ADMIN_LINKS.messages, icon: InboxIcon },
     ],
   },
   {

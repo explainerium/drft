@@ -9,7 +9,7 @@ import { ProductSpotlight } from "@/components/home/ProductSpotlight";
 import { TrustStrip } from "@/components/home/TrustStrip";
 import { WindJournal } from "@/components/home/WindJournal";
 
-// Catalog sections stream in from the cached reads; the rest is static copy.
+// Catalog and journal sections stream in from the cached reads; the rest is static copy.
 export default function HomePage() {
   return (
     <main className="flex-1">
@@ -25,7 +25,9 @@ export default function HomePage() {
       <Suspense>
         <ProductSpotlight />
       </Suspense>
-      <WindJournal />
+      <Suspense>
+        <WindJournal />
+      </Suspense>
       <HomeNewsletter />
       <TrustStrip />
     </main>

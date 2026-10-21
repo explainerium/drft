@@ -3,6 +3,7 @@ import { cacheLife } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { FOOTER_COLUMNS, LEGAL_LINKS } from "@/constants/navigation";
 import { Link } from "@/i18n/navigation";
+import { getPublicSettings } from "@/lib/content";
 import { Logo } from "./Logo";
 import { NewsletterForm } from "./NewsletterForm";
 
@@ -13,9 +14,20 @@ async function currentYear() {
   return new Date().getFullYear();
 }
 
+const SOCIAL = ["instagram", "youtube", "facebook", "tiktok"] as const;
+
 export async function SiteFooter() {
-  const t = await getTranslations("layout.footer");
-  const year = await currentYear();
+  const [t, year, settings] = await Promise.all([
+    getTranslations("layout.footer"),
+    currentYear(),
+    // The footer must render even when the settings cannot be read.
+    getPublicSettings().catch(() => null),
+  ]);
+  // Links set in the admin settings (social); unset ones are left out.
+  const social = SOCIAL.flatMap((key) => {
+    const href = settings?.social[key];
+    return href ? [{ key, href }] : [];
+  });
 
   return (
     <footer className="bg-background">
@@ -28,6 +40,22 @@ export async function SiteFooter() {
             <p className="mt-10 max-w-sm text-[15px] leading-relaxed text-muted-foreground">{t("tagline")}</p>
             <p className="mt-8 mb-3 text-sm font-medium">{t("newsletter.title")}</p>
             <NewsletterForm />
+            {social.length > 0 && (
+              <ul aria-label={t("social.label")} className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                {social.map(({ key, href }) => (
+                  <li key={key}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {t(`social.${key}`)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:contents">

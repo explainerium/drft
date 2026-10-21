@@ -4,8 +4,8 @@ import { STAFF_ROLES } from "@/constants/auth";
 
 const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:5005";
 
-/** The cache tags the catalog reads use (src/lib/catalog.ts). */
-const TAG = /^(?:products|categories|product:[a-z0-9-]{1,160})$/;
+/** The cache tags the catalog and content reads use (src/lib/catalog.ts, src/lib/content.ts). */
+const TAG = /^(?:products|categories|posts|pages|faq|settings|(?:product|post|page):[a-z0-9-]{1,160})$/;
 
 /** Asks the backend who the caller is, with their own cookies; only staff may revalidate. */
 async function isStaff(req: NextRequest): Promise<boolean> {

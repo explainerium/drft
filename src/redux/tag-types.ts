@@ -18,6 +18,11 @@ export const tagTypes = [
   "Vat",
   "Setting",
   "Staff",
+  "Post",
+  "ContentPage",
+  "Faq",
+  "Subscriber",
+  "Message",
 ] as const;
 
 export type TagType = (typeof tagTypes)[number];

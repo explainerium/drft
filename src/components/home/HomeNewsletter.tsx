@@ -37,6 +37,7 @@ export function HomeNewsletter() {
 
           <div className="rounded-lg bg-secondary p-4 md:p-6">
             <NewsletterForm
+              source="home"
               submitLabel={
                 <>
                   {t("submit")}

@@ -16,6 +16,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: category.metaTitle ?? category.name,
     description:
       category.metaDescription ?? category.description ?? t("categoryDescription", { name: category.name }),
+    // Without a category image the store-wide OG image from the layout applies.
+    openGraph: category.image
+      ? { images: [{ url: category.image.sizes.large?.url ?? category.image.url, alt: category.image.alt ?? category.name }] }
+      : undefined,
   };
 }
 

@@ -50,6 +50,10 @@ export function TextInput({ className, ...props }: ComponentProps<"input">) {
   return <input className={cn(control, className)} {...props} />;
 }
 
+export function TextArea({ className, ...props }: ComponentProps<"textarea">) {
+  return <textarea className={cn(control, "h-auto min-h-32 py-3 leading-6", className)} {...props} />;
+}
+
 export function SelectInput({ className, children, ...props }: ComponentProps<"select">) {
   return (
     <div className="relative">

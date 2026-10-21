@@ -142,7 +142,7 @@ function ProductForm({ product, attributes }: { product?: AdminProduct; attribut
     <FormProvider {...form}>
       <form onSubmit={onSubmit} noValidate className="flex flex-col gap-6">
         {/* Sticky under the top bar, so Save is in reach anywhere on a long product. */}
-        <div className="sticky top-14 z-10 -mx-4 -mt-4 border-b bg-surface px-4 pt-4 pb-3 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-6 lg:-mx-8 lg:-mt-8 lg:px-8 lg:pt-8">
+        <div className="sticky top-14 z-10 -mx-4 -mt-4 border-b bg-surface px-4 pt-4 pb-3 sm:-mx-6 sm:-mt-6 sm:px-6 sm:pt-6 md:top-0 lg:-mx-8 lg:-mt-7 lg:px-8 lg:pt-7">
           <PageHeader
             back={{ href: ADMIN_LINKS.products, label: t("back") }}
             title={

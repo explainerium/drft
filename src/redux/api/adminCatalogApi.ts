@@ -199,12 +199,15 @@ export const {
   useDeleteMediaFolderMutation,
 } = adminCatalogApi;
 
-/** Tells the storefront to refresh its cached catalog after a save. A failure here never undoes the save. */
-export async function revalidateStorefront(slugs: string[]): Promise<void> {
-  const tags = ["products", "categories", ...slugs.map((slug) => `product:${slug}`)];
+/** Tells the storefront to refresh cached reads after a save. A failure here never undoes the save. */
+export async function revalidateTags(tags: string[]): Promise<void> {
   await fetch("/api/internal/revalidate", {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ tags }),
   }).catch(() => undefined);
 }
+
+/** The catalog after a product, category, attribute or media save. */
+export const revalidateStorefront = (slugs: string[]) =>
+  revalidateTags(["products", "categories", ...slugs.map((slug) => `product:${slug}`)]);

@@ -8,6 +8,7 @@ import { AnnouncementBar } from "@/components/shared/layout/AnnouncementBar";
 import { SiteFooter } from "@/components/shared/layout/SiteFooter";
 import { SiteHeader } from "@/components/shared/layout/SiteHeader";
 import { routing } from "@/i18n/routing";
+import { getPublicSettings } from "@/lib/content";
 import { fontVariables } from "@/lib/fonts";
 import "../globals.css";
 
@@ -16,11 +17,21 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3005";
+
+/** Site-wide defaults from the admin SEO settings, with the message copy as a fallback. */
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("metadata");
+  const [t, settings] = await Promise.all([getTranslations("metadata"), getPublicSettings().catch(() => null)]);
+  const seo = settings?.seo;
   return {
-    title: { default: t("title"), template: "%s | DRFT" },
-    description: t("description"),
+    metadataBase: new URL(SITE_URL),
+    title: { default: seo?.defaultTitle || t("title"), template: seo?.titleTemplate || "%s | DRFT" },
+    description: seo?.defaultDescription || t("description"),
+    openGraph: {
+      type: "website",
+      siteName: settings?.store.name || "DRFT",
+      ...(seo?.ogImageUrl ? { images: [{ url: seo.ogImageUrl }] } : {}),
+    },
   };
 }
 
