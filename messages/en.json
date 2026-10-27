@@ -4,7 +4,7 @@
     "description": "High-performance kites, boards and foils, engineered for riders."
   },
   "layout": {
-    "home": "DRFT home",
+    "home": "DRFT Aerodynamics, home",
     "announcement": "Complimentary EU shipping on orders over €150 · 30-day return policy",
     "nav": {
       "label": "Main",
@@ -39,10 +39,10 @@
     },
     "cart": {
       "text": "Cart ({count})",
-      "label": "Cart, {count, plural, =0 {empty} one {# item} other {# items}}"
+      "label": "Cart, {count, plural, one {# item} other {# items}}"
     },
     "footer": {
-      "home": "DRFT home",
+      "home": "DRFT Aerodynamics, home",
       "tagline": "High-performance watersports equipment engineered for progression, freedom, and the elements.",
       "newsletter": {
         "title": "The Wind Journal",
@@ -175,7 +175,8 @@
     "stock": {
       "inStock": "In stock (EU hub)",
       "backorder": "Available on backorder",
-      "soldOut": "Sold out"
+      "soldOut": "Sold out",
+      "low": "Only a few left (EU hub)"
     },
     "gallery": {
       "readyToDispatch": "Ready to Dispatch",
@@ -1010,7 +1011,22 @@
       },
       "items": "{count, plural, one {# item} other {# items}}",
       "guest": "Guest · {email}",
-      "empty": "No orders match."
+      "empty": "No orders match.",
+      "export": {
+        "button": "Export CSV",
+        "title": "Export orders",
+        "hint": "One row per order with customer, items, amounts, VAT, payment and tracking. Opens in Excel or Numbers.",
+        "status": "Status",
+        "allStatuses": "All statuses",
+        "from": "From",
+        "to": "To",
+        "range": "The end date is before the start date.",
+        "note": "Dates are days in the shop’s time zone (Amsterdam), both included. Leave them empty for every order.",
+        "cancel": "Cancel",
+        "download": "Download CSV",
+        "working": "Preparing…",
+        "failed": "The export could not be downloaded. Try again."
+      }
     },
     "order": {
       "back": "Orders",
@@ -1175,7 +1191,35 @@
       "variants": "{count, plural, one {# variant} other {# variants}}",
       "featured": "Featured",
       "outOfStock": "Out of stock",
-      "empty": "No products match."
+      "empty": "No products match.",
+      "export": "Export CSV",
+      "exportFailed": "The export could not be downloaded. Try again.",
+      "importButton": "Import CSV",
+      "import": {
+        "title": "Update prices and stock from a CSV",
+        "hint": "Export the CSV, change price, compare_at_price, stock or active, and import it here. Rows are matched by SKU; other columns are ignored. You see every change before it is saved.",
+        "choose": "Choose a CSV file",
+        "columns": "Columns: sku plus any of price, compare_at_price, stock, active",
+        "tooLarge": "The file is too large (900 KB at most, about 5000 rows).",
+        "checking": "Checking the file…",
+        "summary": "{rows, plural, one {# row} other {# rows}}: {updates, plural, one {# change} other {# changes}}, {unchanged} unchanged.",
+        "errors": "{count, plural, one {# row has an error} other {# rows have errors}}. Fix the file and choose it again; nothing is saved until every row is valid.",
+        "line": "Line",
+        "sku": "SKU",
+        "change": "Change",
+        "more": "{count} more rows not shown.",
+        "fields": {
+          "price": "Price",
+          "compare_at_price": "Compare-at price",
+          "stock": "Stock",
+          "active": "Active"
+        },
+        "cancel": "Cancel",
+        "apply": "{count, plural, =0 {Nothing to apply} one {Apply # change} other {Apply # changes}}",
+        "applying": "Saving…",
+        "applied": "{count, plural, one {# variant updated} other {# variants updated}}.",
+        "failed": "The file could not be checked. Try again."
+      }
     },
     "product": {
       "back": "Products",
@@ -1344,6 +1388,82 @@
         "confirm": "Delete",
         "done": "{name} was deleted.",
         "failed": "The product wasn’t deleted. Try again."
+      },
+      "content": {
+        "title": "Product page story",
+        "hint": "Editorial blocks under the buy box. Leave a block empty and the product page skips it.",
+        "inUse": "In use",
+        "empty": "Empty",
+        "needsAttention": "Needs attention",
+        "moveUp": "Move up",
+        "remove": "Remove",
+        "errors": {
+          "paragraph": "Write at least one paragraph.",
+          "feature": "Add at least one feature.",
+          "boxTooMany": "At most 12 items."
+        },
+        "intro": {
+          "title": "Intro",
+          "hint": "The line above the name and a short note under the gallery.",
+          "profile": "Profile line",
+          "profileHint": "Shown after the type label, e.g. \"High-aspect profile\".",
+          "highlightTitle": "Highlight title",
+          "highlightHint": "A short feature note under the photos.",
+          "highlightBody": "Highlight text"
+        },
+        "story": {
+          "title": "Rider’s story",
+          "hint": "A story with key figures, a quote and a photo.",
+          "eyebrow": "Small heading",
+          "eyebrowHint": "e.g. \"Rider’s perspective\"",
+          "heading": "Heading",
+          "paragraphs": "Paragraphs",
+          "paragraph": "Paragraph {number}",
+          "addParagraph": "Add paragraph",
+          "stats": "Key figures",
+          "statValue": "Figure",
+          "statLabel": "What it measures",
+          "addStat": "Add figure",
+          "quote": "Quote",
+          "quoteAuthor": "Quote by",
+          "quoteLabel": "Quote label",
+          "quoteLabelHint": "Optional, e.g. \"Team rider\".",
+          "image": "Photo",
+          "chooseImage": "Choose photo",
+          "changeImage": "Change photo",
+          "removeImage": "Remove photo",
+          "imageHint": "Shown behind the quote. Pick it from the media library."
+        },
+        "features": {
+          "title": "Key features",
+          "hint": "Up to six features in a grid.",
+          "eyebrow": "Small heading",
+          "eyebrowHint": "e.g. \"Key innovations\"",
+          "heading": "Heading",
+          "intro": "Intro text",
+          "items": "Features",
+          "item": "Feature {number}",
+          "label": "Label",
+          "itemTitle": "Title",
+          "body": "Text",
+          "footnote": "Footnote (optional)",
+          "footnoteValue": "Footnote value (optional)",
+          "itemRequired": "Each feature needs a label, a title and text.",
+          "add": "Add feature"
+        },
+        "box": {
+          "title": "In the box",
+          "hint": "What the customer gets in the package.",
+          "items": "Items",
+          "itemsHint": "One item per line, up to 12."
+        }
+      },
+      "duplicate": {
+        "button": "Duplicate",
+        "working": "Duplicating…",
+        "saveFirst": "Save your changes first: the copy is made from the saved product.",
+        "done": "Draft copy created: {name}. Its variants have no SKU or stock yet.",
+        "failed": "The product could not be duplicated."
       }
     },
     "categories": {

@@ -171,7 +171,7 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
                       </li>
                     )}
                     <li className="flex">
-                      <ProductCard product={product} priority={i < 3} />
+                      <ProductCard product={product} priority={i < 3} headingLevel="h2" />
                     </li>
                   </Fragment>
                 ))}

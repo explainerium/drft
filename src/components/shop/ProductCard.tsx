@@ -7,7 +7,16 @@ import type { ProductCard as ProductCardData } from "@/types/catalog";
 import { formatPrice } from "@/utils/format";
 
 /** Shop grid card. The product name link covers the whole card, so there is one link per product. */
-export function ProductCard({ product, priority = false }: { product: ProductCardData; priority?: boolean }) {
+export function ProductCard({
+  product,
+  priority = false,
+  headingLevel: Heading = "h3",
+}: {
+  product: ProductCardData;
+  priority?: boolean;
+  /** h2 where the grid sits right under the page h1 (the shop), h3 under a section heading. */
+  headingLevel?: "h2" | "h3";
+}) {
   const t = useTranslations("shop.card");
   const locale = useLocale();
   const price = product.price.min;
@@ -44,14 +53,14 @@ export function ProductCard({ product, priority = false }: { product: ProductCar
         {product.typeLabel && (
           <p className="text-xs font-medium tracking-[0.05em] text-muted-foreground uppercase">{product.typeLabel}</p>
         )}
-        <h3 className="mt-1 font-heading text-xl leading-7 font-medium tracking-[-0.01em]">
+        <Heading className="mt-1 font-heading text-xl leading-7 font-medium tracking-[-0.01em]">
           <Link
             href={`/products/${product.slug}`}
             className="outline-none after:absolute after:inset-0 after:rounded-md focus-visible:after:ring-3 focus-visible:after:ring-ring/50"
           >
             {product.name}
           </Link>
-        </h3>
+        </Heading>
         {product.shortDescription && (
           <p className="mt-1 line-clamp-2 text-sm leading-[22px] text-muted-foreground">{product.shortDescription}</p>
         )}

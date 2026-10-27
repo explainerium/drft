@@ -147,7 +147,8 @@
   --brand-soft: #cce5ff;
   --brand-bright: #5bb8fe;
   --surface: #f9f9f7;
-  --subtle-foreground: #747878;
+  /* 4.5:1 on the surface and secondary greys, not only on white. */
+  --subtle-foreground: #6c7070;
   --success: #059669;
   --warning: #d97706;
   --chart-1: oklch(0.87 0 0);

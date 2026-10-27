@@ -19,6 +19,7 @@ import {
   type SubscriberStatus,
 } from "@/redux/api/adminContentApi";
 import { apiErrorMessage } from "@/utils/apiError";
+import { downloadFile } from "@/utils/download";
 import { PageHeader, Pagination, QueryError, useAdminFormat } from "../AdminPage";
 import { SearchBox } from "../SearchBox";
 
@@ -60,14 +61,7 @@ export function NewsletterView() {
   const exportCsv = async () => {
     setExporting(true);
     try {
-      const res = await fetch("/api/v1/newsletter/admin/export");
-      if (!res.ok) throw new Error(String(res.status));
-      const url = URL.createObjectURL(await res.blob());
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "drft-newsletter.csv";
-      link.click();
-      URL.revokeObjectURL(url);
+      await downloadFile("/api/v1/newsletter/admin/export", "drft-newsletter.csv");
     } catch {
       toast.error(t("exportFailed"));
     } finally {

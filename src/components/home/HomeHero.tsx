@@ -155,7 +155,7 @@ export function HomeHero() {
                 </div>
 
                 <div className="mt-16 text-[11px] leading-6 lg:mt-20">
-                  <h3 className="sr-only">{t("conditions")}</h3>
+                  <h2 className="sr-only">{t("conditions")}</h2>
                   <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 tracking-[0.055em] uppercase">
                     <li className="flex items-center gap-2 font-medium tracking-[0.1em]">
                       <span className="size-1.5 rounded-full bg-brand-bright" aria-hidden />

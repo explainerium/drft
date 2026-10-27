@@ -81,6 +81,8 @@ export interface ProductVariant {
   image: CatalogImage | null;
   attributes: VariantAttribute[];
   inStock: boolean;
+  /** Tracked stock at or below the shop's low-stock level (the count itself is never sent). */
+  lowStock: boolean;
   allowBackorder: boolean;
 }
 

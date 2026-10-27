@@ -1,9 +1,11 @@
 "use client";
 
-import { ImageIcon, PlusIcon, SearchIcon, StarIcon } from "lucide-react";
+import { DownloadIcon, ImageIcon, PlusIcon, SearchIcon, StarIcon, UploadIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -11,8 +13,10 @@ import { ADMIN_LINKS } from "@/constants/admin";
 import { cn } from "@/lib/utils";
 import { useGetAdminProductsQuery } from "@/redux/api/adminCatalogApi";
 import type { AdminProductRow, ProductStatus } from "@/types/adminCatalog";
+import { downloadFile } from "@/utils/download";
 import { PageHeader, Pagination, QueryError, useAdminFormat } from "../AdminPage";
 import { SearchBox } from "../SearchBox";
+import { ProductImportDialog } from "./ProductImportDialog";
 import { ProductStatusBadge } from "./ProductStatusBadge";
 
 const STATUSES: ProductStatus[] = ["PUBLISHED", "DRAFT", "ARCHIVED"];
@@ -42,6 +46,20 @@ export function ProductsView() {
     router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
   };
 
+  const [importing, setImporting] = useState(false);
+  const [exporting, setExporting] = useState(false);
+
+  const exportCsv = async () => {
+    setExporting(true);
+    try {
+      await downloadFile("/api/v1/products/admin/export", "drft-products.csv");
+    } catch {
+      toast.error(t("exportFailed"));
+    } finally {
+      setExporting(false);
+    }
+  };
+
   const { data, isLoading, isError, isFetching, refetch } = useGetAdminProductsQuery({
     page,
     search,
@@ -56,14 +74,25 @@ export function ProductsView() {
         title={t("title")}
         description={t("subtitle")}
         actions={
-          <Button asChild>
-            <Link href={ADMIN_LINKS.newProduct}>
-              <PlusIcon />
-              {t("new")}
-            </Link>
-          </Button>
+          <>
+            <Button variant="outline" onClick={exportCsv} disabled={exporting}>
+              <DownloadIcon />
+              {t("export")}
+            </Button>
+            <Button variant="outline" onClick={() => setImporting(true)}>
+              <UploadIcon />
+              {t("importButton")}
+            </Button>
+            <Button asChild>
+              <Link href={ADMIN_LINKS.newProduct}>
+                <PlusIcon />
+                {t("new")}
+              </Link>
+            </Button>
+          </>
         }
       />
+      <ProductImportDialog open={importing} onOpenChange={setImporting} />
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div role="group" aria-label={t("filter")} className="flex flex-wrap gap-1.5">
           {[undefined, ...STATUSES].map((value) => (

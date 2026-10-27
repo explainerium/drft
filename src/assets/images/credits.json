@@ -1,0 +1,11 @@
+{
+  "license": "Unsplash License (https://unsplash.com/license): free for commercial use, no attribution required.",
+  "photos": {
+    "home/hero-tarifa.jpg": "https://images.unsplash.com/photo-1691156802590-fff55afc8564",
+    "home/hero-lagoon.jpg": "https://images.unsplash.com/photo-1690682085169-d0eaa0b220bf",
+    "home/hero-north-atlantic.jpg": "https://images.unsplash.com/photo-1667323567346-ea4048f36c58",
+    "home/spotlight-aero.jpg": "https://images.unsplash.com/photo-1530091902417-c9c5d9b0bce4",
+    "home/field-notes.jpg": "https://images.unsplash.com/photo-1564499504739-bc4fc2ae8cba",
+    "shop/editorial-banner.jpg": "https://images.unsplash.com/photo-1524946274118-e7680e33ccc5"
+  }
+}

@@ -9,6 +9,7 @@ import type {
   MediaAsset,
   MediaFolder,
   MediaListQuery,
+  ProductImportResult,
   ProductInput,
   ProductListQuery,
 } from "@/types/adminCatalog";
@@ -65,6 +66,18 @@ export const adminCatalogApi = baseApi.injectEndpoints({
         }
       },
       invalidatesTags: [{ type: "AdminProduct", id: "LIST" }, "Dashboard"],
+    }),
+    duplicateProduct: build.mutation<AdminProduct, string>({
+      query: (id) => ({ url: `/products/admin/${id}/duplicate`, method: "POST" }),
+      transformResponse: unwrap<AdminProduct>,
+      invalidatesTags: [{ type: "AdminProduct", id: "LIST" }, "Dashboard"],
+    }),
+    // apply=false only checks the file; apply=true saves when every row is valid.
+    importProducts: build.mutation<ProductImportResult, { csv: string; apply: boolean }>({
+      query: (body) => ({ url: "/products/admin/import", method: "POST", body }),
+      transformResponse: unwrap<ProductImportResult>,
+      invalidatesTags: (result) =>
+        result?.applied ? [{ type: "AdminProduct", id: "LIST" }, "AdminProduct", "Dashboard"] : [],
     }),
     deleteProduct: build.mutation<void, string>({
       query: (id) => ({ url: `/products/admin/${id}`, method: "DELETE" }),
@@ -178,6 +191,8 @@ export const {
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  useDuplicateProductMutation,
+  useImportProductsMutation,
   useGetAdminCategoriesQuery,
   useCreateCategoryMutation,
   useUpdateCategoryMutation,

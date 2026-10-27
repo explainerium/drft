@@ -68,7 +68,9 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
                   aria-hidden
                 />
                 {variant.inStock
-                  ? t("stock.inStock")
+                  ? variant.lowStock
+                    ? t("stock.low")
+                    : t("stock.inStock")
                   : variant.allowBackorder
                     ? t("stock.backorder")
                     : t("stock.soldOut")}

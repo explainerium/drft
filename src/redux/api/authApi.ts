@@ -14,9 +14,10 @@ const SESSION_TAGS = ["User", "Cart", "Order", "Address", "Wishlist", "Dashboard
  */
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getMe: build.query<User, void>({
-      query: () => "/auth/me",
-      transformResponse: (response: Envelope<User>) => response.data,
+    // /auth/session, not /auth/me: a visitor gets null instead of a 401 on every page.
+    getMe: build.query<User | null, void>({
+      query: () => "/auth/session",
+      transformResponse: (response: Envelope<User | null>) => response.data,
       providesTags: ["User"],
     }),
     login: build.mutation<{ user: User }, { email: string; password: string }>({
@@ -70,8 +71,8 @@ export const {
 
 /**
  * The signed-in user, or null for a visitor. Browser-only like useCart (see
- * useIsClient). A visitor's /auth/me answers 401 after one refresh attempt;
- * that is the normal signed-out state, not an error.
+ * useIsClient). A visitor gets null; an expired session is refreshed once by
+ * the base query, and a failed refresh also ends signed out.
  */
 export function useSession(): { user: User | null; isLoading: boolean } {
   const { data, isLoading, isError } = authApi.useGetMeQuery();

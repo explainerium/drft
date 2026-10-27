@@ -7,6 +7,11 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 // domain and Next proxies it there.
 const API_ORIGIN = process.env.API_ORIGIN ?? "http://localhost:5005";
 
+// On Vercel the localhost fallback can only fail, and only later, mid-prerender.
+if (process.env.VERCEL && !process.env.API_ORIGIN) {
+  throw new Error("Set API_ORIGIN (the backend URL, e.g. https://drft-server.vercel.app) in the Vercel project settings.");
+}
+
 const nextConfig: NextConfig = {
   async rewrites() {
     return [

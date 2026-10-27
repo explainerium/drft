@@ -1,10 +1,12 @@
 "use client";
 
-import { SearchIcon } from "lucide-react";
+import { DownloadIcon, SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { StatusPill } from "@/components/dashboard/orders/StatusPill";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ADMIN_LINKS } from "@/constants/admin";
@@ -14,6 +16,7 @@ import type { AdminOrderRow } from "@/types/admin";
 import type { OrderStatus } from "@/types/checkout";
 import { PageHeader, Pagination, QueryError, useAdminFormat } from "../AdminPage";
 import { SearchBox } from "../SearchBox";
+import { OrderExportDialog } from "./OrderExportDialog";
 
 /** Filter chips in the order staff work through them. */
 const STATUSES: OrderStatus[] = [
@@ -54,10 +57,24 @@ export function OrdersView() {
   const { data, isLoading, isError, isFetching, refetch } = useGetAdminOrdersQuery({ page, search, status });
   const { data: counts } = useGetOrderCountsQuery();
   const total = counts ? Object.values(counts).reduce((sum, count) => sum + count, 0) : undefined;
+  const [exporting, setExporting] = useState(false);
 
   return (
     <>
-      <PageHeader title={t("title")} description={t("subtitle")} />
+      <PageHeader
+        title={t("title")}
+        description={t("subtitle")}
+        actions={
+          <Button variant="outline" onClick={() => setExporting(true)}>
+            <DownloadIcon />
+            {t("export.button")}
+          </Button>
+        }
+      />
+      {/* Mounted only while open, so it starts from the current filter each time. */}
+      {exporting && (
+        <OrderExportDialog open onOpenChange={setExporting} statuses={STATUSES} initialStatus={status} />
+      )}
 
       <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
         <div className="scrollbar-none -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">

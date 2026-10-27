@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { AdminAttribute, AdminProduct, ProductInput, ProductStatus } from "@/types/adminCatalog";
+import { contentFormSchema, contentIssues, EMPTY_CONTENT, toContentForm, toContentInput } from "./productContentForm";
 
 /**
  * The product editor's form: strings for every text input (empty means none),
@@ -65,8 +66,12 @@ export const productFormSchema = (t: Translate) => {
       related: z.array(z.object({ id: z.string(), name: z.string() })),
       attributeIds: z.array(z.string()),
       variants: z.array(variant).min(1, t("errors.noVariants")),
+      content: contentFormSchema(t),
     })
     .superRefine((form, ctx) => {
+      for (const issue of contentIssues(form.content, t)) {
+        ctx.addIssue({ code: "custom", path: ["content", ...issue.path], message: issue.message });
+      }
       // Every variant needs a value on each option, and no two may be the same combination.
       const seen = new Map<string, number>();
       form.variants.forEach((variant, index) => {
@@ -124,6 +129,7 @@ export const EMPTY_PRODUCT: ProductFormValues = {
   related: [],
   attributeIds: [],
   variants: [{ ...emptyVariant(), isDefault: true }],
+  content: EMPTY_CONTENT,
 };
 
 /** The stored product as form values. Option axes are the attributes its variants use. */
@@ -173,6 +179,7 @@ export function toFormValues(product: AdminProduct, attributes: AdminAttribute[]
         }),
       ),
     })),
+    content: toContentForm(product),
   };
 }
 
@@ -194,6 +201,7 @@ export function toProductInput(form: ProductFormValues): ProductInput {
     sortOrder: Number(form.sortOrder),
     metaTitle: orNull(form.metaTitle),
     metaDescription: orNull(form.metaDescription),
+    content: toContentInput(form.content),
     // Only an image of this product can be its main image.
     featuredAssetId: form.featuredAssetId && imageIds.has(form.featuredAssetId) ? form.featuredAssetId : null,
     categoryIds: form.categoryIds,

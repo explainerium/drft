@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ExternalLinkIcon, Trash2Icon } from "lucide-react";
+import { CopyIcon, ExternalLinkIcon, Trash2Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useState } from "react";
@@ -25,6 +25,7 @@ import {
   revalidateStorefront,
   useCreateProductMutation,
   useDeleteProductMutation,
+  useDuplicateProductMutation,
   useGetAdminAttributesQuery,
   useGetAdminProductQuery,
   useUpdateProductMutation,
@@ -33,6 +34,7 @@ import type { AdminAttribute, AdminProduct } from "@/types/adminCatalog";
 import { apiErrorMessage, apiFieldErrors } from "@/utils/apiError";
 import { PageHeader, QueryError } from "../AdminPage";
 import { Checkbox, errorProps, FormField, NativeSelect } from "./fields";
+import { ProductContentSection } from "./ProductContentSection";
 import {
   CategoriesSection,
   ImagesSection,
@@ -154,6 +156,7 @@ function ProductForm({ product, attributes }: { product?: AdminProduct; attribut
             description={product ? t("lastSaved", { slug: product.slug }) : t("newHint")}
             actions={
               <>
+                {product && <DuplicateButton product={product} disabled={isDirty} />}
                 {product?.status === "PUBLISHED" && (
                   <Button asChild variant="outline">
                     <a href={`/products/${product.slug}`} target="_blank" rel="noopener">
@@ -246,6 +249,7 @@ function ProductForm({ product, attributes }: { product?: AdminProduct; attribut
             </Card>
             <ImagesSection />
             <VariantsSection attributes={attributes} />
+            <ProductContentSection />
             <SpecsSection />
             <SeoSection />
           </div>
@@ -287,6 +291,36 @@ function ProductForm({ product, attributes }: { product?: AdminProduct; attribut
         </div>
       </form>
     </FormProvider>
+  );
+}
+
+/** A draft copy of the saved product; the editor opens it. Unsaved changes would not be in the copy. */
+function DuplicateButton({ product, disabled }: { product: AdminProduct; disabled: boolean }) {
+  const t = useTranslations("admin.product.duplicate");
+  const router = useRouter();
+  const [duplicate, state] = useDuplicateProductMutation();
+
+  const run = async () => {
+    try {
+      const copy = await duplicate(product.id).unwrap();
+      toast.success(t("done", { name: copy.name }));
+      router.push(ADMIN_LINKS.product(copy.id));
+    } catch (error) {
+      toast.error(apiErrorMessage(error) ?? t("failed"));
+    }
+  };
+
+  return (
+    <Button
+      type="button"
+      variant="outline"
+      disabled={disabled || state.isLoading}
+      title={disabled ? t("saveFirst") : undefined}
+      onClick={run}
+    >
+      <CopyIcon />
+      {state.isLoading ? t("working") : t("button")}
+    </Button>
   );
 }
 

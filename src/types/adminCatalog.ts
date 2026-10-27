@@ -39,6 +39,43 @@ export interface AdminVariant {
   attributeValueIds: string[];
 }
 
+/** The product page's editorial blocks as stored: the story photo is an asset id. */
+export interface ProductContentInput {
+  profile?: string;
+  highlight?: { title: string; body: string };
+  story?: {
+    eyebrow: string;
+    title: string;
+    paragraphs: string[];
+    stats: { value: string; label: string }[];
+    quote?: { label?: string; text: string; author: string };
+    imageAssetId?: string;
+  };
+  features?: {
+    eyebrow: string;
+    title: string;
+    intro?: string;
+    items: { label: string; title: string; body: string; footnote?: string; footnoteValue?: string }[];
+  };
+  inTheBox?: string[];
+}
+
+/** One reported row of a product CSV import (unchanged rows are only counted). */
+export interface ProductImportRow {
+  line: number;
+  sku: string;
+  product: string | null;
+  result: "update" | "error";
+  changes: { field: "price" | "compare_at_price" | "stock" | "active"; from: string; to: string }[];
+  error?: string;
+}
+
+export interface ProductImportResult {
+  applied: boolean;
+  summary: { rows: number; updates: number; unchanged: number; errors: number };
+  rows: ProductImportRow[];
+}
+
 export interface AdminProduct {
   id: string;
   name: string;
@@ -52,6 +89,9 @@ export interface AdminProduct {
   sortOrder: number;
   metaTitle: string | null;
   metaDescription: string | null;
+  content: ProductContentInput | null;
+  /** The picture behind content.story.imageAssetId, for the editor. */
+  storyImage: CatalogImage | null;
   publishedAt: string | null;
   featuredAssetId: string | null;
   images: { assetId: string; alt: string | null; sortOrder: number; asset: CatalogImage }[];
@@ -77,6 +117,7 @@ export interface ProductInput {
   sortOrder: number;
   metaTitle: string | null;
   metaDescription: string | null;
+  content: ProductContentInput | null;
   featuredAssetId: string | null;
   categoryIds: string[];
   images: { assetId: string; alt: string | null; sortOrder: number }[];
