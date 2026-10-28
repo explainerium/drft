@@ -1,6 +1,5 @@
 import {
   CircleHelpIcon,
-  FileTextIcon,
   FolderTreeIcon,
   InboxIcon,
   MailIcon,
@@ -17,6 +16,7 @@ import {
   UsersIcon,
   type LucideIcon,
 } from "lucide-react";
+import { FEATURES } from "./features";
 
 /** The admin is English only; dates are shown in the shop's home time zone. */
 export const ADMIN_LOCALE = "en";
@@ -95,9 +95,8 @@ export const ADMIN_NAV: {
   {
     group: "content",
     items: [
-      { key: "journal", href: ADMIN_LINKS.journal, icon: NewspaperIcon },
-      { key: "pages", href: ADMIN_LINKS.pages, icon: FileTextIcon },
-      { key: "faq", href: ADMIN_LINKS.faq, icon: CircleHelpIcon },
+      ...(FEATURES.journal ? [{ key: "journal" as const, href: ADMIN_LINKS.journal, icon: NewspaperIcon }] : []),
+      ...(FEATURES.faq ? [{ key: "faq" as const, href: ADMIN_LINKS.faq, icon: CircleHelpIcon }] : []),
       { key: "newsletter", href: ADMIN_LINKS.newsletter, icon: MailIcon },
       { key: "messages", href: ADMIN_LINKS.messages, icon: InboxIcon },
     ],

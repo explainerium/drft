@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
-import { Reassurance } from "@/components/shop/Reassurance";
+import { TrustStrip } from "@/components/home/TrustStrip";
 import { ShopView, ShopViewSkeleton } from "@/components/shop/ShopView";
 import { findCategory, getCategoryTree } from "@/lib/catalog";
 
@@ -36,7 +36,7 @@ export default function CategoryPage({ params, searchParams }: Props) {
       <Suspense fallback={<ShopViewSkeleton />}>
         <Results params={params} searchParams={searchParams} />
       </Suspense>
-      <Reassurance />
+      <TrustStrip />
     </main>
   );
 }

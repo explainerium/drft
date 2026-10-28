@@ -24,7 +24,7 @@ export async function FeaturedFleet() {
           title={t("title")}
           aside={<SectionIntro>{t("intro")}</SectionIntro>}
         />
-        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {products.map((product, i) => (
             <li key={product.id} className="flex">
               <FleetCard product={product} priority={i === 0} />
@@ -45,7 +45,7 @@ export async function FeaturedFleet() {
 export function FeaturedFleetSkeleton() {
   return (
     <div aria-hidden className="animate-pulse bg-surface py-16 lg:py-20">
-      <Container className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+      <Container className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         {Array.from({ length: FLEET_SIZE }, (_, i) => (
           <div key={i} className="aspect-[357/687] rounded-lg bg-card" />
         ))}

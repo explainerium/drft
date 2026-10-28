@@ -86,7 +86,7 @@ function HeartButton({
       aria-pressed={saved}
       aria-label={saved ? t("removeLabel", { name: productName }) : t("saveLabel", { name: productName })}
       className={cn(
-        "flex size-9 items-center justify-center rounded-full bg-background/90 shadow-xs backdrop-blur-xs transition-colors outline-none hover:bg-background focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-60",
+        "flex size-9 cursor-pointer items-center justify-center rounded-full bg-background/90 shadow-xs backdrop-blur-xs transition-colors outline-none hover:bg-background focus-visible:ring-3 focus-visible:ring-ring/50 disabled:opacity-60",
         className,
       )}
     >

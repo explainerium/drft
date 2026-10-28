@@ -17,6 +17,7 @@ import { downloadFile } from "@/utils/download";
 import { PageHeader, Pagination, QueryError, useAdminFormat } from "../AdminPage";
 import { SearchBox } from "../SearchBox";
 import { ProductImportDialog } from "./ProductImportDialog";
+import { ProductRowActions } from "./ProductRowActions";
 import { ProductStatusBadge } from "./ProductStatusBadge";
 
 const STATUSES: ProductStatus[] = ["PUBLISHED", "DRAFT", "ARCHIVED"];
@@ -102,7 +103,7 @@ export function ProductsView() {
               aria-pressed={status === value}
               onClick={() => setParams({ status: value, page: undefined })}
               className={cn(
-                "inline-flex h-8 items-center rounded-full border px-3 text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+                "inline-flex h-8 items-center rounded-md border px-3 text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
                 status === value
                   ? "border-abyss bg-abyss text-white"
                   : "border-border bg-card hover:bg-accent",
@@ -133,21 +134,24 @@ export function ProductsView() {
                 <TableHead className="hidden lg:table-cell">{t("columns.categories")}</TableHead>
                 <TableHead className="hidden text-right sm:table-cell">{t("columns.price")}</TableHead>
                 <TableHead className="hidden text-right md:table-cell">{t("columns.stock")}</TableHead>
-                <TableHead className="hidden pr-4 xl:table-cell">{t("columns.updated")}</TableHead>
+                <TableHead className="hidden xl:table-cell">{t("columns.updated")}</TableHead>
+                <TableHead className="w-36 pr-4">
+                  <span className="sr-only">{t("columns.actions")}</span>
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody className={cn("transition-opacity", isFetching && !isLoading && "opacity-60")}>
               {isLoading || !data ? (
                 Array.from({ length: 6 }, (_, index) => (
                   <TableRow key={index}>
-                    <TableCell colSpan={6} className="px-4">
+                    <TableCell colSpan={7} className="px-4">
                       <Skeleton className="h-11 w-full" />
                     </TableCell>
                   </TableRow>
                 ))
               ) : data.data.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-10 text-center text-muted-foreground">
+                  <TableCell colSpan={7} className="py-10 text-center text-muted-foreground">
                     <SearchIcon className="mx-auto mb-2 size-5" aria-hidden />
                     {t("empty")}
                   </TableCell>
@@ -217,7 +221,10 @@ function ProductTableRow({ product }: { product: AdminProductRow }) {
           {product.inStock ? product.totalStock : t("outOfStock")}
         </span>
       </TableCell>
-      <TableCell className="hidden pr-4 text-muted-foreground xl:table-cell">{f.date(product.updatedAt)}</TableCell>
+      <TableCell className="hidden text-muted-foreground xl:table-cell">{f.date(product.updatedAt)}</TableCell>
+      <TableCell className="pr-4">
+        <ProductRowActions product={product} />
+      </TableCell>
     </TableRow>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRightIcon, LeafIcon, ShieldCheckIcon, ShoppingBagIcon, WavesIcon } from "lucide-react";
+import { ArrowRightIcon, LockIcon, RefreshCwIcon, ShieldCheckIcon, ShoppingBagIcon } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
@@ -13,9 +13,9 @@ import { CartRecommendations } from "./CartRecommendations";
 import { FreeShippingProgress } from "./FreeShippingProgress";
 
 const TRUST = [
-  { key: "trial", Icon: WavesIcon },
+  { key: "trial", Icon: RefreshCwIcon },
   { key: "warranty", Icon: ShieldCheckIcon },
-  { key: "climate", Icon: LeafIcon },
+  { key: "secure", Icon: LockIcon },
 ] as const;
 
 const gutter = "px-5 sm:px-10";

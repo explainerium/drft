@@ -1,12 +1,13 @@
-import { CircleCheckIcon, RecycleIcon } from "lucide-react";
+import { CircleCheckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/shared/Container";
 import type { ProductSpec } from "@/types/catalog";
 
-/** Technical specifications next to "What's in the box" and the circularity pledge. */
+/** Technical specifications next to "What's in the box". */
 export function ProductSpecs({ specs, inTheBox }: { specs: ProductSpec[]; inTheBox?: string[] }) {
   const t = useTranslations("product.specs");
   const hasBox = !!inTheBox?.length;
+  if (specs.length === 0 && !hasBox) return null;
 
   return (
     <section aria-labelledby="specs-title" className="bg-secondary py-16 lg:py-24">
@@ -46,13 +47,6 @@ export function ProductSpecs({ specs, inTheBox }: { specs: ProductSpec[]; inTheB
               </ul>
             </div>
           )}
-          <div className="flex gap-3 rounded-lg bg-accent p-6">
-            <RecycleIcon className="mt-0.5 size-5 shrink-0 text-brand" aria-hidden />
-            <div>
-              <p className="font-heading text-[15px] font-medium">{t("pledgeTitle")}</p>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">{t("pledgeBody")}</p>
-            </div>
-          </div>
         </div>
       </Container>
     </section>

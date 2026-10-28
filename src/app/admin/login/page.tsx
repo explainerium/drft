@@ -38,7 +38,7 @@ export default async function AdminLoginPage() {
       </div>
       <div className="flex items-center justify-center px-4 py-16 sm:px-10">
         <div className="flex w-full max-w-sm flex-col gap-8">
-          <Logo id="admin-login-logo" className="h-8 self-start" />
+          <Logo className="h-6 self-start" />
           <div className="flex flex-col gap-1.5">
             <h1 className="font-heading text-[28px] leading-tight font-semibold tracking-[-0.025em]">{t("title")}</h1>
             <p className="text-sm text-muted-foreground">{t("subtitle")}</p>

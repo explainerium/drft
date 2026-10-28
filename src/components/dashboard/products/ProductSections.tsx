@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useId, useState, type ReactNode } from "react";
-import { useFieldArray, useFormContext, useFormState, useWatch } from "react-hook-form";
+import { Controller, useFieldArray, useFormContext, useFormState, useWatch } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import { SearchBox } from "../SearchBox";
 import { MediaPicker, thumbOf } from "./MediaPicker";
 import { errorProps, FormField } from "./fields";
+import { RichTextEditor } from "./RichTextEditor";
 import type { ProductFormValues } from "./productForm";
 
 /** Product photos: add from the library, reorder, alt text, and the main image (star). */
@@ -374,6 +375,67 @@ export function SeoSection() {
             {...register("metaDescription")}
           />
         </FormField>
+      </CardContent>
+    </Card>
+  );
+}
+
+/** The product's English texts for /en. Empty fields show the German ones. */
+export function EnglishSection() {
+  const t = useTranslations("admin.product.english");
+  const tg = useTranslations("admin.product.general");
+  const ts = useTranslations("admin.product.seo");
+  const { register, control } = useFormContext<ProductFormValues>();
+  const { errors } = useFormState({ control, name: "en" });
+  const name = useWatch({ control, name: "name" });
+  const uid = useId();
+  const field = (key: string) => `${uid}en-${key}`;
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("hint")}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
+        <FormField id={field("name")} label={tg("name")} error={errors.en?.name?.message}>
+          <Input id={field("name")} maxLength={160} placeholder={name} {...register("en.name")} />
+        </FormField>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <FormField id={field("type")} label={tg("typeLabel")} error={errors.en?.typeLabel?.message}>
+            <Input id={field("type")} maxLength={60} {...register("en.typeLabel")} />
+          </FormField>
+          <FormField id={field("badge")} label={tg("badge")} error={errors.en?.badge?.message}>
+            <Input id={field("badge")} maxLength={40} {...register("en.badge")} />
+          </FormField>
+        </div>
+        <FormField id={field("short")} label={tg("shortDescription")} error={errors.en?.shortDescription?.message}>
+          <textarea
+            id={field("short")}
+            rows={2}
+            maxLength={1000}
+            className="w-full rounded-lg border border-input bg-transparent px-2.5 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            {...register("en.shortDescription")}
+          />
+        </FormField>
+        <div className="flex flex-col gap-1.5">
+          <span className="text-sm font-medium">{tg("description")}</span>
+          <Controller
+            control={control}
+            name="en.description"
+            render={({ field: f }) => (
+              <RichTextEditor id={field("description")} label={t("description")} value={f.value} onChange={f.onChange} />
+            )}
+          />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <FormField id={field("meta-title")} label={ts("metaTitle")} error={errors.en?.metaTitle?.message}>
+            <Input id={field("meta-title")} maxLength={160} {...register("en.metaTitle")} />
+          </FormField>
+          <FormField id={field("meta-description")} label={ts("metaDescription")} error={errors.en?.metaDescription?.message}>
+            <Input id={field("meta-description")} maxLength={320} {...register("en.metaDescription")} />
+          </FormField>
+        </div>
       </CardContent>
     </Card>
   );

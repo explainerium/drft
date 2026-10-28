@@ -42,7 +42,7 @@ import type { OrderStatus } from "@/types/checkout";
 
 /**
  * The admin frame: a light sidebar (a sheet on phones) with search, the
- * sections, order shortcuts and the staff card. On phones a slim top bar holds
+ * sections and the staff card. On phones a slim top bar holds
  * the menu button.
  */
 export function AdminShell({ children }: { children: ReactNode }) {
@@ -55,7 +55,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
               href={ADMIN_LINKS.dashboard}
               className="flex items-center overflow-hidden rounded-md outline-none focus-visible:ring-2 focus-visible:ring-sidebar-ring group-data-[collapsible=icon]:hidden"
             >
-              <Logo id="admin-logo" className="h-7 shrink-0" />
+              <Logo className="h-5 shrink-0" />
             </Link>
             <SidebarTrigger className="text-muted-foreground" />
           </div>
@@ -66,7 +66,6 @@ export function AdminShell({ children }: { children: ReactNode }) {
           <Suspense fallback={<AdminNavView />}>
             <AdminNav />
           </Suspense>
-          <Shortcuts />
         </SidebarContent>
         <SidebarFooter className="p-3 group-data-[collapsible=icon]:p-2">
           <StaffCard />
@@ -76,7 +75,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       <SidebarInset className="min-w-0 bg-surface">
         <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b bg-background/90 px-4 backdrop-blur-sm md:hidden">
           <SidebarTrigger className="-ml-1.5" />
-          <Logo id="admin-logo-mobile" className="h-6" />
+          <Logo className="h-4" />
         </header>
         <div className="flex w-full min-w-0 flex-1 flex-col gap-6 p-4 sm:p-6 lg:px-8 lg:py-7">
           {children}
@@ -179,13 +178,10 @@ function LiveAdminOnlyNav({ children }: { children: ReactNode }) {
 
 const TO_SHIP: OrderStatus[] = ["PAID", "PROCESSING", "PARTIALLY_REFUNDED"];
 
-/** Order counts per status for the badge and shortcuts; refreshed every minute. Browser only. */
+/** Orders waiting to ship, for the sidebar badge; refreshed every minute. Browser only. */
 function useOrderCounts() {
   const { data } = useGetOrderCountsQuery(undefined, { pollingInterval: 60_000 });
-  return {
-    toShip: data ? TO_SHIP.reduce((sum, status) => sum + data[status], 0) : 0,
-    awaitingPayment: data?.PENDING_PAYMENT ?? 0,
-  };
+  return { toShip: data ? TO_SHIP.reduce((sum, status) => sum + data[status], 0) : 0 };
 }
 
 function ToShipBadge({ active }: { active: boolean }) {
@@ -207,44 +203,6 @@ function LiveToShipBadge({ active }: { active: boolean }) {
       {toShip}
     </span>
   );
-}
-
-/** Quick filters into the order list, with live counts. */
-function Shortcuts() {
-  const t = useTranslations("admin.nav");
-  const isClient = useIsClient();
-  return (
-    <SidebarGroup className="py-1.5 group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel className="text-xs text-subtle-foreground">{t("groups.shortcuts")}</SidebarGroupLabel>
-      <SidebarGroupContent>
-        <SidebarMenu className="gap-0.5">{isClient ? <LiveShortcuts /> : <ShortcutRows counts={null} />}</SidebarMenu>
-      </SidebarGroupContent>
-    </SidebarGroup>
-  );
-}
-
-function LiveShortcuts() {
-  return <ShortcutRows counts={useOrderCounts()} />;
-}
-
-function ShortcutRows({ counts }: { counts: { toShip: number; awaitingPayment: number } | null }) {
-  const t = useTranslations("admin.nav");
-  const rows = [
-    { key: "toShipShortcut", href: `${ADMIN_LINKS.orders}?status=PAID`, count: counts?.toShip },
-    { key: "unpaidShortcut", href: `${ADMIN_LINKS.orders}?status=PENDING_PAYMENT`, count: counts?.awaitingPayment },
-  ] as const;
-  return rows.map((row) => (
-    <SidebarMenuItem key={row.key}>
-      <SidebarMenuButton asChild className="h-8 rounded-lg px-3 text-[13px] text-sidebar-foreground hover:bg-sidebar-accent">
-        <Link href={row.href}>
-          <span className="flex-1 truncate">{t(row.key)}</span>
-          {row.count !== undefined && (
-            <span className="text-xs text-subtle-foreground tabular-nums">{row.count}</span>
-          )}
-        </Link>
-      </SidebarMenuButton>
-    </SidebarMenuItem>
-  ));
 }
 
 function StaffCard() {

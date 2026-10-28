@@ -104,12 +104,12 @@ export function RegisterForm() {
         <p className="text-center text-xs leading-5 text-subtle-foreground">
           {t.rich("register.legal", {
             terms: (chunks) => (
-              <Link href="/terms" className="underline">
+              <Link href="/agb" className="underline">
                 {chunks}
               </Link>
             ),
             privacy: (chunks) => (
-              <Link href="/privacy" className="underline">
+              <Link href="/datenschutz" className="underline">
                 {chunks}
               </Link>
             ),

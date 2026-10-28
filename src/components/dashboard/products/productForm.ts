@@ -1,5 +1,13 @@
 import { z } from "zod";
-import type { AdminAttribute, AdminProduct, ProductInput, ProductStatus } from "@/types/adminCatalog";
+import type {
+  AdminAttribute,
+  AdminProduct,
+  ProductContentInput,
+  ProductInput,
+  ProductStatus,
+  ProductTranslations,
+} from "@/types/adminCatalog";
+import { toTranslations } from "@/types/i18n";
 import { contentFormSchema, contentIssues, EMPTY_CONTENT, toContentForm, toContentInput } from "./productContentForm";
 
 /**
@@ -67,6 +75,18 @@ export const productFormSchema = (t: Translate) => {
       attributeIds: z.array(z.string()),
       variants: z.array(variant).min(1, t("errors.noVariants")),
       content: contentFormSchema(t),
+      // English texts; empty fields show the German ones on /en.
+      en: z.object({
+        name: z.string().trim().max(160, t("errors.tooLong")),
+        badge: z.string().trim().max(40, t("errors.tooLong")),
+        typeLabel: z.string().trim().max(60, t("errors.tooLong")),
+        shortDescription: z.string().trim().max(1000, t("errors.tooLong")),
+        description: z.string(),
+        metaTitle: z.string().trim().max(160, t("errors.tooLong")),
+        metaDescription: z.string().trim().max(320, t("errors.tooLong")),
+      }),
+      // Translated editorial blocks, kept as they are (no editor for them yet).
+      enContent: z.unknown(),
     })
     .superRefine((form, ctx) => {
       for (const issue of contentIssues(form.content, t)) {
@@ -110,6 +130,16 @@ export const emptyVariant = (price = ""): VariantFormValues => ({
   values: {},
 });
 
+const EMPTY_EN = {
+  name: "",
+  badge: "",
+  typeLabel: "",
+  shortDescription: "",
+  description: "",
+  metaTitle: "",
+  metaDescription: "",
+};
+
 export const EMPTY_PRODUCT: ProductFormValues = {
   name: "",
   slug: "",
@@ -130,6 +160,8 @@ export const EMPTY_PRODUCT: ProductFormValues = {
   attributeIds: [],
   variants: [{ ...emptyVariant(), isDefault: true }],
   content: EMPTY_CONTENT,
+  en: EMPTY_EN,
+  enContent: undefined,
 };
 
 /** The stored product as form values. Option axes are the attributes its variants use. */
@@ -180,10 +212,20 @@ export function toFormValues(product: AdminProduct, attributes: AdminAttribute[]
       ),
     })),
     content: toContentForm(product),
+    en: { ...EMPTY_EN, ...Object.fromEntries(Object.entries(product.translations?.en ?? {}).filter(([key]) => key in EMPTY_EN)) },
+    enContent: product.translations?.en?.content,
   };
 }
 
 const orNull = (value: string) => (value.trim() === "" ? null : value.trim());
+
+/** English texts (and kept translated blocks) as the stored JSON, or null when empty. */
+function productTranslations(form: ProductFormValues): ProductTranslations {
+  const texts = toTranslations(form.en)?.en ?? {};
+  const content = form.enContent as ProductContentInput | undefined;
+  const en = { ...texts, ...(content ? { content } : {}) };
+  return Object.keys(en).length ? { en } : null;
+}
 
 /** Form values as the API payload. */
 export function toProductInput(form: ProductFormValues): ProductInput {
@@ -202,6 +244,7 @@ export function toProductInput(form: ProductFormValues): ProductInput {
     metaTitle: orNull(form.metaTitle),
     metaDescription: orNull(form.metaDescription),
     content: toContentInput(form.content),
+    translations: productTranslations(form),
     // Only an image of this product can be its main image.
     featuredAssetId: form.featuredAssetId && imageIds.has(form.featuredAssetId) ? form.featuredAssetId : null,
     categoryIds: form.categoryIds,

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { ChevronDownIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -6,8 +7,10 @@ import { Container } from "@/components/shared/Container";
 import { Link } from "@/i18n/navigation";
 import { getFaq } from "@/lib/content";
 import type { FaqGroup } from "@/types/content";
+import { FEATURES } from "@/constants/features";
 
 export async function generateMetadata(): Promise<Metadata> {
+  if (!FEATURES.faq) return {};
   const t = await getTranslations("content.faq");
   return { title: t("title"), description: t("intro") };
 }
@@ -70,6 +73,7 @@ async function Questions() {
 }
 
 export default async function FaqPage() {
+  if (!FEATURES.faq) notFound();
   const t = await getTranslations("content.faq");
   return (
     <main className="flex-1 bg-background py-14 lg:py-20">

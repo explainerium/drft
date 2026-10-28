@@ -1,4 +1,5 @@
 import type { CatalogImage } from "./catalog";
+import type { Translations } from "./i18n";
 
 /** Shapes returned by the staff catalog endpoints (products, categories, attributes, media). */
 
@@ -76,6 +77,11 @@ export interface ProductImportResult {
   rows: ProductImportRow[];
 }
 
+export type ProductText = "name" | "badge" | "typeLabel" | "shortDescription" | "description" | "metaTitle" | "metaDescription";
+
+/** English texts of a product; `content` holds translated editorial blocks (not edited in the admin yet). */
+export type ProductTranslations = { en?: Partial<Record<ProductText, string>> & { content?: ProductContentInput } } | null;
+
 export interface AdminProduct {
   id: string;
   name: string;
@@ -90,6 +96,7 @@ export interface AdminProduct {
   metaTitle: string | null;
   metaDescription: string | null;
   content: ProductContentInput | null;
+  translations: ProductTranslations;
   /** The picture behind content.story.imageAssetId, for the editor. */
   storyImage: CatalogImage | null;
   publishedAt: string | null;
@@ -118,6 +125,7 @@ export interface ProductInput {
   metaTitle: string | null;
   metaDescription: string | null;
   content: ProductContentInput | null;
+  translations?: ProductTranslations;
   featuredAssetId: string | null;
   categoryIds: string[];
   images: { assetId: string; alt: string | null; sortOrder: number }[];
@@ -161,6 +169,7 @@ export interface AdminCategory {
   sortOrder: number;
   metaTitle: string | null;
   metaDescription: string | null;
+  translations: Translations<CategoryText>;
   /** Products linked to this category itself (not its subcategories). */
   productCount: number;
   childCount: number;
@@ -176,7 +185,10 @@ export interface CategoryInput {
   isHidden: boolean;
   metaTitle: string | null;
   metaDescription: string | null;
+  translations: Translations<CategoryText>;
 }
+
+export type CategoryText = "name" | "description" | "metaTitle" | "metaDescription";
 
 export interface AdminAttribute {
   id: string;

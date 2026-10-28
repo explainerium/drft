@@ -2,6 +2,8 @@ import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
 import type { PageMeta } from "@/types/catalog";
 import type { ContentPage, FaqGroup, Post, PostCard, PublicSettings } from "@/types/content";
+import type { Locale } from "@/i18n/routing";
+import { requestLocale } from "./api/locale";
 import { ApiRequestError, apiGet } from "./api/server";
 
 /**
@@ -46,13 +48,17 @@ export async function getPost(slug: string): Promise<Post | null> {
 }
 
 export async function getPage(slug: string): Promise<ContentPage | null> {
+  return page(slug, await requestLocale());
+}
+
+async function page(slug: string, locale: Locale): Promise<ContentPage | null> {
   "use cache";
   cacheLife("minutes");
   cacheTag("pages", `page:${slug}`);
-  return orNull(apiGet<ContentPage>(`/pages/${encodeURIComponent(slug)}`).then((r) => r.data));
+  return orNull(apiGet<ContentPage>(`/pages/${encodeURIComponent(slug)}`, undefined, locale).then((r) => r.data));
 }
 
-/** Published page slugs, for the sitemap. */
+/** Published page slugs, for the sitemap (titles in German). */
 export async function getPageList(): Promise<{ slug: string; title: string; updatedAt: string }[]> {
   "use cache";
   cacheLife("minutes");
@@ -68,8 +74,12 @@ export async function getFaq(): Promise<FaqGroup[]> {
 }
 
 export async function getPublicSettings(): Promise<PublicSettings> {
+  return publicSettings(await requestLocale());
+}
+
+async function publicSettings(locale: Locale): Promise<PublicSettings> {
   "use cache";
   cacheLife("minutes");
   cacheTag("settings");
-  return (await apiGet<PublicSettings>("/settings/public")).data;
+  return (await apiGet<PublicSettings>("/settings/public", undefined, locale)).data;
 }

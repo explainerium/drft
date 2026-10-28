@@ -90,7 +90,7 @@ export function VariantsSection({ attributes }: { attributes: AdminAttribute[] }
           {axes.map((axis) => (
             <span
               key={axis.id}
-              className="inline-flex h-7 items-center gap-1 rounded-full bg-secondary pr-1 pl-3 text-sm"
+              className="inline-flex h-7 items-center gap-1 rounded-md bg-secondary pr-1 pl-3 text-sm"
             >
               {axis.name}
               <button
@@ -376,8 +376,8 @@ function GenerateDialog({
                     onClick={() => toggle(axis.id, value.id)}
                     className={
                       on
-                        ? "inline-flex h-8 items-center gap-1.5 rounded-full bg-primary px-3 text-sm text-primary-foreground"
-                        : "inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-sm ring-1 ring-foreground/15 hover:bg-accent"
+                        ? "inline-flex h-8 items-center gap-1.5 rounded-md bg-primary px-3 text-sm text-primary-foreground"
+                        : "inline-flex h-8 items-center gap-1.5 rounded-md border px-3 text-sm ring-1 ring-foreground/15 hover:bg-accent"
                     }
                   >
                     {value.hexColor && (

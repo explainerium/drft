@@ -6,7 +6,16 @@ import { tagTypes } from "../tag-types";
  * to the backend, so auth cookies are first-party and no CORS is involved.
  * Feature endpoints are added with baseApi.injectEndpoints() in sibling files.
  */
-const rawBaseQuery = fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL ?? "/api/v1" });
+const rawBaseQuery = fetchBaseQuery({
+  baseUrl: process.env.NEXT_PUBLIC_API_URL ?? "/api/v1",
+  // Storefront pages ask for content in their language (<html lang>); the admin edits the stored texts.
+  prepareHeaders: (headers) => {
+    if (typeof document !== "undefined" && !document.body.classList.contains("admin")) {
+      headers.set("x-drft-locale", document.documentElement.lang);
+    }
+    return headers;
+  },
+});
 
 // One refresh at a time: parallel 401s wait for the same refresh call instead
 // of each rotating the token (which the backend would treat as reuse).

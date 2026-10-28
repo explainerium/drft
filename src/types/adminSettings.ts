@@ -48,7 +48,14 @@ export interface VatRate {
 /** The settings groups the API knows, as it returns them. */
 export interface SettingGroups {
   store: { name: string; email: string; phone: string; address: string; currency: "EUR" };
-  seo: { defaultTitle: string; titleTemplate: string; defaultDescription: string; ogImageAssetId: string | null };
+  seo: {
+    defaultTitle: string;
+    titleTemplate: string;
+    defaultDescription: string;
+    ogImageAssetId: string | null;
+    /** The fields above are German; empty English ones fall back to them. */
+    translations?: { en?: { defaultTitle?: string; defaultDescription?: string } };
+  };
   social: { instagram?: string; youtube?: string; facebook?: string; tiktok?: string };
   shipping: { freeShippingThreshold: string | null };
   tax: { defaultVatRate: number };

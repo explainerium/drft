@@ -1,53 +1,32 @@
 /**
  * Storefront navigation. Labels are message keys under `layout.nav` / `layout.footer.links`.
- * Category links use the backend category slugs (`/shop/<slug>`).
+ * About and the legal pages are CMS pages (admin → Pages) with these slugs.
  */
 export const MAIN_NAV = [
-  { key: "kites", href: "/shop/kites" },
-  { key: "boards", href: "/shop/boards" },
-  { key: "foilWings", href: "/shop/foils-wings" },
-  { key: "stories", href: "/journal" },
-  { key: "about", href: "/about" },
+  { key: "home", href: "/" },
+  { key: "about", href: "/ueber-drft" },
+  { key: "products", href: "/shop" },
+  { key: "contact", href: "/contact" },
 ] as const;
 
 export const FOOTER_COLUMNS = [
   {
     key: "shop",
-    links: [
-      { key: "kites", href: "/shop/kites" },
-      { key: "foilBoards", href: "/shop/foil-boards" },
-      { key: "controlBars", href: "/shop/control-bars" },
-      { key: "wings", href: "/shop/foils-wings" },
-      { key: "harnesses", href: "/shop/harnesses" },
-      { key: "accessories", href: "/shop/accessories" },
-    ],
+    links: [{ key: "products", href: "/shop" }],
   },
   {
-    key: "about",
+    key: "company",
     links: [
-      { key: "ourStory", href: "/about" },
-      { key: "sustainability", href: "/sustainability" },
-      { key: "journal", href: "/journal" },
-      { key: "teamRiders", href: "/team-riders" },
-      { key: "retailers", href: "/retailers" },
-    ],
-  },
-  {
-    key: "support",
-    links: [
-      { key: "shippingReturns", href: "/shipping-returns" },
-      { key: "kiteCare", href: "/kite-care" },
-      { key: "warranty", href: "/warranty" },
-      { key: "faq", href: "/faq" },
+      { key: "about", href: "/ueber-drft" },
       { key: "contact", href: "/contact" },
     ],
   },
 ] as const;
 
 export const LEGAL_LINKS = [
-  { key: "privacy", href: "/privacy" },
-  { key: "terms", href: "/terms" },
-  { key: "cookies", href: "/cookies" },
+  { key: "terms", href: "/agb" },
+  { key: "privacy", href: "/datenschutz" },
+  { key: "imprint", href: "/impressum" },
 ] as const;
 
 export const ACCOUNT_LINKS = {

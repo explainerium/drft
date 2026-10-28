@@ -5,14 +5,11 @@ import { Container } from "@/components/shared/Container";
 import { Link } from "@/i18n/navigation";
 import { findCategory, getCategoryTree, getProducts } from "@/lib/catalog";
 import { PRODUCT_SORTS, type ProductSort } from "@/types/catalog";
-import { EditorialBanner } from "./EditorialBanner";
 import { Pagination } from "./Pagination";
 import { ProductCard } from "./ProductCard";
 import { ShopFilterBar, type FilterChip } from "./ShopFilterBar";
 
 export const PAGE_SIZE = 12;
-// In the design the editorial banner sits between the first two rows of three.
-const BANNER_AFTER = 6;
 
 type SearchParams = Record<string, string | string[] | undefined>;
 
@@ -52,11 +49,11 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
   };
 
   const activeRoot = found ? (found.ancestors[0] ?? found.category).slug : undefined;
-  const chips: FilterChip[] = [
+  const withProducts = tree.filter((c) => c.productCount > 0);
+  // With a single category the chips would only repeat "All".
+  const chips: FilterChip[] = withProducts.length < 2 ? [] : [
     { key: "all", label: t("filters.all"), href: withQuery("/shop"), count: all.meta.total, active: !categorySlug },
-    ...tree
-      .filter((c) => c.productCount > 0)
-      .map((c) => ({
+    ...withProducts.map((c) => ({
         key: c.slug,
         label: c.name,
         href: withQuery(`/shop/${c.slug}`),
@@ -69,7 +66,6 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
     ? t("results.search", { count: meta.total, q })
     : t("results.count", { count: meta.total });
 
-  const showBanner = !categorySlug && !q && page === 1 && products.length > BANNER_AFTER;
   const pathname = categorySlug ? `/shop/${categorySlug}` : "/shop";
 
   return (
@@ -134,16 +130,6 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
                 {category?.description ?? (category ? t("categoryDescription", { name: category.name }) : t("description"))}
               </p>
             </div>
-            <p className="inline-flex items-center gap-4 self-start rounded-md bg-secondary px-4 py-2 text-sm font-medium lg:self-auto">
-              <span className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-brand" aria-hidden />
-                {t("proof.tested")}
-              </span>
-              <span className="text-xs text-subtle-foreground" aria-hidden>
-                ·
-              </span>
-              <span className="text-muted-foreground">{t("proof.handFinished")}</span>
-            </p>
           </div>
         </Container>
       </section>
@@ -162,18 +148,11 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
             </div>
           ) : (
             <>
-              <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+              <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
                 {products.map((product, i) => (
-                  <Fragment key={product.id}>
-                    {showBanner && i === BANNER_AFTER && (
-                      <li className="sm:col-span-2 lg:col-span-3">
-                        <EditorialBanner />
-                      </li>
-                    )}
-                    <li className="flex">
-                      <ProductCard product={product} priority={i < 3} headingLevel="h2" />
-                    </li>
-                  </Fragment>
+                  <li key={product.id} className="flex">
+                    <ProductCard product={product} priority={i < 4} headingLevel="h2" />
+                  </li>
                 ))}
               </ul>
               <Pagination page={meta.page} totalPages={meta.totalPages} pathname={pathname} query={query} />
@@ -190,17 +169,17 @@ export function ShopViewSkeleton() {
   return (
     <div aria-hidden className="bg-surface pb-16">
       <Container className="animate-pulse pt-12">
-        <div className="h-3 w-32 rounded bg-accent" />
-        <div className="mt-5 h-10 w-80 max-w-full rounded bg-accent" />
-        <div className="mt-4 h-4 w-[30rem] max-w-full rounded bg-accent" />
-        <div className="mt-10 h-9 w-full rounded bg-accent/60" />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-          {Array.from({ length: 6 }, (_, i) => (
+        <div className="h-3 w-32 rounded-md bg-accent" />
+        <div className="mt-5 h-10 w-80 max-w-full rounded-md bg-accent" />
+        <div className="mt-4 h-4 w-[30rem] max-w-full rounded-md bg-accent" />
+        <div className="mt-10 h-9 w-full rounded-md bg-accent/60" />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {Array.from({ length: 4 }, (_, i) => (
             <div key={i} className="rounded-md bg-card p-2">
               <div className="aspect-[341/427] rounded-md bg-accent" />
-              <div className="mt-4 h-3 w-24 rounded bg-accent" />
-              <div className="mt-3 h-5 w-48 rounded bg-accent" />
-              <div className="mt-6 mb-2 h-9 rounded bg-accent/60" />
+              <div className="mt-4 h-3 w-24 rounded-md bg-accent" />
+              <div className="mt-3 h-5 w-48 rounded-md bg-accent" />
+              <div className="mt-6 mb-2 h-9 rounded-md bg-accent/60" />
             </div>
           ))}
         </div>

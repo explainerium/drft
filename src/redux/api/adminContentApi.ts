@@ -1,3 +1,4 @@
+import type { Translations } from "@/types/i18n";
 import type { CatalogImage } from "@/types/catalog";
 import type { PageMeta } from "@/types/checkout";
 import { baseApi } from "./baseApi";
@@ -49,12 +50,15 @@ export interface AdminPageRow {
   updatedAt: string;
 }
 
+export type PageText = "title" | "intro" | "body" | "metaTitle" | "metaDescription";
+
 export interface AdminPage extends AdminPageRow {
   intro: string | null;
   body: string | null;
   publishedAt: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
+  translations: Translations<PageText>;
 }
 
 export interface PageInput {
@@ -65,6 +69,7 @@ export interface PageInput {
   status: ContentStatus;
   metaTitle: string | null;
   metaDescription: string | null;
+  translations: Translations<PageText>;
 }
 
 export interface FaqItem {

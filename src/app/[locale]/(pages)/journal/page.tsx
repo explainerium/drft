@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
@@ -7,12 +8,14 @@ import { Link } from "@/i18n/navigation";
 import { Pagination } from "@/components/shop/Pagination";
 import { getPostTags, getPosts } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { FEATURES } from "@/constants/features";
 
 const PAGE_SIZE = 9;
 
 type Props = PageProps<"/[locale]/journal">;
 
 export async function generateMetadata(): Promise<Metadata> {
+  if (!FEATURES.journal) return {};
   const t = await getTranslations("content.journal");
   return { title: t("title"), description: t("intro") };
 }
@@ -25,7 +28,7 @@ async function TagFilter({ active }: { active?: string }) {
   if (tags.length < 2) return null;
   const chip = (selected: boolean) =>
     cn(
-      "inline-flex h-9 items-center rounded-full border px-4 text-sm font-medium transition-colors",
+      "inline-flex h-9 items-center rounded-md border px-4 text-sm font-medium transition-colors",
       selected ? "border-foreground bg-foreground text-background" : "bg-background hover:border-foreground/40"
     );
   return (
@@ -103,6 +106,7 @@ async function Posts({ searchParams }: { searchParams: Props["searchParams"] }) 
 }
 
 export default async function JournalPage({ searchParams }: Props) {
+  if (!FEATURES.journal) notFound();
   const t = await getTranslations("content.journal");
   return (
     <main className="flex-1 bg-surface py-14 lg:py-20">

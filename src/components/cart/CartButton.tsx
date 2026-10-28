@@ -28,7 +28,7 @@ function CartButtonView({ count }: { count: number }) {
       aria-label={t("label", { count })}
       aria-haspopup="dialog"
       data-cart-button
-      className="flex h-8 items-center gap-1 rounded-md bg-secondary px-3 text-sm font-medium tracking-[-0.005em] transition-colors hover:bg-accent"
+      className="flex h-8 cursor-pointer items-center gap-1 rounded-md bg-secondary px-3 text-sm font-medium tracking-[-0.005em] transition-colors hover:bg-accent"
     >
       <ShoppingBagIcon className="size-4" />
       <span className="hidden sm:inline">{t("text", { count })}</span>

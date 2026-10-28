@@ -55,7 +55,7 @@ export function CustomersView() {
               aria-pressed={status === value}
               onClick={() => setParams({ status: value, page: undefined })}
               className={cn(
-                "inline-flex h-8 items-center rounded-full border px-3 text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+                "inline-flex h-8 items-center rounded-md border px-3 text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
                 status === value ? "border-abyss bg-abyss text-white" : "border-border bg-card hover:bg-accent",
               )}
             >

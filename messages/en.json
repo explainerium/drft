@@ -1,18 +1,17 @@
 {
   "metadata": {
     "title": "DRFT — Kitesurf & Foil Equipment",
-    "description": "High-performance kites, boards and foils, engineered for riders."
+    "description": "Kitesurf and foil equipment by DRFT."
   },
   "layout": {
-    "home": "DRFT Aerodynamics, home",
-    "announcement": "Complimentary EU shipping on orders over €150 · 30-day return policy",
+    "home": "DRFT, home",
+    "announcement": "Free shipping within the EU on orders over €150",
     "nav": {
       "label": "Main",
-      "kites": "Kites",
-      "boards": "Boards",
-      "foilWings": "Foil & Wings",
-      "stories": "Stories",
-      "about": "About"
+      "home": "Home",
+      "about": "About DRFT",
+      "products": "Products",
+      "contact": "Contact"
     },
     "mobileNav": {
       "open": "Open menu",
@@ -20,13 +19,12 @@
     },
     "search": {
       "open": "Search",
-      "title": "Search the store",
-      "description": "Search kites, boards, foils and accessories",
-      "placeholder": "Search kites, boards, foils…",
+      "title": "Search products",
+      "description": "Search all DRFT products",
+      "placeholder": "Search products…",
       "submit": "Search"
     },
     "account": {
-      "label": "Account",
       "menu": "Account menu",
       "signIn": "Sign in",
       "register": "Create account",
@@ -42,10 +40,10 @@
       "label": "Cart, {count, plural, one {# item} other {# items}}"
     },
     "footer": {
-      "home": "DRFT Aerodynamics, home",
-      "tagline": "High-performance watersports equipment engineered for progression, freedom, and the elements.",
+      "home": "DRFT, home",
+      "tagline": "Kitesurf and foil equipment by DRFT. Your flow. Your ride. Your DRFT.",
       "newsletter": {
-        "title": "The Wind Journal",
+        "title": "Newsletter",
         "placeholder": "Your email address",
         "subscribe": "Subscribe",
         "invalid": "Please enter a valid email address.",
@@ -54,33 +52,18 @@
       },
       "columns": {
         "shop": "Shop",
-        "about": "About & Editorial",
-        "support": "Support"
+        "company": "DRFT"
       },
       "links": {
-        "kites": "Kites",
-        "foilBoards": "Foil Boards",
-        "controlBars": "Control Bars",
-        "wings": "Wings",
-        "harnesses": "Harnesses",
-        "accessories": "Accessories",
-        "ourStory": "Our Story",
-        "sustainability": "Sustainability",
-        "journal": "The Journal",
-        "teamRiders": "Team Riders",
-        "retailers": "Retailers",
-        "shippingReturns": "Shipping & Returns",
-        "kiteCare": "Kite Care & Repair",
-        "warranty": "Warranty",
-        "faq": "FAQ",
-        "contact": "Contact Us"
+        "products": "Products",
+        "about": "About DRFT",
+        "contact": "Contact"
       },
-      "copyright": "© {year} DRFT Sports BV. All rights reserved.",
-      "currency": "EUR €",
+      "copyright": "© {year} DRFT. All rights reserved.",
       "legal": {
-        "privacy": "Privacy Policy",
-        "terms": "Terms of Service",
-        "cookies": "Cookie Settings"
+        "terms": "Terms and conditions",
+        "privacy": "Privacy policy",
+        "imprint": "Imprint"
       },
       "social": {
         "label": "DRFT on social media",
@@ -89,25 +72,26 @@
         "facebook": "Facebook",
         "tiktok": "TikTok"
       }
+    },
+    "locale": {
+      "label": "Language",
+      "de": "Deutsch",
+      "en": "English"
     }
   },
   "shop": {
-    "title": "Kitesurf Equipment",
-    "eyebrow": "The 2025 Fleet",
-    "description": "Purpose-built kites, performance foil boards, and control systems designed for freeride progression and open-water freedom across European shorelines.",
-    "categoryDescription": "{name}, engineered in Europe and tested in Tarifa and Klitmøller.",
+    "title": "Products",
+    "eyebrow": "DRFT",
+    "description": "Kitesurf and foil equipment by DRFT.",
+    "categoryDescription": "{name} by DRFT.",
     "breadcrumb": {
       "label": "Breadcrumb",
       "home": "Home",
       "shop": "Shop"
     },
-    "proof": {
-      "tested": "Tested in Tarifa & Klitmøller",
-      "handFinished": "Hand-Finished"
-    },
     "filters": {
       "label": "Categories",
-      "all": "All Equipment"
+      "all": "All products"
     },
     "results": {
       "label": "Products",
@@ -135,37 +119,9 @@
     },
     "empty": {
       "title": "Nothing here yet",
-      "search": "We couldn’t find anything for “{q}”. Try another word or browse all equipment.",
+      "search": "We couldn’t find anything for “{q}”. Try another word or browse all products.",
       "category": "There are no products in this category right now.",
-      "reset": "Browse all equipment"
-    },
-    "editorial": {
-      "eyebrow": "DRFT Design Philosophy",
-      "title": "Made for days you remember.",
-      "body": "We craft equipment that disappears beneath you, leaving only wind, water, and momentum. Tested rigorously against the Atlantic chop and Mediterranean thermals to deliver uncompromised feel.",
-      "journal": "Read the DRFT Journal",
-      "sessions": "Watch the Tarifa Sessions",
-      "locationLabel": "Location",
-      "location": "Punta Paloma, 36.01° N"
-    },
-    "reassurance": {
-      "label": "Why shop with DRFT",
-      "shipping": {
-        "title": "Complimentary EU Shipping",
-        "body": "Orders over €150 delivered via carbon-neutral transit within 2–4 business days."
-      },
-      "returns": {
-        "title": "30-Day Ocean Guarantee",
-        "body": "Rig it, ride it on the open water. Complete exchange or full return if it doesn’t fit your style."
-      },
-      "warranty": {
-        "title": "2-Year Craftsmanship Warranty",
-        "body": "Direct European workshop support and dedicated canopy repair service for extended lifespan."
-      },
-      "advice": {
-        "title": "Expert Kite Advisory",
-        "body": "Chat with our dedicated riders in Tarifa to dial in your kite size and mast setup."
-      }
+      "reset": "Browse all products"
     }
   },
   "product": {
@@ -173,13 +129,13 @@
     "home": "Home",
     "sku": "SKU: {sku}",
     "stock": {
-      "inStock": "In stock (EU hub)",
+      "inStock": "In stock",
       "backorder": "Available on backorder",
       "soldOut": "Sold out",
-      "low": "Only a few left (EU hub)"
+      "low": "Only a few left"
     },
     "gallery": {
-      "readyToDispatch": "Ready to Dispatch",
+      "readyToDispatch": "Ready to ship",
       "thumbnails": "Product images",
       "show": "Show image {index}"
     },
@@ -189,207 +145,72 @@
       "quantity": "Quantity",
       "decrease": "Decrease quantity",
       "increase": "Increase quantity",
-      "addToCart": "Add to Cart — {price}",
+      "addToCart": "Add to cart — {price}",
       "unavailable": "{value} (unavailable in this combination)",
       "failed": "We couldn’t add this to your cart. Please try again.",
-      "add": "Add to Cart"
+      "add": "Add to cart"
     },
     "promises": {
-      "delivery": "Free EU Delivery Over €150",
-      "returns": "30-Day Ocean Guarantee",
-      "warranty": "2-Year Atelier Warranty"
+      "delivery": "Free EU shipping over €150",
+      "returns": "14-day right of withdrawal",
+      "warranty": "2-year statutory warranty"
     },
     "specs": {
-      "eyebrow": "Atelier Matrix",
-      "title": "Technical Specifications",
-      "boxEyebrow": "Included Package",
-      "boxTitle": "What’s in the Box",
-      "pledgeTitle": "Atelier Circularity Pledge",
-      "pledgeBody": "Every DRFT kite bag is constructed from 100% recycled ocean-bound PET ripstop. When your kite reaches the end of its flight life, return it for complimentary recycling in exchange for €150 fleet credit."
+      "eyebrow": "Details",
+      "title": "Technical specifications",
+      "boxEyebrow": "Included",
+      "boxTitle": "What’s in the box"
     },
     "related": {
-      "eyebrow": "Recommended Synergy",
-      "title": "Complete Your Setup",
-      "intro": "Precision gear calibrated by our test riders to unlock the full aerodynamic potential of the {name}.",
-      "viewAll": "View All Fleet Gear"
+      "eyebrow": "More from DRFT",
+      "title": "Complete your setup",
+      "intro": "Products that go well with the {name}.",
+      "viewAll": "View all products"
     }
   },
   "home": {
     "hero": {
-      "label": "Featured stories",
-      "conditions": "Spot conditions",
-      "previous": "Previous slide",
-      "next": "Next slide",
-      "pause": "Pause slideshow",
-      "play": "Play slideshow",
-      "slide": "Slide {index} of {count}",
-      "slides": {
-        "tarifa": {
-          "season": "Season 2025 // Aero Flight Dynamics",
-          "expedition": "Tarifa Expedition",
-          "title": "Defy gravity.\nPure flight.",
-          "body": "Ultra-modulus carbon airframes and precision freeride kites engineered for unmatched lift, raw acceleration, and effortless control.",
-          "primary": "Explore 2025 Fleet",
-          "secondary": "Watch Dispatch [2:40]",
-          "spot": "Valdevaqueros · Tarifa",
-          "wind": "Wind: 24.8 kts NE (31 kts gusts)",
-          "swell": "Swell: 1.8m @ 11s",
-          "baro": "Baro: 1018 hPa",
-          "water": "Water: 20.5°C",
-          "protocol": "Atlantic Protocol"
-        },
-        "atlantic": {
-          "season": "Field Test 2025 // Heavy Weather",
-          "expedition": "Cabo de São Vicente",
-          "title": "Built for the\nopen Atlantic.",
-          "body": "Reinforced leading edges and Teijin Quad-Tex canopies, proven in cold, heavy swell from Brittany to the Algarve.",
-          "primary": "Shop Kites",
-          "secondary": "Read Field Notes",
-          "spot": "Sagres · Algarve",
-          "wind": "Wind: 28.4 kts NW (36 kts gusts)",
-          "swell": "Swell: 3.2m @ 14s",
-          "baro": "Baro: 1006 hPa",
-          "water": "Water: 16.8°C",
-          "protocol": "Storm Protocol"
-        },
-        "lagoon": {
-          "season": "Season 2025 // Freeride Collection",
-          "expedition": "Lagoon Sessions",
-          "title": "Effortless lift.\nEndless sessions.",
-          "body": "Sheet-and-go power, sub-3s relaunch and a wind range that keeps you riding from the first breeze to the last light.",
-          "primary": "Configure Aero V3",
-          "secondary": "Watch Dispatch [1:55]",
-          "spot": "Lagoa de Óbidos · Portugal",
-          "wind": "Wind: 16.2 kts N (19 kts gusts)",
-          "swell": "Swell: Flat water",
-          "baro": "Baro: 1021 hPa",
-          "water": "Water: 19.1°C",
-          "protocol": "Lagoon Protocol"
-        }
-      }
+      "eyebrow": "Kitesurf & foil equipment",
+      "title": "Your flow.\nYour ride.",
+      "body": "Equipment for riders who want to spend more time on the water and less time thinking about their gear.",
+      "primary": "View products",
+      "secondary": "About DRFT"
     },
     "fleet": {
-      "eyebrow": "Engineering Release",
-      "title": "The 2025 Fleet",
-      "intro": "Engineered for pure freeride flight, crisp steering, and effortless relaunch in all wind conditions.",
-      "viewAll": "View All {count} Products",
+      "eyebrow": "Products",
+      "title": "Our products",
+      "intro": "A small range, chosen with care: everything you need for your next session.",
+      "viewAll": "View all {count} products",
       "from": "From {price}",
       "was": "Was",
       "colours": "Available colours",
       "view": "View product",
       "soldOut": "Sold out"
     },
-    "philosophy": {
-      "eyebrow": "Design Philosophy",
-      "quote": "“We craft equipment that disappears beneath you, leaving only wind, water, and momentum.”",
-      "innovation": {
-        "label": "01 / Innovation",
-        "title": "Refined Hydrodynamics",
-        "body": "Minimal drag airframes and calibrated foil profiles tested across cold northern waters to ensure maximum glide in marginal knots.",
-        "note": "Hydrodynamic lab verified"
-      },
-      "sensation": {
-        "label": "02 / Sensation",
-        "title": "Direct Tactile Feedback",
-        "body": "Pulleyless bridle systems and monocoque carbon bars engineered for immediate mechanical response and zero line lag.",
-        "note": "Zero-lag tactile response"
-      },
-      "craft": {
-        "label": "03 / Craft",
-        "title": "European Atelier Rigging",
-        "body": "Every kite, foil, and control bar is individually hand-inspected and pre-flight tensioned before final dispatch to riders.",
-        "note": "Individually certified"
-      }
-    },
-    "fieldNotes": {
-      "eyebrow": "Field Notes · 54° North",
-      "title": "The North Sea Protocol",
-      "body": "Tested from Scheveningen to Nazaré. Built to withstand punishing salt encrustation, shifting sand bars, and sustained 35-knot gale gusts.",
-      "cta": "Read the Design Journal",
-      "dispatch": "Dispatch #14"
-    },
-    "disciplines": {
-      "eyebrow": "Ecosystem",
-      "title": "Disciplines & Systems",
-      "intro": "Complete aerodynamic and hydrodynamic packages configured for high-speed progression.",
-      "kites": {
-        "label": "01 / Aerodynamics",
-        "title": "Kites & Airframes",
-        "body": "Freeride, Big Air, and lightwind canopy setups engineered for stable loft.",
-        "cta": "Explore Kites"
-      },
-      "foils": {
-        "label": "02 / Hydrodynamics",
-        "title": "Foil Boards & Wings",
-        "body": "Carbon modular foils and compact carving boards tuned for friction-free flight.",
-        "cta": "Explore Foils"
-      },
-      "control": {
-        "label": "03 / Transmission",
-        "title": "TwinTips & Control",
-        "body": "Precision carbon twin tips and Sentry Pro ISO-certified bar systems.",
-        "cta": "Explore Control"
-      }
-    },
-    "spotlight": {
-      "eyebrow": "Flagship Innovation",
-      "body": "Designed for effortless progression. The third generation Aero redefines wind range with an ultra-rigid airframe that absorbs gusts without unsettling your stance.",
-      "points": {
-        "frame": {
-          "title": "Tri-Strut Low-Profile Frame",
-          "body": "Reduces airframe drag by 14% for quicker climbing through the wind window."
-        },
-        "relaunch": {
-          "title": "Sub-3s Relaunch Dynamics",
-          "body": "Curved wingtips roll the kite onto the tip instantly upon bar release."
-        },
-        "pressure": {
-          "title": "-18% Bar Pressure Fatigue",
-          "body": "Direct pulleys eliminate friction so you feel every knot of clean power."
-        }
-      },
-      "currency": "EUR",
-      "vat": "incl. VAT",
-      "configure": "Configure Aero V3",
-      "materialTitle": "Teijin Quad-Tex 4x4",
-      "materialBody": "300% lower bias stretch over lifetime",
-      "imageAlt": "Close-up of the {name} canopy seam"
-    },
-    "journal": {
-      "eyebrow": "Editorial & Dispatches",
-      "title": "The Wind Journal",
-      "viewAll": "Explore All Articles"
-    },
-    "newsletter": {
-      "eyebrow": "The Wind Journal Dispatch",
-      "title": "Stay on the pulse of the wind.",
-      "body": "Seasonal fleet releases, Atlantic swell forecasts, atelier telemetry, and firsthand rider field notes delivered directly from our test stations in Tarifa and Brittany.",
-      "perks": {
-        "biweekly": "Bi-weekly dispatches",
-        "noNoise": "No commercial noise",
-        "unsubscribe": "Unsubscribe anytime"
-      },
-      "submit": "Join Fleet",
-      "consent": "By registering, you agree to our <link>Privacy Policy</link>. We safeguard your rider telemetry."
-    },
     "trust": {
       "label": "Our promises",
       "shipping": {
-        "title": "Complimentary EU Shipping",
-        "body": "Carbon-neutral courier delivery on orders over €150."
+        "title": "Shipping within the EU",
+        "body": "Free on orders over €150."
       },
       "trial": {
-        "title": "30-Day Ocean Trial",
-        "body": "Rig it and ride on water. Hassle-free return or size swap."
+        "title": "14-day right of withdrawal",
+        "body": "Not the right fit? Send it back within 14 days."
       },
       "warranty": {
-        "title": "2-Year Atelier Warranty",
-        "body": "Full material coverage backed by our workshop team."
+        "title": "Secure checkout",
+        "body": "Encrypted payment with trusted providers."
       },
       "advisory": {
-        "title": "Expert Rider Advisory",
-        "body": "Direct spot advice and setup tuning from test riders."
+        "title": "Personal advice",
+        "body": "Questions about your gear? Write to us."
       }
+    },
+    "about": {
+      "eyebrow": "About DRFT",
+      "title": "Made for the water",
+      "body": "DRFT stands for kitesurfing without compromise. We focus on a few products and make them as good as we can, so you can focus on riding.",
+      "link": "Learn more about DRFT"
     }
   },
   "notFound": {
@@ -398,7 +219,7 @@
     "backHome": "Back to home"
   },
   "cart": {
-    "title": "Your Cart",
+    "title": "Your cart",
     "description": "Items in your cart, recommendations and order total",
     "close": "Close cart",
     "count": "{count, plural, one {# item} other {# items}}",
@@ -406,15 +227,15 @@
     "error": "We couldn’t load your cart. Please try again.",
     "retry": "Try again",
     "shipping": {
-      "unlocked": "Complimentary EU Express Shipping unlocked",
+      "unlocked": "Free EU shipping unlocked",
       "qualified": "Qualified ({threshold}+)",
-      "dispatch": "Your order will be dispatched via carbon-neutral express within 24 hours.",
-      "almost": "Add {remaining} for complimentary EU express shipping",
+      "dispatch": "Your order ships to you within the EU.",
+      "almost": "Add {remaining} for free EU shipping",
       "toGo": "{remaining} to go",
       "progress": "Progress to free shipping"
     },
     "items": {
-      "title": "Selected Equipment",
+      "title": "Your products",
       "each": "{price} each",
       "quantity": "Quantity of {name}",
       "decrease": "Decrease quantity",
@@ -429,42 +250,42 @@
       "signInToSave": "Sign in to save products for later"
     },
     "recommendations": {
-      "title": "Curated for your setup",
+      "title": "You might also like",
       "badge": "Recommended",
-      "add": "Add to Setup",
+      "add": "Add",
       "view": "Choose options",
       "from": "From {price}"
     },
     "trust": {
       "trial": {
-        "title": "30-Day Ocean Trial",
-        "body": "Ride and test on water"
+        "title": "14-day returns",
+        "body": "Right of withdrawal"
       },
       "warranty": {
-        "title": "2-Year Atelier Warranty",
-        "body": "Handcrafted longevity"
+        "title": "2-year warranty",
+        "body": "Statutory warranty"
       },
-      "climate": {
-        "title": "Climate-Neutral",
-        "body": "100% recycled packaging"
+      "secure": {
+        "title": "Secure payment",
+        "body": "Encrypted checkout"
       }
     },
     "summary": {
       "subtotal": "Subtotal",
-      "delivery": "EU Express Delivery",
+      "delivery": "EU shipping",
       "free": "Free",
       "shipping": "Shipping",
       "atCheckout": "Calculated at checkout",
       "vat": "Estimated VAT ({rate}% included)",
       "total": "Total",
-      "totalNoteFree": "VAT included · free EU express delivery",
+      "totalNoteFree": "VAT included · free EU shipping",
       "totalNote": "VAT included · shipping calculated at checkout",
-      "checkout": "Proceed to Secure Checkout"
+      "checkout": "Go to checkout"
     },
     "empty": {
       "title": "Your cart is empty",
-      "body": "Kites, boards and foils engineered for progression are one click away.",
-      "cta": "Explore the 2025 Fleet"
+      "body": "Have a look at our products.",
+      "cta": "View products"
     },
     "added": "Added to your cart",
     "failed": "Something went wrong. Please try again."
@@ -484,17 +305,17 @@
     "empty": {
       "title": "Your cart is empty",
       "body": "Add some gear to your cart before checking out.",
-      "cta": "Explore the 2025 Fleet"
+      "cta": "View products"
     },
     "contact": {
-      "title": "Customer Contact",
+      "title": "Contact",
       "login": "Already have an account? Log in",
-      "email": "Email address for tracking",
-      "marketing": "Keep me updated on DRFT gear drops, wind alerts, and ocean stories",
+      "email": "Email address",
+      "marketing": "Keep me updated on new DRFT products and offers",
       "signedIn": "Signed in as {email}"
     },
     "address": {
-      "title": "Delivery & Shipping Address",
+      "title": "Delivery address",
       "country": "Country / Region",
       "countryPlaceholder": "Select a country",
       "firstName": "First name",
@@ -504,20 +325,20 @@
       "street2": "Apartment, suite, etc. (optional)",
       "postcode": "Postal code",
       "city": "City",
-      "phone": "Phone number for courier updates",
-      "phoneHint": "SMS delivery dispatch notification",
+      "phone": "Phone number",
+      "phoneHint": "For delivery updates from the courier",
       "save": "Save this address to my account"
     },
     "shipping": {
-      "title": "Shipping Method",
+      "title": "Shipping method",
       "chooseCountry": "Choose a country to see delivery options.",
       "none": "We don’t ship to this country yet.",
       "free": "Free",
       "included": "Included"
     },
     "payment": {
-      "title": "Payment Method",
-      "compliance": "PCI-DSS Level 1 Compliant",
+      "title": "Payment method",
+      "compliance": "Secure payment",
       "STRIPE": "Credit or Debit Card",
       "STRIPEBody": "Visa, Mastercard, Amex, Klarna, iDEAL and more",
       "PAYPAL": "PayPal",
@@ -527,18 +348,18 @@
       "billingSame": "Same as shipping address",
       "billingDifferent": "Use a different billing address"
     },
-    "place": "Complete order — {total}",
+    "place": "Place order — {total}",
     "placing": "Placing your order…",
     "blocked": "Some items in your cart are no longer available.",
     "reviewCart": "Review your cart",
-    "legal": "By confirming your purchase, you agree to DRFT’s <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>.",
+    "legal": "By placing your order you agree to DRFT’s <terms>terms and conditions</terms> and <privacy>privacy policy</privacy>.",
     "trust": {
-      "trial": "30-Day Ocean Trial",
-      "warranty": "2-Year Atelier Warranty",
-      "returns": "Complimentary EU Returns"
+      "trial": "14-day right of withdrawal",
+      "warranty": "2-year statutory warranty",
+      "returns": "Secure payment"
     },
     "summary": {
-      "title": "Order Summary",
+      "title": "Order summary",
       "count": "{count, plural, one {# Product} other {# Products}}",
       "quantity": "Quantity: {count}",
       "inStock": "In stock",
@@ -548,18 +369,18 @@
       "shippingPending": "Enter your address",
       "free": "Free",
       "vat": "Included VAT ({rate}%)",
-      "total": "Total Due",
+      "total": "Total",
       "totalNote": "EUR · Incl. taxes"
     },
     "commitment": {
-      "title": "The DRFT Commitment",
-      "subtitle": "Crafted & tested across cold seas",
-      "rigged": "Pre-flight Rigged:",
-      "riggedBody": "Every kite and bar system undergoes canopy tension calibration in our Dutch workshop before packaging.",
-      "exchange": "Size Exchange Guarantee:",
-      "exchangeBody": "If the wind range doesn’t suit your home spot, exchange sizes free of charge within 30 days.",
-      "help": "Need bar tuning advice?",
-      "helpBody": "Speak with our test riders",
+      "title": "Questions about your order?",
+      "subtitle": "We’re happy to help",
+      "rigged": "Checked before shipping:",
+      "riggedBody": "We check every order before it leaves us.",
+      "exchange": "Right of withdrawal:",
+      "exchangeBody": "You can return your order within 14 days of delivery.",
+      "help": "Need advice?",
+      "helpBody": "Write to us",
       "helpCta": "Contact us"
     },
     "errors": {
@@ -614,8 +435,8 @@
   },
   "auth": {
     "side": {
-      "eyebrow": "DRFT Rider Account",
-      "title": "Your setup, your orders, one place.",
+      "eyebrow": "DRFT account",
+      "title": "Your orders and addresses in one place.",
       "body": "Track deliveries, check out faster with saved addresses and pick up your cart on any device."
     },
     "showPassword": "Show password",
@@ -645,7 +466,7 @@
       "haveAccount": "Already have an account?",
       "login": "Sign in",
       "welcome": "Welcome to DRFT, {name}. Check your inbox to verify your email.",
-      "legal": "By creating an account, you agree to DRFT’s <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+      "legal": "By creating an account you agree to DRFT’s <terms>terms and conditions</terms> and <privacy>privacy policy</privacy>."
     },
     "forgot": {
       "title": "Reset your password",
@@ -704,7 +525,7 @@
     },
     "overview": {
       "greeting": "Hi, {name}",
-      "memberSince": "Rider since {date}"
+      "memberSince": "Customer since {date}"
     },
     "verify": {
       "title": "Verify your email",
@@ -735,7 +556,7 @@
     "orders": {
       "title": "Orders",
       "empty": "You haven’t placed an order yet.",
-      "emptyCta": "Explore the 2025 Fleet",
+      "emptyCta": "View products",
       "placed": "Placed {date}",
       "items": "{count, plural, one {# item} other {# items}}",
       "view": "View order",
@@ -789,7 +610,7 @@
       "title": "Wishlist",
       "count": "{count, plural, one {# saved product} other {# saved products}}",
       "empty": "Nothing saved yet. Tap the heart on any product to keep it here.",
-      "emptyCta": "Explore the 2025 Fleet",
+      "emptyCta": "View products",
       "addToCart": "Add to cart",
       "chooseOptions": "Choose options",
       "soldOut": "Sold out",
@@ -853,7 +674,6 @@
       "groups": {
         "store": "Store",
         "catalog": "Catalog",
-        "shortcuts": "Shortcuts",
         "setup": "Setup",
         "content": "Content"
       },
@@ -863,8 +683,6 @@
         "STAFF": "Staff"
       },
       "search": "Search orders",
-      "toShipShortcut": "To ship",
-      "unpaidShortcut": "Awaiting payment",
       "shipping": "Shipping",
       "vat": "VAT rates",
       "staff": "Staff",
@@ -1186,7 +1004,8 @@
         "categories": "Categories",
         "price": "Price",
         "stock": "Stock",
-        "updated": "Updated"
+        "updated": "Updated",
+        "actions": "Actions"
       },
       "variants": "{count, plural, one {# variant} other {# variants}}",
       "featured": "Featured",
@@ -1219,6 +1038,17 @@
         "applying": "Saving…",
         "applied": "{count, plural, one {# variant updated} other {# variants updated}}.",
         "failed": "The file could not be checked. Try again."
+      },
+      "actions": {
+        "edit": "Edit",
+        "publish": "Publish",
+        "toDraft": "Move to draft",
+        "duplicate": "Duplicate",
+        "delete": "Delete",
+        "published": "{name} is now in the store.",
+        "drafted": "{name} is now a draft and hidden from the store.",
+        "duplicated": "Draft copy created: {name}.",
+        "failed": "That didn’t work. Try again."
       }
     },
     "product": {
@@ -1464,6 +1294,11 @@
         "saveFirst": "Save your changes first: the copy is made from the saved product.",
         "done": "Draft copy created: {name}. Its variants have no SKU or stock yet.",
         "failed": "The product could not be duplicated."
+      },
+      "english": {
+        "title": "English version",
+        "hint": "Shown on the English site (/en). Leave a field empty to show the German text there.",
+        "description": "Description (English)"
       }
     },
     "categories": {
@@ -1499,7 +1334,9 @@
         "isHidden": "Hidden from the shop (its products stay in other categories)",
         "seo": "Search engines",
         "metaTitle": "Page title",
-        "metaDescription": "Meta description"
+        "metaDescription": "Meta description",
+        "english": "English version",
+        "englishHint": "Shown on the English site (/en). Leave a field empty to show the German text there."
       },
       "errors": {
         "required": "Required.",
@@ -1822,7 +1659,9 @@
           "youtube": "YouTube",
           "facebook": "Facebook",
           "tiktok": "TikTok"
-        }
+        },
+        "english": "English version",
+        "englishHint": "For the English site (/en). Empty fields use the German text above."
       },
       "save": "Save",
       "saving": "Saving…",
@@ -1889,7 +1728,12 @@
       "confirmPage": "Its address will show the not-found page. This can’t be undone.",
       "cancel": "Cancel",
       "delete": "Delete",
-      "deleted": "{title} deleted."
+      "deleted": "{title} deleted.",
+      "english": {
+        "title": "English version",
+        "hint": "Shown on the English site (/en). Leave a field empty to show the German text there.",
+        "body": "Body (English)"
+      }
     },
     "journal": {
       "title": "Journal",
@@ -2024,7 +1868,7 @@
     },
     "contact": {
       "title": "Contact",
-      "intro": "Questions about gear, an order or a repair? Write to us and the team replies within two working days.",
+      "intro": "Questions about a product or your order? Write to us and we’ll get back to you as soon as we can.",
       "emailUs": "Email",
       "callUs": "Phone",
       "visit": "Address",
@@ -2052,7 +1896,7 @@
         "metaTitle": "Confirm subscription",
         "working": "Confirming your subscription…",
         "doneTitle": "You’re subscribed",
-        "doneBody": "Thanks for confirming. Dispatches and new gear will land in your inbox.",
+        "doneBody": "Thanks for confirming. News and new products will land in your inbox.",
         "failedTitle": "This link didn’t work",
         "failedBody": "It may have been used already or replaced by a newer one. Sign up again from the footer.",
         "home": "Back to the store"

@@ -1,11 +1,11 @@
-import { HeadsetIcon, RefreshCwIcon, ShieldCheckIcon, TruckIcon } from "lucide-react";
+import { HeadsetIcon, LockIcon, RefreshCwIcon, TruckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/shared/Container";
 
 const ITEMS = [
   { key: "shipping", Icon: TruckIcon },
   { key: "trial", Icon: RefreshCwIcon },
-  { key: "warranty", Icon: ShieldCheckIcon },
+  { key: "warranty", Icon: LockIcon },
   { key: "advisory", Icon: HeadsetIcon },
 ] as const;
 

@@ -1,0 +1,701 @@
+{
+  "metadata": {
+    "title": "DRFT — Kitesurf- & Foil-Ausrüstung",
+    "description": "Kitesurf- und Foil-Ausrüstung von DRFT."
+  },
+  "layout": {
+    "home": "DRFT, Startseite",
+    "announcement": "Kostenloser Versand innerhalb der EU ab 150 €",
+    "nav": {
+      "label": "Hauptmenü",
+      "home": "Home",
+      "about": "Über DRFT",
+      "products": "Produkte",
+      "contact": "Kontakt"
+    },
+    "mobileNav": {
+      "open": "Menü öffnen",
+      "description": "Navigation"
+    },
+    "search": {
+      "open": "Suche",
+      "title": "Produkte suchen",
+      "description": "Alle DRFT-Produkte durchsuchen",
+      "placeholder": "Produkte suchen…",
+      "submit": "Suchen"
+    },
+    "account": {
+      "menu": "Kontomenü",
+      "signIn": "Anmelden",
+      "register": "Konto erstellen",
+      "myAccount": "Mein Konto",
+      "orders": "Bestellungen",
+      "signOut": "Abmelden",
+      "signedOut": "Sie sind abgemeldet",
+      "greeting": "Hallo, {name}",
+      "wishlist": "Merkliste"
+    },
+    "cart": {
+      "text": "Warenkorb ({count})",
+      "label": "Warenkorb, {count, plural, one {# Artikel} other {# Artikel}}"
+    },
+    "footer": {
+      "home": "DRFT, Startseite",
+      "tagline": "Kitesurf- und Foil-Ausrüstung von DRFT. Your flow. Your ride. Your DRFT.",
+      "newsletter": {
+        "title": "Newsletter",
+        "placeholder": "Ihre E-Mail-Adresse",
+        "subscribe": "Anmelden",
+        "invalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "checkInbox": "Bitte prüfen Sie Ihr Postfach: Wir haben Ihnen einen Link zur Bestätigung geschickt.",
+        "failed": "Das hat nicht geklappt. Bitte versuchen Sie es gleich noch einmal."
+      },
+      "columns": {
+        "shop": "Shop",
+        "company": "DRFT"
+      },
+      "links": {
+        "products": "Produkte",
+        "about": "Über DRFT",
+        "contact": "Kontakt"
+      },
+      "copyright": "© {year} DRFT. Alle Rechte vorbehalten.",
+      "legal": {
+        "terms": "AGB",
+        "privacy": "Datenschutz",
+        "imprint": "Impressum"
+      },
+      "social": {
+        "label": "DRFT in den sozialen Medien",
+        "instagram": "Instagram",
+        "youtube": "YouTube",
+        "facebook": "Facebook",
+        "tiktok": "TikTok"
+      }
+    },
+    "locale": {
+      "label": "Sprache",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  },
+  "shop": {
+    "title": "Produkte",
+    "eyebrow": "DRFT",
+    "description": "Kitesurf- und Foil-Ausrüstung von DRFT.",
+    "categoryDescription": "{name} von DRFT.",
+    "breadcrumb": {
+      "label": "Brotkrumennavigation",
+      "home": "Home",
+      "shop": "Produkte"
+    },
+    "filters": {
+      "label": "Kategorien",
+      "all": "Alle Produkte"
+    },
+    "results": {
+      "label": "Produkte",
+      "count": "{count, plural, =0 {Keine Produkte} one {# Produkt} other {# Produkte}}",
+      "search": "{count, plural, =0 {Keine Ergebnisse} one {# Ergebnis} other {# Ergebnisse}} für „{q}“"
+    },
+    "sort": {
+      "label": "Sortieren nach",
+      "featured": "Empfohlen",
+      "newest": "Neueste",
+      "price_asc": "Preis: aufsteigend",
+      "price_desc": "Preis: absteigend",
+      "name": "Name: A–Z"
+    },
+    "card": {
+      "view": "Zum Produkt",
+      "soldOut": "Ausverkauft",
+      "was": "Statt"
+    },
+    "pagination": {
+      "label": "Seitennavigation",
+      "previous": "Vorherige Seite",
+      "next": "Nächste Seite",
+      "page": "Seite {page}"
+    },
+    "empty": {
+      "title": "Hier ist noch nichts",
+      "search": "Zu „{q}“ haben wir nichts gefunden. Versuchen Sie ein anderes Wort oder sehen Sie sich alle Produkte an.",
+      "category": "In dieser Kategorie gibt es gerade keine Produkte.",
+      "reset": "Alle Produkte ansehen"
+    }
+  },
+  "product": {
+    "breadcrumb": "Brotkrumennavigation",
+    "home": "Home",
+    "sku": "Art.-Nr.: {sku}",
+    "stock": {
+      "inStock": "Auf Lager",
+      "backorder": "Nachbestellbar",
+      "soldOut": "Ausverkauft",
+      "low": "Nur noch wenige verfügbar"
+    },
+    "gallery": {
+      "readyToDispatch": "Versandbereit",
+      "thumbnails": "Produktbilder",
+      "show": "Bild {index} anzeigen"
+    },
+    "purchase": {
+      "vat": "inkl. MwSt.",
+      "was": "Statt",
+      "quantity": "Menge",
+      "decrease": "Menge verringern",
+      "increase": "Menge erhöhen",
+      "addToCart": "In den Warenkorb — {price}",
+      "unavailable": "{value} (in dieser Kombination nicht verfügbar)",
+      "failed": "Das Produkt konnte nicht in den Warenkorb gelegt werden. Bitte versuchen Sie es erneut.",
+      "add": "In den Warenkorb"
+    },
+    "promises": {
+      "delivery": "Kostenloser EU-Versand ab 150 €",
+      "returns": "14 Tage Widerrufsrecht",
+      "warranty": "2 Jahre gesetzliche Gewährleistung"
+    },
+    "specs": {
+      "eyebrow": "Details",
+      "title": "Technische Daten",
+      "boxEyebrow": "Lieferumfang",
+      "boxTitle": "Im Lieferumfang"
+    },
+    "related": {
+      "eyebrow": "Mehr von DRFT",
+      "title": "Passend dazu",
+      "intro": "Produkte, die gut zum {name} passen.",
+      "viewAll": "Alle Produkte ansehen"
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Kitesurf- & Foil-Ausrüstung",
+      "title": "Your flow.\nYour ride.",
+      "body": "Ausrüstung für alle, die mehr Zeit auf dem Wasser verbringen wollen und weniger Zeit mit ihrem Material.",
+      "primary": "Produkte ansehen",
+      "secondary": "Über DRFT"
+    },
+    "fleet": {
+      "eyebrow": "Produkte",
+      "title": "Unsere Produkte",
+      "intro": "Eine kleine, sorgfältig ausgewählte Auswahl: alles, was Sie für Ihre nächste Session brauchen.",
+      "viewAll": "Alle {count} Produkte ansehen",
+      "from": "Ab {price}",
+      "was": "Statt",
+      "colours": "Verfügbare Farben",
+      "view": "Zum Produkt",
+      "soldOut": "Ausverkauft"
+    },
+    "trust": {
+      "label": "Unsere Versprechen",
+      "shipping": {
+        "title": "Versand innerhalb der EU",
+        "body": "Kostenlos ab 150 € Bestellwert."
+      },
+      "trial": {
+        "title": "14 Tage Widerrufsrecht",
+        "body": "Passt nicht? Innerhalb von 14 Tagen zurücksenden."
+      },
+      "warranty": {
+        "title": "Sicher bezahlen",
+        "body": "Verschlüsselte Zahlung über bewährte Anbieter."
+      },
+      "advisory": {
+        "title": "Persönliche Beratung",
+        "body": "Fragen zu Ihrer Ausrüstung? Schreiben Sie uns."
+      }
+    },
+    "about": {
+      "eyebrow": "Über DRFT",
+      "title": "Gemacht für das Wasser",
+      "body": "DRFT steht für Kitesurfen ohne Kompromisse. Wir konzentrieren uns auf wenige Produkte und machen sie so gut wie möglich, damit Sie sich aufs Fahren konzentrieren können.",
+      "link": "Mehr über DRFT"
+    }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die gesuchte Seite gibt es nicht oder sie wurde verschoben.",
+    "backHome": "Zur Startseite"
+  },
+  "cart": {
+    "title": "Ihr Warenkorb",
+    "description": "Artikel im Warenkorb, Empfehlungen und Gesamtsumme",
+    "close": "Warenkorb schließen",
+    "count": "{count, plural, one {# Artikel} other {# Artikel}}",
+    "loading": "Warenkorb wird geladen…",
+    "error": "Der Warenkorb konnte nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "retry": "Erneut versuchen",
+    "shipping": {
+      "unlocked": "Kostenloser EU-Versand freigeschaltet",
+      "qualified": "Erreicht ({threshold}+)",
+      "dispatch": "Ihre Bestellung wird innerhalb der EU zu Ihnen versandt.",
+      "almost": "Noch {remaining} bis zum kostenlosen EU-Versand",
+      "toGo": "Noch {remaining}",
+      "progress": "Fortschritt bis zum kostenlosen Versand"
+    },
+    "items": {
+      "title": "Ihre Produkte",
+      "each": "je {price}",
+      "quantity": "Menge von {name}",
+      "decrease": "Menge verringern",
+      "increase": "Menge erhöhen",
+      "remove": "Entfernen",
+      "removeLabel": "{name} aus dem Warenkorb entfernen",
+      "unavailable": "Nicht mehr verfügbar. Bitte entfernen Sie den Artikel, um fortzufahren.",
+      "limited": "Nur noch {count} verfügbar. Wir passen die Menge an der Kasse an.",
+      "save": "Merken",
+      "saveLabel": "{name} für später merken",
+      "saved": "{name} wurde auf Ihre Merkliste verschoben",
+      "signInToSave": "Melden Sie sich an, um Produkte zu merken"
+    },
+    "recommendations": {
+      "title": "Das könnte Ihnen auch gefallen",
+      "badge": "Empfohlen",
+      "add": "Hinzufügen",
+      "view": "Optionen wählen",
+      "from": "Ab {price}"
+    },
+    "trust": {
+      "trial": {
+        "title": "14 Tage Rückgabe",
+        "body": "Widerrufsrecht"
+      },
+      "warranty": {
+        "title": "2 Jahre Gewährleistung",
+        "body": "Gesetzliche Gewährleistung"
+      },
+      "secure": {
+        "title": "Sicher bezahlen",
+        "body": "Verschlüsselter Checkout"
+      }
+    },
+    "summary": {
+      "subtotal": "Zwischensumme",
+      "delivery": "EU-Versand",
+      "free": "Kostenlos",
+      "shipping": "Versand",
+      "atCheckout": "Wird an der Kasse berechnet",
+      "vat": "Enthaltene MwSt. ({rate} %, geschätzt)",
+      "total": "Gesamt",
+      "totalNoteFree": "inkl. MwSt. · kostenloser EU-Versand",
+      "totalNote": "inkl. MwSt. · Versand wird an der Kasse berechnet",
+      "checkout": "Zur Kasse"
+    },
+    "empty": {
+      "title": "Ihr Warenkorb ist leer",
+      "body": "Sehen Sie sich unsere Produkte an.",
+      "cta": "Produkte ansehen"
+    },
+    "added": "Zum Warenkorb hinzugefügt",
+    "failed": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  },
+  "checkout": {
+    "title": "Kasse",
+    "description": "Kontakt, Lieferadresse, Versandart und Zahlung",
+    "steps": {
+      "label": "Fortschritt",
+      "cart": "Warenkorb",
+      "information": "Angaben",
+      "shipping": "Versand",
+      "payment": "Zahlung"
+    },
+    "error": "Die Kasse konnte nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "retry": "Erneut versuchen",
+    "empty": {
+      "title": "Ihr Warenkorb ist leer",
+      "body": "Legen Sie zuerst Produkte in den Warenkorb.",
+      "cta": "Produkte ansehen"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "login": "Sie haben bereits ein Konto? Anmelden",
+      "email": "E-Mail-Adresse",
+      "marketing": "Informieren Sie mich über neue DRFT-Produkte und Angebote",
+      "signedIn": "Angemeldet als {email}"
+    },
+    "address": {
+      "title": "Lieferadresse",
+      "country": "Land / Region",
+      "countryPlaceholder": "Land auswählen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "company": "Firma (optional)",
+      "street1": "Straße und Hausnummer",
+      "street2": "Adresszusatz (optional)",
+      "postcode": "Postleitzahl",
+      "city": "Ort",
+      "phone": "Telefonnummer",
+      "phoneHint": "Für Lieferhinweise des Paketdienstes",
+      "save": "Diese Adresse in meinem Konto speichern"
+    },
+    "shipping": {
+      "title": "Versandart",
+      "chooseCountry": "Wählen Sie ein Land, um die Versandoptionen zu sehen.",
+      "none": "In dieses Land liefern wir noch nicht.",
+      "free": "Kostenlos",
+      "included": "Inklusive"
+    },
+    "payment": {
+      "title": "Zahlungsart",
+      "compliance": "Sichere Zahlung",
+      "STRIPE": "Kredit- oder Debitkarte",
+      "STRIPEBody": "Visa, Mastercard, Amex, Klarna, iDEAL und mehr",
+      "PAYPAL": "PayPal",
+      "PAYPALBody": "Mit Ihrem PayPal-Konto bezahlen",
+      "notConnected": "Die Online-Zahlung ist noch nicht angebunden. Mit der Bestellung werden Ihre Artikel 30 Minuten lang reserviert, ohne dass etwas berechnet wird.",
+      "billing": "Rechnungsadresse",
+      "billingSame": "Wie Lieferadresse",
+      "billingDifferent": "Andere Rechnungsadresse verwenden"
+    },
+    "place": "Zahlungspflichtig bestellen — {total}",
+    "placing": "Bestellung wird aufgegeben…",
+    "blocked": "Einige Artikel in Ihrem Warenkorb sind nicht mehr verfügbar.",
+    "reviewCart": "Warenkorb prüfen",
+    "legal": "Mit Ihrer Bestellung stimmen Sie den <terms>AGB</terms> und der <privacy>Datenschutzerklärung</privacy> von DRFT zu.",
+    "trust": {
+      "trial": "14 Tage Widerrufsrecht",
+      "warranty": "2 Jahre gesetzliche Gewährleistung",
+      "returns": "Sichere Zahlung"
+    },
+    "summary": {
+      "title": "Bestellübersicht",
+      "count": "{count, plural, one {# Produkt} other {# Produkte}}",
+      "quantity": "Menge: {count}",
+      "inStock": "Auf Lager",
+      "unavailable": "Nicht mehr verfügbar",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "shippingPending": "Adresse eingeben",
+      "free": "Kostenlos",
+      "vat": "Enthaltene MwSt. ({rate} %)",
+      "total": "Gesamt",
+      "totalNote": "EUR · inkl. Steuern"
+    },
+    "commitment": {
+      "title": "Fragen zu Ihrer Bestellung?",
+      "subtitle": "Wir helfen gern",
+      "rigged": "Vor dem Versand geprüft:",
+      "riggedBody": "Wir prüfen jede Bestellung, bevor sie unser Haus verlässt.",
+      "exchange": "Widerrufsrecht:",
+      "exchangeBody": "Sie können Ihre Bestellung innerhalb von 14 Tagen nach Erhalt zurücksenden.",
+      "help": "Brauchen Sie Beratung?",
+      "helpBody": "Schreiben Sie uns",
+      "helpCta": "Kontakt"
+    },
+    "errors": {
+      "required": "Pflichtfeld",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "phone": "Bitte geben Sie eine Telefonnummer für den Paketdienst ein",
+      "country": "Bitte wählen Sie ein Land, in das wir liefern",
+      "shipping": "Bitte wählen Sie eine Versandart",
+      "failed": "Die Bestellung konnte nicht aufgegeben werden. Bitte versuchen Sie es erneut."
+    }
+  },
+  "order": {
+    "error": "Die Bestellung konnte nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "notFound": {
+      "title": "Diese Bestellung wurde nicht gefunden",
+      "body": "Bestellseiten öffnen sich im Browser, in dem bestellt wurde, oder in Ihrem Konto.",
+      "cta": "Weiter einkaufen"
+    },
+    "thanks": "Vielen Dank, {name}",
+    "placed": "Ihre Bestellung {number} ist eingegangen. Updates gehen an {email}.",
+    "status": {
+      "PENDING_PAYMENT": "Zahlung ausstehend",
+      "PAID": "Bezahlt",
+      "PROCESSING": "In Bearbeitung",
+      "SHIPPED": "Versandt",
+      "DELIVERED": "Zugestellt",
+      "CANCELLED": "Storniert",
+      "REFUNDED": "Erstattet",
+      "PARTIALLY_REFUNDED": "Teilweise erstattet"
+    },
+    "pending": "Ihre Artikel sind bis {time} reserviert. Die Zahlung ist noch nicht angebunden, es wurde nichts berechnet.",
+    "cancelled": "Diese Bestellung wurde storniert und die Artikel freigegeben.",
+    "items": "Artikel",
+    "quantity": "Menge {count}",
+    "delivery": "Lieferung",
+    "shippingTo": "Lieferadresse",
+    "billingTo": "Rechnungsadresse",
+    "method": "Versandart",
+    "contact": "Kontakt",
+    "summary": {
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "free": "Kostenlos",
+      "vat": "Enthaltene MwSt. ({rate} %)",
+      "total": "Gesamt"
+    },
+    "continue": "Weiter einkaufen",
+    "heading": "Bestellung {number}",
+    "placedOn": "Bestellt am {date}",
+    "backToOrders": "Alle Bestellungen"
+  },
+  "auth": {
+    "side": {
+      "eyebrow": "DRFT-Konto",
+      "title": "Ihre Bestellungen und Adressen an einem Ort.",
+      "body": "Lieferungen verfolgen, mit gespeicherten Adressen schneller bestellen und den Warenkorb auf jedem Gerät weiterführen."
+    },
+    "showPassword": "Passwort anzeigen",
+    "hidePassword": "Passwort verbergen",
+    "login": {
+      "title": "Anmelden",
+      "subtitle": "Willkommen zurück bei DRFT.",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "forgot": "Passwort vergessen?",
+      "submit": "Anmelden",
+      "submitting": "Anmeldung läuft…",
+      "noAccount": "Neu bei DRFT?",
+      "register": "Konto erstellen",
+      "welcome": "Willkommen zurück, {name}"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Adressen speichern, Bestellungen verfolgen und den Warenkorb auf jedem Gerät behalten.",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail-Adresse",
+      "password": "Passwort",
+      "passwordHint": "Mindestens 8 Zeichen",
+      "submit": "Konto erstellen",
+      "submitting": "Konto wird erstellt…",
+      "haveAccount": "Sie haben bereits ein Konto?",
+      "login": "Anmelden",
+      "welcome": "Willkommen bei DRFT, {name}. Bitte bestätigen Sie Ihre E-Mail-Adresse über den Link in Ihrem Postfach.",
+      "legal": "Mit der Erstellung eines Kontos stimmen Sie den <terms>AGB</terms> und der <privacy>Datenschutzerklärung</privacy> von DRFT zu."
+    },
+    "forgot": {
+      "title": "Passwort zurücksetzen",
+      "subtitle": "Geben Sie Ihre E-Mail-Adresse ein, und wir senden Ihnen einen Link für ein neues Passwort.",
+      "email": "E-Mail-Adresse",
+      "submit": "Link senden",
+      "submitting": "Wird gesendet…",
+      "sentTitle": "Bitte prüfen Sie Ihr Postfach",
+      "sentBody": "Falls es ein Konto für {email} gibt, ist ein Link unterwegs. Er ist 1 Stunde gültig.",
+      "back": "Zurück zur Anmeldung"
+    },
+    "reset": {
+      "title": "Neues Passwort wählen",
+      "subtitle": "Mindestens 8 Zeichen. Sie werden auf allen Geräten abgemeldet.",
+      "password": "Neues Passwort",
+      "confirm": "Neues Passwort bestätigen",
+      "submit": "Passwort ändern",
+      "submitting": "Wird geändert…",
+      "done": "Passwort geändert. Bitte melden Sie sich mit Ihrem neuen Passwort an.",
+      "missing": "Dieser Link ist unvollständig. Bitte fordern Sie einen neuen an.",
+      "request": "Neuen Link anfordern"
+    },
+    "verify": {
+      "title": "E-Mail-Adresse bestätigen",
+      "verifying": "E-Mail-Adresse wird bestätigt…",
+      "done": "Ihre E-Mail-Adresse ist bestätigt. Vielen Dank!",
+      "failed": "Dieser Bestätigungslink ist ungültig oder abgelaufen.",
+      "missing": "Dieser Bestätigungslink ist unvollständig.",
+      "account": "Zu Ihrem Konto",
+      "resend": "Neuen Link senden",
+      "resent": "Ein neuer Bestätigungslink ist unterwegs.",
+      "signInToResend": "Melden Sie sich an, um einen neuen Link zu erhalten."
+    },
+    "errors": {
+      "required": "Pflichtfeld",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "passwordLength": "Mindestens 8 Zeichen",
+      "passwordMatch": "Die Passwörter stimmen nicht überein",
+      "failed": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    }
+  },
+  "account": {
+    "title": "Mein Konto",
+    "nav": {
+      "label": "Konto",
+      "overview": "Übersicht",
+      "orders": "Bestellungen",
+      "addresses": "Adressen",
+      "signOut": "Abmelden",
+      "wishlist": "Merkliste"
+    },
+    "signInRequired": {
+      "title": "Bitte melden Sie sich an",
+      "body": "Ihre Sitzung ist abgelaufen. Melden Sie sich erneut an, um Ihr Konto zu sehen.",
+      "cta": "Anmelden"
+    },
+    "overview": {
+      "greeting": "Hallo, {name}",
+      "memberSince": "Kunde seit {date}"
+    },
+    "verify": {
+      "title": "E-Mail-Adresse bestätigen",
+      "body": "Wir haben einen Link an {email} gesendet. Mit bestätigter Adresse können Sie Ihr Passwort zurücksetzen und erhalten Bestellupdates.",
+      "resend": "Link erneut senden",
+      "resent": "Ein neuer Link ist unterwegs."
+    },
+    "profile": {
+      "title": "Profil",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "emailHint": "Zum Ändern kontaktieren Sie uns bitte",
+      "phone": "Telefon (optional)",
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert…",
+      "saved": "Profil aktualisiert"
+    },
+    "password": {
+      "title": "Passwort",
+      "body": "Wenn Sie Ihr Passwort ändern, werden Sie auf allen Geräten abgemeldet.",
+      "current": "Aktuelles Passwort",
+      "new": "Neues Passwort",
+      "submit": "Passwort ändern",
+      "submitting": "Wird geändert…",
+      "done": "Passwort geändert. Bitte melden Sie sich erneut an."
+    },
+    "orders": {
+      "title": "Bestellungen",
+      "empty": "Sie haben noch keine Bestellung aufgegeben.",
+      "emptyCta": "Produkte ansehen",
+      "placed": "Bestellt am {date}",
+      "items": "{count, plural, one {# Artikel} other {# Artikel}}",
+      "view": "Bestellung ansehen",
+      "more": "+{count}",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "page": "Seite {page} von {total}",
+      "error": "Ihre Bestellungen konnten nicht geladen werden.",
+      "retry": "Erneut versuchen"
+    },
+    "addresses": {
+      "title": "Adressen",
+      "add": "Adresse hinzufügen",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "deleteConfirm": "Diese Adresse löschen?",
+      "deleted": "Adresse gelöscht",
+      "saved": "Adresse gespeichert",
+      "defaultShipping": "Standard-Lieferadresse",
+      "defaultBilling": "Standard-Rechnungsadresse",
+      "makeDefaultShipping": "Als Standard-Lieferadresse verwenden",
+      "makeDefaultBilling": "Als Standard-Rechnungsadresse verwenden",
+      "empty": "Noch keine gespeicherten Adressen. Adressen, die Sie an der Kasse speichern, erscheinen ebenfalls hier.",
+      "newTitle": "Neue Adresse",
+      "editTitle": "Adresse bearbeiten",
+      "cancel": "Abbrechen",
+      "save": "Adresse speichern",
+      "saving": "Wird gespeichert…",
+      "error": "Ihre Adressen konnten nicht geladen werden.",
+      "retry": "Erneut versuchen"
+    },
+    "address": {
+      "country": "Land / Region",
+      "countryPlaceholder": "Land auswählen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "company": "Firma (optional)",
+      "street1": "Straße und Hausnummer",
+      "street2": "Adresszusatz (optional)",
+      "postcode": "Postleitzahl",
+      "city": "Ort",
+      "phone": "Telefon (optional)"
+    },
+    "errors": {
+      "required": "Pflichtfeld",
+      "passwordLength": "Mindestens 8 Zeichen",
+      "country": "Bitte wählen Sie ein Land",
+      "failed": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    },
+    "wishlist": {
+      "title": "Merkliste",
+      "count": "{count, plural, one {# gemerktes Produkt} other {# gemerkte Produkte}}",
+      "empty": "Noch nichts gemerkt. Tippen Sie bei einem Produkt auf das Herz, um es hier zu speichern.",
+      "emptyCta": "Produkte ansehen",
+      "addToCart": "In den Warenkorb",
+      "chooseOptions": "Optionen wählen",
+      "soldOut": "Ausverkauft",
+      "remove": "Entfernen",
+      "removeLabel": "{name} von der Merkliste entfernen",
+      "added": "{name} wurde in den Warenkorb gelegt",
+      "error": "Ihre Merkliste konnte nicht geladen werden.",
+      "retry": "Erneut versuchen"
+    }
+  },
+  "wishlist": {
+    "saveLabel": "{name} auf die Merkliste setzen",
+    "removeLabel": "{name} von der Merkliste entfernen",
+    "saved": "{name} wurde auf die Merkliste gesetzt",
+    "removed": "{name} wurde von der Merkliste entfernt",
+    "view": "Ansehen",
+    "signIn": "Melden Sie sich an, um Produkte zu merken",
+    "failed": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+  },
+  "content": {
+    "journal": {
+      "eyebrow": "Journal",
+      "title": "Das DRFT Journal",
+      "intro": "Reisen, Tuning-Tipps und Neuigkeiten vom DRFT-Team.",
+      "minutes": "{count} Min. Lesezeit",
+      "by": "von {author}",
+      "back": "Alle Beiträge",
+      "more": "Mehr aus dem Journal",
+      "empty": "Noch keine Beiträge. Schauen Sie bald wieder vorbei.",
+      "tags": "Beiträge nach Thema filtern",
+      "allTags": "Alle Beiträge",
+      "emptyTag": "Zu diesem Thema gibt es noch keine Beiträge."
+    },
+    "faq": {
+      "title": "Häufige Fragen",
+      "intro": "Bestellung, Versand und Ausrüstung. Ist Ihre Frage nicht dabei, schreiben Sie uns.",
+      "other": "Weitere Fragen",
+      "empty": "Noch keine Fragen.",
+      "stillStuck": "Noch eine Frage?",
+      "contact": "Kontakt"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "intro": "Fragen zu einem Produkt oder Ihrer Bestellung? Schreiben Sie uns, wir melden uns so schnell wie möglich.",
+      "emailUs": "E-Mail",
+      "callUs": "Telefon",
+      "visit": "Adresse",
+      "name": "Name",
+      "email": "E-Mail",
+      "subject": "Betreff",
+      "orderNumber": "Bestellnummer",
+      "optional": "Optional",
+      "message": "Nachricht",
+      "honeypot": "Website",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet…",
+      "sentTitle": "Nachricht gesendet",
+      "sentBody": "Vielen Dank für Ihre Nachricht. Wir antworten an die angegebene E-Mail-Adresse.",
+      "another": "Weitere Nachricht senden",
+      "failed": "Die Nachricht wurde nicht gesendet. Bitte versuchen Sie es gleich noch einmal.",
+      "errors": {
+        "name": "Bitte geben Sie Ihren Namen ein.",
+        "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "message": "Bitte schreiben Sie ein paar Worte."
+      }
+    },
+    "newsletter": {
+      "confirm": {
+        "metaTitle": "Anmeldung bestätigen",
+        "working": "Ihre Anmeldung wird bestätigt…",
+        "doneTitle": "Sie sind angemeldet",
+        "doneBody": "Vielen Dank für die Bestätigung. Neuigkeiten und neue Produkte kommen direkt in Ihr Postfach.",
+        "failedTitle": "Dieser Link hat nicht funktioniert",
+        "failedBody": "Er wurde vielleicht schon verwendet oder durch einen neueren ersetzt. Melden Sie sich im Footer erneut an.",
+        "home": "Zurück zum Shop"
+      },
+      "unsubscribe": {
+        "metaTitle": "Abmelden",
+        "working": "Sie werden abgemeldet…",
+        "doneTitle": "Sie sind abgemeldet",
+        "doneBody": "Sie erhalten den Newsletter nicht mehr. Sie können sich jederzeit wieder anmelden.",
+        "failedTitle": "Dieser Link hat nicht funktioniert",
+        "failedBody": "Er stammt vielleicht aus einer alten E-Mail. Schreiben Sie uns, und wir tragen Sie aus.",
+        "home": "Zurück zum Shop"
+      }
+    }
+  }
+}

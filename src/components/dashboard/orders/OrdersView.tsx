@@ -153,7 +153,7 @@ function StatusChip({
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        "inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
+        "inline-flex h-8 items-center gap-1.5 rounded-md border px-3 text-sm whitespace-nowrap transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
         active ? "border-abyss bg-abyss text-white" : "border-border bg-card hover:bg-accent",
       )}
     >

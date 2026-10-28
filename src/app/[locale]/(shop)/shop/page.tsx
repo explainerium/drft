@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
-import { Reassurance } from "@/components/shop/Reassurance";
+import { TrustStrip } from "@/components/home/TrustStrip";
 import { ShopView, ShopViewSkeleton } from "@/components/shop/ShopView";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,7 +19,7 @@ export default function ShopPage({ searchParams }: PageProps<"/[locale]/shop">) 
       <Suspense fallback={<ShopViewSkeleton />}>
         <Results searchParams={searchParams} />
       </Suspense>
-      <Reassurance />
+      <TrustStrip />
     </main>
   );
 }

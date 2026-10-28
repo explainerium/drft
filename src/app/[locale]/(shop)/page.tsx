@@ -1,15 +1,10 @@
 import { Suspense } from "react";
-import { DesignPhilosophy } from "@/components/home/DesignPhilosophy";
-import { Disciplines } from "@/components/home/Disciplines";
+import { AboutTeaser } from "@/components/home/AboutTeaser";
 import { FeaturedFleet, FeaturedFleetSkeleton } from "@/components/home/FeaturedFleet";
-import { FieldNotes } from "@/components/home/FieldNotes";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeNewsletter } from "@/components/home/HomeNewsletter";
-import { ProductSpotlight } from "@/components/home/ProductSpotlight";
 import { TrustStrip } from "@/components/home/TrustStrip";
-import { WindJournal } from "@/components/home/WindJournal";
 
-// Catalog and journal sections stream in from the cached reads; the rest is static copy.
+// The product grid streams in from the cached catalog read; the rest is static copy.
 export default function HomePage() {
   return (
     <main className="flex-1">
@@ -17,18 +12,7 @@ export default function HomePage() {
       <Suspense fallback={<FeaturedFleetSkeleton />}>
         <FeaturedFleet />
       </Suspense>
-      <DesignPhilosophy />
-      <FieldNotes />
-      <Suspense>
-        <Disciplines />
-      </Suspense>
-      <Suspense>
-        <ProductSpotlight />
-      </Suspense>
-      <Suspense>
-        <WindJournal />
-      </Suspense>
-      <HomeNewsletter />
+      <AboutTeaser />
       <TrustStrip />
     </main>
   );

@@ -103,7 +103,7 @@ export function AttributesView() {
                             type="button"
                             onClick={() => setEditing({ kind: "value", attribute, value })}
                             title={t("valueUsage", { count: usedBy(value) })}
-                            className="inline-flex h-8 items-center gap-1.5 rounded-full border px-3 text-sm ring-1 ring-foreground/15 transition-colors hover:bg-accent"
+                            className="inline-flex h-8 items-center gap-1.5 rounded-md border px-3 text-sm ring-1 ring-foreground/15 transition-colors hover:bg-accent"
                           >
                             {value.hexColor && (
                               <span

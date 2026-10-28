@@ -275,12 +275,12 @@ function LiveCheckout() {
             <p className="text-center text-xs leading-5 font-medium text-subtle-foreground">
               {t.rich("legal", {
                 terms: (chunks) => (
-                  <Link href="/terms" className="underline">
+                  <Link href="/agb" className="underline">
                     {chunks}
                   </Link>
                 ),
                 privacy: (chunks) => (
-                  <Link href="/privacy" className="underline">
+                  <Link href="/datenschutz" className="underline">
                     {chunks}
                   </Link>
                 ),

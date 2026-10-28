@@ -23,17 +23,23 @@ interface Envelope<T, M> {
   meta?: M;
 }
 
-/** GET a public endpoint and unwrap the `{ success, data, meta }` envelope. */
+/**
+ * GET a public endpoint and unwrap the `{ success, data, meta }` envelope.
+ * `locale` picks the content language (the API falls back to German).
+ */
 export async function apiGet<T, M = undefined>(
   path: string,
   query?: Record<string, string | number | undefined>,
+  locale?: string,
 ): Promise<{ data: T; meta: M }> {
   const url = new URL(`/api/v1${path}`, API_ORIGIN);
   for (const [key, value] of Object.entries(query ?? {})) {
     if (value !== undefined && value !== "") url.searchParams.set(key, String(value));
   }
 
-  const res = await fetch(url, { headers: { accept: "application/json" } });
+  const res = await fetch(url, {
+    headers: { accept: "application/json", ...(locale ? { "x-drft-locale": locale } : {}) },
+  });
   const body = (await res.json().catch(() => null)) as Envelope<T, M> | null;
 
   if (!res.ok || !body?.success) {

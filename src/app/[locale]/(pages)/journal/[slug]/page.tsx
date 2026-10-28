@@ -9,10 +9,12 @@ import { Container } from "@/components/shared/Container";
 import { Link } from "@/i18n/navigation";
 import { getPost } from "@/lib/content";
 import type { Post } from "@/types/content";
+import { FEATURES } from "@/constants/features";
 
 type Props = PageProps<"/[locale]/journal/[slug]">;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  if (!FEATURES.journal) return {};
   const post = await getPost((await params).slug);
   if (!post) return {};
   const image = post.cover?.sizes.large?.url ?? post.cover?.url;
@@ -122,6 +124,7 @@ async function Article({ params }: { params: Props["params"] }) {
 
 // Posts change in the admin, so pages render on request from the cached reads.
 export default function JournalPostPage({ params }: Props) {
+  if (!FEATURES.journal) notFound();
   return (
     <main className="flex-1">
       <Suspense fallback={<div aria-hidden className="mx-auto mt-14 h-96 max-w-4xl animate-pulse rounded-md bg-accent" />}>

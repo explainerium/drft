@@ -168,7 +168,7 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
                           )}
                         >
                           <span
-                            className="size-8 rounded-[10px]"
+                            className="size-8 rounded-md"
                             style={{ backgroundColor: value.hexColor ?? undefined }}
                           />
                         </button>

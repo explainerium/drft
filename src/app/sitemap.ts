@@ -1,11 +1,24 @@
 import type { MetadataRoute } from "next";
+import { FEATURES } from "@/constants/features";
+import { routing } from "@/i18n/routing";
 import { getCategoryTree, getProducts } from "@/lib/catalog";
 import { getPageList, getPosts } from "@/lib/content";
 import type { CategoryNode } from "@/types/catalog";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3005").replace(/\/$/, "");
 
-const url = (path: string) => `${SITE_URL}${path}`;
+/** The URL of a path in a language: German has no prefix, English is under /en. */
+const localized = (path: string, locale: string) =>
+  `${SITE_URL}${locale === routing.defaultLocale ? "" : `/${locale}`}${path === "/" && locale !== routing.defaultLocale ? "" : path}`;
+
+type Entry = Omit<MetadataRoute.Sitemap[number], "url" | "alternates"> & { path: string };
+
+/** One entry per language, each listing all of them as alternates (hreflang). */
+const withLanguages = (entries: Entry[]): MetadataRoute.Sitemap =>
+  entries.flatMap(({ path, ...rest }) => {
+    const languages = Object.fromEntries(routing.locales.map((locale) => [locale, localized(path, locale)]));
+    return routing.locales.map((locale) => ({ ...rest, url: localized(path, locale), alternates: { languages } }));
+  });
 
 const flatten = (nodes: CategoryNode[]): CategoryNode[] => nodes.flatMap((node) => [node, ...flatten(node.children)]);
 
@@ -23,37 +36,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [tree, products, posts, pages] = await Promise.all([
     getCategoryTree(),
     all((page) => getProducts({ page, limit: 100 })),
-    all((page) => getPosts({ page, limit: 100 })),
+    FEATURES.journal ? all((page) => getPosts({ page, limit: 100 })) : Promise.resolve([]),
     getPageList(),
   ]);
 
-  return [
-    { url: url("/"), changeFrequency: "daily", priority: 1 },
-    { url: url("/shop"), changeFrequency: "daily", priority: 0.9 },
-    ...flatten(tree).map((category) => ({
-      url: url(`/shop/${category.slug}`),
+  return withLanguages([
+    { path: "/", changeFrequency: "daily", priority: 1 },
+    { path: "/shop", changeFrequency: "daily", priority: 0.9 },
+    // With one category its page repeats /shop.
+    ...(tree.length > 1 ? flatten(tree) : []).map((category) => ({
+      path: `/shop/${category.slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
     ...products.map((product) => ({
-      url: url(`/products/${product.slug}`),
+      path: `/products/${product.slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    { url: url("/journal"), changeFrequency: "weekly", priority: 0.6 },
+    ...(FEATURES.journal ? [{ path: "/journal", changeFrequency: "weekly" as const, priority: 0.6 }] : []),
     ...posts.map((post) => ({
-      url: url(`/journal/${post.slug}`),
+      path: `/journal/${post.slug}`,
       lastModified: post.publishedAt,
       changeFrequency: "monthly" as const,
       priority: 0.5,
     })),
-    { url: url("/faq"), changeFrequency: "monthly", priority: 0.4 },
-    { url: url("/contact"), changeFrequency: "yearly", priority: 0.3 },
+    ...(FEATURES.faq ? [{ path: "/faq", changeFrequency: "monthly" as const, priority: 0.4 }] : []),
+    { path: "/contact", changeFrequency: "yearly", priority: 0.3 },
     ...pages.map((page) => ({
-      url: url(`/${page.slug}`),
+      path: `/${page.slug}`,
       lastModified: page.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.3,
     })),
-  ];
+  ]);
 }

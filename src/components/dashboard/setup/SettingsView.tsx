@@ -215,6 +215,8 @@ function SeoForm({ value }: { value: SettingGroups["seo"] }) {
     defaultTitle: value.defaultTitle,
     titleTemplate: value.titleTemplate,
     defaultDescription: value.defaultDescription,
+    enTitle: value.translations?.en?.defaultTitle ?? "",
+    enDescription: value.translations?.en?.defaultDescription ?? "",
   });
   const [image, setImage] = useState<{ id: string; url: string | null } | null>(
     value.ogImageAssetId ? { id: value.ogImageAssetId, url: null } : null,
@@ -223,7 +225,12 @@ function SeoForm({ value }: { value: SettingGroups["seo"] }) {
   const imageChanged = (image?.id ?? null) !== value.ogImageAssetId;
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    void submit({ ...values, ogImageAssetId: image?.id ?? null });
+    const { enTitle, enDescription, ...german } = values;
+    const en = {
+      ...(enTitle.trim() ? { defaultTitle: enTitle.trim() } : {}),
+      ...(enDescription.trim() ? { defaultDescription: enDescription.trim() } : {}),
+    };
+    void submit({ ...german, ogImageAssetId: image?.id ?? null, translations: Object.keys(en).length ? { en } : {} });
   };
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-4">
@@ -241,6 +248,16 @@ function SeoForm({ value }: { value: SettingGroups["seo"] }) {
       >
         <Textarea id={`${uid}-description`} rows={3} maxLength={300} {...bind("defaultDescription")} />
       </FormField>
+      <fieldset className="flex flex-col gap-4 rounded-lg border px-3 pt-2 pb-3">
+        <legend className="px-1 text-sm font-medium">{t("english")}</legend>
+        <p className="text-xs text-muted-foreground">{t("englishHint")}</p>
+        <FormField id={`${uid}-en-title`} label={t("defaultTitle")}>
+          <Input id={`${uid}-en-title`} maxLength={70} {...bind("enTitle")} />
+        </FormField>
+        <FormField id={`${uid}-en-description`} label={t("defaultDescription")}>
+          <Textarea id={`${uid}-en-description`} rows={2} maxLength={300} {...bind("enDescription")} />
+        </FormField>
+      </fieldset>
       <div className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">{t("shareImage")}</span>
         <div className="flex items-center gap-3">

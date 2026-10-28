@@ -115,12 +115,17 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  /* Figma radii: 2 / 4 / 8 / 12 px, plus rounded-full for pills. */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
+  /*
+   * One small radius for every button, input, card, panel and image box, so
+   * corners look the same everywhere. rounded-full stays for true circles
+   * (avatars, dots, round icon buttons, progress bars).
+   */
+  --radius-sm: 6px;
+  --radius-md: 6px;
+  --radius-lg: 6px;
+  --radius-xl: 6px;
+  --radius-2xl: 6px;
+  --radius-3xl: 6px;
 }
 
 :root {
@@ -142,10 +147,15 @@
   --destructive: #ba1a1a;
   --border: #e8e8e6;
   --input: #e2e3e1;
-  --ring: #006398;
-  --brand: #006398;
-  --brand-soft: #cce5ff;
-  --brand-bright: #5bb8fe;
+  --ring: #2d7811;
+  /*
+   * Black and white with the logo green. --brand-bright is the neon (the logo hue,
+   * saturated) for highlights and dark backgrounds; --brand is the same hue dark
+   * enough for text on white (5.5:1).
+   */
+  --brand: #2d7811;
+  --brand-soft: #e7fae1;
+  --brand-bright: #5cf425;
   --surface: #f9f9f7;
   /* 4.5:1 on the surface and secondary greys, not only on white. */
   --subtle-foreground: #6c7070;
@@ -156,7 +166,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 8px;
+  --radius: 6px;
   --sidebar: #f9f9f7;
   --sidebar-foreground: #1a1c1b;
   --sidebar-primary: #000000;
@@ -164,7 +174,7 @@
   --sidebar-accent: #eeeeec;
   --sidebar-accent-foreground: #1a1c1b;
   --sidebar-border: #e8e8e6;
-  --sidebar-ring: #006398;
+  --sidebar-ring: #2d7811;
 }
 
 /* shadcn default dark palette, kept for the admin until a design exists. */
@@ -212,6 +222,30 @@
   html {
     @apply font-sans;
   }
+  /* Everything clickable shows the hand; Tailwind's preflight resets buttons to the arrow. */
+  a[href],
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"],
+  [role="menuitem"],
+  [role="option"],
+  [role="checkbox"],
+  [role="switch"],
+  summary,
+  label[for],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="file"]:not(:disabled),
+  input[type="submit"]:not(:disabled) {
+    cursor: pointer;
+  }
+  button:disabled,
+  [aria-disabled="true"],
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
   h1,
   h2,
   h3,
@@ -224,7 +258,7 @@
 
 /*
  * Admin dashboard (the admin root layout puts .admin on <body>): soft grey
- * page, white rounded panels, a light sidebar, with the storefront ocean blue
+ * page, white rounded panels, a light sidebar, with the logo green
  * as the one accent. Storefront pages never get this class.
  */
 .admin {
@@ -239,20 +273,20 @@
   --subtle-foreground: #8a98a2;
   --foreground: #13222d;
   --card-foreground: #13222d;
-  --primary: #006398;
+  --primary: #2d7811;
   --primary-foreground: #ffffff;
-  --ring: #006398;
-  --brand-soft: #e1f0f8;
-  --abyss: #0b2b3a;
-  --abyss-soft: #123a4d;
+  --ring: #2d7811;
+  --brand-soft: #e7fae1;
+  --abyss: #141a16;
+  --abyss-soft: #222b25;
   --signal: #b4690e;
   --signal-soft: #fdf1e1;
   --sidebar: #fafbfc;
   --sidebar-foreground: #3a4a55;
-  --sidebar-primary: #006398;
+  --sidebar-primary: #2d7811;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #eef2f5;
   --sidebar-accent-foreground: #13222d;
   --sidebar-border: #e7ebee;
-  --sidebar-ring: #006398;
+  --sidebar-ring: #2d7811;
 }

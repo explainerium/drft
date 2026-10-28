@@ -28,6 +28,7 @@ import {
   useUpdateCategoryMutation,
 } from "@/redux/api/adminCatalogApi";
 import type { AdminCategory, CategoryInput } from "@/types/adminCatalog";
+import { toTranslations } from "@/types/i18n";
 import { apiErrorMessage, apiFieldErrors } from "@/utils/apiError";
 import { PageHeader, QueryError } from "../AdminPage";
 import { Checkbox, errorProps, FormField, NativeSelect } from "../products/fields";
@@ -193,8 +194,15 @@ function CategoryDialog({
     isHidden: z.boolean(),
     metaTitle: z.string().trim().max(160, t("errors.tooLong")),
     metaDescription: z.string().trim().max(320, t("errors.tooLong")),
+    en: z.object({
+      name: z.string().trim().max(120, t("errors.tooLong")),
+      description: z.string().trim().max(2000, t("errors.tooLong")),
+      metaTitle: z.string().trim().max(160, t("errors.tooLong")),
+      metaDescription: z.string().trim().max(320, t("errors.tooLong")),
+    }),
   });
   type Values = z.infer<typeof schema>;
+  const en = category?.translations?.en;
 
   const {
     register,
@@ -213,6 +221,12 @@ function CategoryDialog({
       isHidden: category?.isHidden ?? false,
       metaTitle: category?.metaTitle ?? "",
       metaDescription: category?.metaDescription ?? "",
+      en: {
+        name: en?.name ?? "",
+        description: en?.description ?? "",
+        metaTitle: en?.metaTitle ?? "",
+        metaDescription: en?.metaDescription ?? "",
+      },
     },
   });
   const name = useWatch({ control, name: "name" });
@@ -232,6 +246,7 @@ function CategoryDialog({
       isHidden: values.isHidden,
       metaTitle: orNull(values.metaTitle),
       metaDescription: orNull(values.metaDescription),
+      translations: toTranslations(values.en),
     };
     try {
       if (category) await update({ id: category.id, body }).unwrap();
@@ -333,6 +348,27 @@ function CategoryDialog({
           </div>
 
           <Checkbox label={t("fields.isHidden")} {...register("isHidden")} />
+
+          <details className="rounded-lg border px-3 py-2">
+            <summary className="cursor-pointer text-sm font-medium">{t("fields.english")}</summary>
+            <div className="mt-3 flex flex-col gap-4 pb-1">
+              <p className="text-xs text-muted-foreground">{t("fields.englishHint")}</p>
+              <FormField id={id("en-name")} label={t("fields.name")} error={errors.en?.name?.message}>
+                <Input id={id("en-name")} maxLength={120} placeholder={name} {...register("en.name")} />
+              </FormField>
+              <FormField id={id("en-description")} label={t("fields.description")} error={errors.en?.description?.message}>
+                <Textarea id={id("en-description")} rows={3} maxLength={2000} {...register("en.description")} />
+              </FormField>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <FormField id={id("en-meta-title")} label={t("fields.metaTitle")} error={errors.en?.metaTitle?.message}>
+                  <Input id={id("en-meta-title")} maxLength={160} {...register("en.metaTitle")} />
+                </FormField>
+                <FormField id={id("en-meta-description")} label={t("fields.metaDescription")} error={errors.en?.metaDescription?.message}>
+                  <Input id={id("en-meta-description")} maxLength={320} {...register("en.metaDescription")} />
+                </FormField>
+              </div>
+            </div>
+          </details>
 
           <details className="rounded-lg border px-3 py-2">
             <summary className="cursor-pointer text-sm font-medium">{t("fields.seo")}</summary>

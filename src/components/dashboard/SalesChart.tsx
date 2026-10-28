@@ -10,7 +10,7 @@ import { useAdminFormat } from "./AdminPage";
 
 type Series = DashboardSummary["series"];
 
-const BRAND = "#006398";
+const BRAND = "#2d7811";
 
 /** "2026-10-19" as a calendar date; it is already the shop's day, so no time zone shift. */
 export const dayLabel = (date: string, style: "short" | "long") =>

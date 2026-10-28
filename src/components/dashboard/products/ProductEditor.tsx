@@ -37,6 +37,7 @@ import { Checkbox, errorProps, FormField, NativeSelect } from "./fields";
 import { ProductContentSection } from "./ProductContentSection";
 import {
   CategoriesSection,
+  EnglishSection,
   ImagesSection,
   RelatedSection,
   SeoSection,
@@ -252,6 +253,7 @@ function ProductForm({ product, attributes }: { product?: AdminProduct; attribut
             <ProductContentSection />
             <SpecsSection />
             <SeoSection />
+            <EnglishSection />
           </div>
 
           <div className="flex min-w-0 flex-col gap-6">

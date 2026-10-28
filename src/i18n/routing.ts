@@ -1,13 +1,15 @@
 import { defineRouting } from "next-intl/routing";
 
 /**
- * English only at launch. Adding a language later is: add it here,
- * add messages/<locale>.json. The default locale has no URL prefix.
+ * German first (no URL prefix), English under /en. The browser language is not
+ * used to redirect: "/" is always German, and the header switch changes it.
+ * Another language is: add it here and add messages/<locale>.json.
  */
 export const routing = defineRouting({
-  locales: ["en"],
-  defaultLocale: "en",
+  locales: ["de", "en"],
+  defaultLocale: "de",
   localePrefix: "as-needed",
+  localeDetection: false,
 });
 
 export type Locale = (typeof routing.locales)[number];

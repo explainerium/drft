@@ -35,6 +35,7 @@ import {
   type AdminPage,
   type AdminPost,
 } from "@/redux/api/adminContentApi";
+import { toTranslations } from "@/types/i18n";
 import { apiErrorMessage, apiFieldErrors } from "@/utils/apiError";
 import { PageHeader, QueryError } from "../AdminPage";
 import { MediaPicker, thumbOf } from "../products/MediaPicker";
@@ -136,8 +137,17 @@ function EditorForm({
     publishedAt: z.string(),
     metaTitle: z.string().trim().max(160, t("errors.tooLong")),
     metaDescription: z.string().trim().max(320, t("errors.tooLong")),
+    // English version of a page; empty fields show the German text.
+    en: z.object({
+      title: z.string().trim().max(160, t("errors.tooLong")),
+      intro: z.string().trim().max(600, t("errors.tooLong")),
+      body: z.string(),
+      metaTitle: z.string().trim().max(160, t("errors.tooLong")),
+      metaDescription: z.string().trim().max(320, t("errors.tooLong")),
+    }),
   });
   type Values = z.infer<typeof schema>;
+  const en = page?.translations?.en;
 
   const form = useForm<Values>({
     resolver: zodResolver(schema),
@@ -152,6 +162,13 @@ function EditorForm({
       publishedAt: toLocalInput(post?.publishedAt ?? null),
       metaTitle: item?.metaTitle ?? "",
       metaDescription: item?.metaDescription ?? "",
+      en: {
+        title: en?.title ?? "",
+        intro: en?.intro ?? "",
+        body: en?.body ?? "",
+        metaTitle: en?.metaTitle ?? "",
+        metaDescription: en?.metaDescription ?? "",
+      },
     },
   });
   const { register, handleSubmit, control, setError, reset, formState } = form;
@@ -197,6 +214,7 @@ function EditorForm({
             status: values.status,
             metaTitle: orNull(values.metaTitle),
             metaDescription: orNull(values.metaDescription),
+            translations: toTranslations(values.en),
           };
           saved = page ? await updatePage({ id: page.id, body }).unwrap() : await createPage(body).unwrap();
           await revalidateTags(["pages", ...new Set([page?.slug, saved.slug].filter(Boolean).map((s) => `page:${s}`))]);
@@ -275,7 +293,42 @@ function EditorForm({
           </CardContent>
         </Card>
 
-        <div className="flex min-w-0 flex-col gap-6">
+        {kind === "page" && (
+          <Card className="lg:col-start-1">
+            <CardHeader>
+              <CardTitle>{t("english.title")}</CardTitle>
+              <CardDescription>{t("english.hint")}</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              <FormField id={id("en-title")} label={t("fields.title")} error={errors.en?.title?.message}>
+                <Input id={id("en-title")} maxLength={160} placeholder={title} {...register("en.title")} />
+              </FormField>
+              <FormField id={id("en-intro")} label={t("fields.intro")} error={errors.en?.intro?.message}>
+                <Textarea id={id("en-intro")} rows={3} maxLength={600} {...register("en.intro")} />
+              </FormField>
+              <div className="flex flex-col gap-1.5">
+                <span className="text-sm font-medium">{t("fields.body")}</span>
+                <Controller
+                  control={control}
+                  name="en.body"
+                  render={({ field }) => (
+                    <RichTextEditor id={id("en-body")} label={t("english.body")} value={field.value} onChange={field.onChange} />
+                  )}
+                />
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <FormField id={id("en-meta-title")} label={t("fields.metaTitle")} error={errors.en?.metaTitle?.message}>
+                  <Input id={id("en-meta-title")} maxLength={160} {...register("en.metaTitle")} />
+                </FormField>
+                <FormField id={id("en-meta-description")} label={t("fields.metaDescription")} error={errors.en?.metaDescription?.message}>
+                  <Input id={id("en-meta-description")} maxLength={320} {...register("en.metaDescription")} />
+                </FormField>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        <div className="flex min-w-0 flex-col gap-6 lg:col-start-2 lg:row-span-2 lg:row-start-1">
           <Card size="sm">
             <CardHeader>
               <CardTitle>{t("publishing")}</CardTitle>
