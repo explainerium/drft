@@ -11,7 +11,7 @@ export function ProductSpecs({ specs, inTheBox }: { specs: ProductSpec[]; inTheB
 
   return (
     <section aria-labelledby="specs-title" className="bg-secondary py-16 lg:py-24">
-      <Container className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_385px] lg:gap-8">
+      <Container className="grid grid-cols-[minmax(0,1fr)] items-start gap-6 lg:grid-cols-[minmax(0,1fr)_385px] lg:gap-8">
         {specs.length > 0 && (
           <div className="rounded-lg bg-card p-6 lg:p-7">
             <p className="text-xs font-semibold tracking-[0.1em] text-brand uppercase">{t("eyebrow")}</p>

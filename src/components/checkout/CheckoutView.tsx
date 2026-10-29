@@ -99,7 +99,7 @@ function usePrefillFromAccount(
 
 function CheckoutSkeleton() {
   return (
-    <div aria-hidden className="grid gap-10 lg:grid-cols-[minmax(0,655fr)_minmax(0,457fr)]">
+    <div aria-hidden className="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,655fr)_minmax(0,457fr)]">
       <div className="flex flex-col gap-6">
         {[0, 1, 2].map((i) => (
           <div key={i} className="h-64 animate-pulse rounded-md bg-card" />
@@ -190,7 +190,7 @@ function LiveCheckout() {
 
   return (
     <FormProvider {...form}>
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,655fr)_minmax(0,457fr)]">
+      <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-10 lg:grid-cols-[minmax(0,655fr)_minmax(0,457fr)]">
         <form onSubmit={onSubmit} noValidate className="flex flex-col gap-8 lg:gap-12">
           <CheckoutSection
             step={1}

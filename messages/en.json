@@ -1286,7 +1286,13 @@
           "hint": "What the customer gets in the package.",
           "items": "Items",
           "itemsHint": "One item per line, up to 12."
-        }
+        },
+        "language": "Language of the blocks",
+        "languages": {
+          "de": "Deutsch",
+          "en": "English"
+        },
+        "englishHint": "English blocks for /en. A block left empty shows the German one there. The story photo is the same in both languages."
       },
       "duplicate": {
         "button": "Duplicate",
@@ -1380,7 +1386,10 @@
         "label": "Label",
         "hexColor": "Swatch colour",
         "hexHint": "For colours only: shows a dot on cards and the product page.",
-        "pickColor": "Pick a colour"
+        "pickColor": "Pick a colour",
+        "nameEn": "Name (English)",
+        "labelEn": "Label (English)",
+        "enHint": "For /en; empty shows the German text."
       },
       "errors": {
         "required": "Required.",

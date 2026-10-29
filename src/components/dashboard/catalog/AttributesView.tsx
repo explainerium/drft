@@ -30,6 +30,7 @@ import {
   useUpdateAttributeValueMutation,
 } from "@/redux/api/adminCatalogApi";
 import type { AdminAttribute, AttributeValue } from "@/types/adminCatalog";
+import { toTranslations } from "@/types/i18n";
 import { apiErrorMessage, apiFieldErrors } from "@/utils/apiError";
 import { PageHeader, QueryError } from "../AdminPage";
 import { errorProps, FormField } from "../products/fields";
@@ -159,6 +160,7 @@ function AttributeDialog({ attribute, onClose }: { attribute?: AdminAttribute; o
     name: z.string().trim().min(1, t("errors.required")).max(80, t("errors.tooLong")),
     code: z.string().trim().max(60, t("errors.tooLong")),
     sortOrder: sortOrderField(t("errors.whole")),
+    enName: z.string().trim().max(80, t("errors.tooLong")),
   });
   type Values = z.infer<typeof schema>;
   const {
@@ -168,7 +170,12 @@ function AttributeDialog({ attribute, onClose }: { attribute?: AdminAttribute; o
     formState: { errors },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { name: attribute?.name ?? "", code: attribute?.code ?? "", sortOrder: String(attribute?.sortOrder ?? 0) },
+    defaultValues: {
+      name: attribute?.name ?? "",
+      code: attribute?.code ?? "",
+      sortOrder: String(attribute?.sortOrder ?? 0),
+      enName: attribute?.translations?.en?.name ?? "",
+    },
   });
 
   const onSubmit = handleSubmit(async (values) => {
@@ -176,6 +183,7 @@ function AttributeDialog({ attribute, onClose }: { attribute?: AdminAttribute; o
       name: values.name.trim(),
       ...(values.code.trim() ? { code: values.code.trim() } : {}),
       sortOrder: Number(values.sortOrder),
+      translations: toTranslations({ name: values.enName }),
     };
     try {
       if (attribute) await update({ id: attribute.id, body }).unwrap();
@@ -199,9 +207,14 @@ function AttributeDialog({ attribute, onClose }: { attribute?: AdminAttribute; o
             <DialogTitle>{attribute ? attribute.name : t("new")}</DialogTitle>
             <DialogDescription>{t("attributeHint")}</DialogDescription>
           </DialogHeader>
-          <FormField id={id("name")} label={t("fields.name")} error={errors.name?.message}>
-            <Input id={id("name")} maxLength={80} {...errorProps(id("name"), errors.name?.message)} {...register("name")} />
-          </FormField>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <FormField id={id("name")} label={t("fields.name")} error={errors.name?.message}>
+              <Input id={id("name")} maxLength={80} {...errorProps(id("name"), errors.name?.message)} {...register("name")} />
+            </FormField>
+            <FormField id={id("en-name")} label={t("fields.nameEn")} hint={t("fields.enHint")} error={errors.enName?.message}>
+              <Input id={id("en-name")} maxLength={80} {...register("enName")} />
+            </FormField>
+          </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField id={id("code")} label={t("fields.code")} hint={t("fields.codeHint")} error={errors.code?.message}>
               <Input id={id("code")} maxLength={60} {...errorProps(id("code"), errors.code?.message)} {...register("code")} />
@@ -298,6 +311,7 @@ function ValueDialog({
       .trim()
       .refine((v) => v === "" || HEX.test(v), t("errors.hex")),
     sortOrder: sortOrderField(t("errors.whole")),
+    enLabel: z.string().trim().max(80, t("errors.tooLong")),
   });
   type Values = z.infer<typeof schema>;
   const {
@@ -314,6 +328,7 @@ function ValueDialog({
       code: value?.code ?? "",
       hexColor: value?.hexColor ?? "",
       sortOrder: String(value?.sortOrder ?? attribute.values.length),
+      enLabel: value?.translations?.en?.label ?? "",
     },
   });
   const hex = useWatch({ control, name: "hexColor" });
@@ -324,6 +339,7 @@ function ValueDialog({
       ...(values.code.trim() ? { code: values.code.trim() } : {}),
       hexColor: values.hexColor.trim() || null,
       sortOrder: Number(values.sortOrder),
+      translations: toTranslations({ label: values.enLabel }),
     };
     try {
       if (value) await update({ valueId: value.id, body }).unwrap();
@@ -350,9 +366,14 @@ function ValueDialog({
               {value ? t("valueUsage", { count }) : t("valueHint", { attribute: attribute.name })}
             </DialogDescription>
           </DialogHeader>
-          <FormField id={id("label")} label={t("fields.label")} error={errors.label?.message}>
-            <Input id={id("label")} maxLength={80} {...errorProps(id("label"), errors.label?.message)} {...register("label")} />
-          </FormField>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <FormField id={id("label")} label={t("fields.label")} error={errors.label?.message}>
+              <Input id={id("label")} maxLength={80} {...errorProps(id("label"), errors.label?.message)} {...register("label")} />
+            </FormField>
+            <FormField id={id("en-label")} label={t("fields.labelEn")} hint={t("fields.enHint")} error={errors.enLabel?.message}>
+              <Input id={id("en-label")} maxLength={80} {...register("enLabel")} />
+            </FormField>
+          </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <FormField id={id("code")} label={t("fields.code")} hint={t("fields.valueCodeHint")} error={errors.code?.message}>
               <Input id={id("code")} maxLength={60} {...errorProps(id("code"), errors.code?.message)} {...register("code")} />

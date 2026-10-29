@@ -8,7 +8,14 @@ import type {
   ProductTranslations,
 } from "@/types/adminCatalog";
 import { toTranslations } from "@/types/i18n";
-import { contentFormSchema, contentIssues, EMPTY_CONTENT, toContentForm, toContentInput } from "./productContentForm";
+import {
+  contentFormSchema,
+  contentIssues,
+  EMPTY_CONTENT,
+  toContentForm,
+  toContentInput,
+  toEnContentForm,
+} from "./productContentForm";
 
 /**
  * The product editor's form: strings for every text input (empty means none),
@@ -85,12 +92,15 @@ export const productFormSchema = (t: Translate) => {
         metaTitle: z.string().trim().max(160, t("errors.tooLong")),
         metaDescription: z.string().trim().max(320, t("errors.tooLong")),
       }),
-      // Translated editorial blocks, kept as they are (no editor for them yet).
-      enContent: z.unknown(),
+      // English editorial blocks; a block left empty shows the German one on /en.
+      enContent: contentFormSchema(t),
     })
     .superRefine((form, ctx) => {
       for (const issue of contentIssues(form.content, t)) {
         ctx.addIssue({ code: "custom", path: ["content", ...issue.path], message: issue.message });
+      }
+      for (const issue of contentIssues(form.enContent, t)) {
+        ctx.addIssue({ code: "custom", path: ["enContent", ...issue.path], message: issue.message });
       }
       // Every variant needs a value on each option, and no two may be the same combination.
       const seen = new Map<string, number>();
@@ -161,7 +171,7 @@ export const EMPTY_PRODUCT: ProductFormValues = {
   variants: [{ ...emptyVariant(), isDefault: true }],
   content: EMPTY_CONTENT,
   en: EMPTY_EN,
-  enContent: undefined,
+  enContent: EMPTY_CONTENT,
 };
 
 /** The stored product as form values. Option axes are the attributes its variants use. */
@@ -213,7 +223,7 @@ export function toFormValues(product: AdminProduct, attributes: AdminAttribute[]
     })),
     content: toContentForm(product),
     en: { ...EMPTY_EN, ...Object.fromEntries(Object.entries(product.translations?.en ?? {}).filter(([key]) => key in EMPTY_EN)) },
-    enContent: product.translations?.en?.content,
+    enContent: toEnContentForm(product),
   };
 }
 
@@ -222,7 +232,8 @@ const orNull = (value: string) => (value.trim() === "" ? null : value.trim());
 /** English texts (and kept translated blocks) as the stored JSON, or null when empty. */
 function productTranslations(form: ProductFormValues): ProductTranslations {
   const texts = toTranslations(form.en)?.en ?? {};
-  const content = form.enContent as ProductContentInput | undefined;
+  // The photo is shared: an English story uses the German one.
+  const content = toContentInput({ ...form.enContent, story: { ...form.enContent.story, imageAssetId: "" } }) ?? undefined;
   const en = { ...texts, ...(content ? { content } : {}) };
   return Object.keys(en).length ? { en } : null;
 }

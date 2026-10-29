@@ -195,6 +195,7 @@ export interface AdminAttribute {
   code: string;
   name: string;
   sortOrder: number;
+  translations: Translations<"name">;
   values: AttributeValue[];
 }
 
@@ -204,6 +205,7 @@ export interface AttributeValue {
   label: string;
   hexColor: string | null;
   sortOrder: number;
+  translations: Translations<"label">;
   /** How many variants use it; a used value cannot be deleted. */
   _count?: { variants: number };
 }
@@ -212,6 +214,7 @@ export interface AttributeInput {
   name: string;
   code?: string;
   sortOrder: number;
+  translations?: Translations<"name">;
 }
 
 export interface AttributeValueInput {
@@ -219,6 +222,7 @@ export interface AttributeValueInput {
   code?: string;
   hexColor: string | null;
   sortOrder: number;
+  translations?: Translations<"label">;
 }
 
 export interface MediaAsset {

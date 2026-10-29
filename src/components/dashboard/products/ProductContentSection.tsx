@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useId, useState, type ReactNode } from "react";
 import { get, useFieldArray, useFormContext, useFormState, useWatch, type FieldPath } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MediaPicker, thumbOf } from "./MediaPicker";
@@ -14,13 +14,18 @@ import { FEATURE_LIMIT, STORY_LIMITS } from "./productContentForm";
 import type { ProductFormValues } from "./productForm";
 
 type Path = FieldPath<ProductFormValues>;
+/** German blocks live in `content`, English ones in `enContent`; both have the same shape. */
+type Root = "content" | "enContent";
 
 /** The product page's editorial blocks: intro, rider story, key features and what is in the box. */
 export function ProductContentSection() {
   const t = useTranslations("admin.product.content");
-  const content = useWatch<ProductFormValues, "content">({ name: "content" });
-  const { errors } = useFormState<ProductFormValues>({ name: "content" });
-  const hasError = (block: string) => !!get(errors, `content.${block}`);
+  const [locale, setLocale] = useState<"de" | "en">("de");
+  const root: Root = locale === "de" ? "content" : "enContent";
+  const content = useWatch<ProductFormValues, Root>({ name: root });
+  const { errors } = useFormState<ProductFormValues>({ name: ["content", "enContent"] });
+  const hasError = (block: string) => !!get(errors, `${root}.${block}`);
+  const invalidIn = (r: Root) => !!get(errors, r);
 
   const story = content.story;
   const features = content.features;
@@ -36,19 +41,38 @@ export function ProductContentSection() {
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
         <CardDescription>{t("hint")}</CardDescription>
+        <CardAction>
+          <div role="group" aria-label={t("language")} className="flex gap-1 rounded-md bg-secondary p-0.5">
+            {(["de", "en"] as const).map((value) => (
+              <button
+                key={value}
+                type="button"
+                aria-pressed={locale === value}
+                onClick={() => setLocale(value)}
+                className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${locale === value ? "bg-background shadow-xs" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                {t(`languages.${value}`)}
+                {invalidIn(value === "de" ? "content" : "enContent") && (
+                  <span className="size-1.5 rounded-full bg-destructive" aria-label={t("needsAttention")} />
+                )}
+              </button>
+            ))}
+          </div>
+        </CardAction>
       </CardHeader>
-      <CardContent className="flex flex-col gap-3">
+      <CardContent key={root} className="flex flex-col gap-3">
+        {root === "enContent" && <p className="text-xs text-muted-foreground">{t("englishHint")}</p>}
         <Block title={t("intro.title")} hint={t("intro.hint")} used={used.intro} invalid={hasError("highlightTitle") || hasError("highlightBody") || hasError("profile")}>
-          <IntroFields />
+          <IntroFields root={root} />
         </Block>
         <Block title={t("story.title")} hint={t("story.hint")} used={used.story} invalid={hasError("story")}>
-          <StoryFields />
+          <StoryFields root={root} />
         </Block>
         <Block title={t("features.title")} hint={t("features.hint")} used={used.features} invalid={hasError("features")}>
-          <FeatureFields />
+          <FeatureFields root={root} />
         </Block>
         <Block title={t("box.title")} hint={t("box.hint")} used={used.box} invalid={hasError("inTheBox")}>
-          <BoxField />
+          <BoxField root={root} />
         </Block>
       </CardContent>
     </Card>
@@ -133,34 +157,34 @@ function TextField({
   );
 }
 
-function IntroFields() {
+function IntroFields({ root }: { root: Root }) {
   const t = useTranslations("admin.product.content.intro");
   return (
     <>
-      <TextField name="content.profile" label={t("profile")} hint={t("profileHint")} max={60} />
+      <TextField name={`${root}.profile`} label={t("profile")} hint={t("profileHint")} max={60} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <TextField name="content.highlightTitle" label={t("highlightTitle")} hint={t("highlightHint")} max={120} />
-        <TextField name="content.highlightBody" label={t("highlightBody")} max={400} multiline />
+        <TextField name={`${root}.highlightTitle`} label={t("highlightTitle")} hint={t("highlightHint")} max={120} />
+        <TextField name={`${root}.highlightBody`} label={t("highlightBody")} max={400} multiline />
       </div>
     </>
   );
 }
 
-function StoryFields() {
+function StoryFields({ root }: { root: Root }) {
   const t = useTranslations("admin.product.content.story");
   const { control, register, setValue } = useFormContext<ProductFormValues>();
-  const { errors } = useFormState({ control, name: "content.story" });
-  const paragraphs = useFieldArray({ control, name: "content.story.paragraphs", keyName: "key" });
-  const stats = useFieldArray({ control, name: "content.story.stats", keyName: "key" });
-  const [imageAssetId, imageUrl] = useWatch({ control, name: ["content.story.imageAssetId", "content.story.imageUrl"] });
+  const { errors } = useFormState({ control, name: `${root}.story` });
+  const paragraphs = useFieldArray({ control, name: `${root}.story.paragraphs`, keyName: "key" });
+  const stats = useFieldArray({ control, name: `${root}.story.stats`, keyName: "key" });
+  const [imageAssetId, imageUrl] = useWatch({ control, name: [`${root}.story.imageAssetId`, `${root}.story.imageUrl`] });
   const [picking, setPicking] = useState(false);
-  const storyErrors = errors.content?.story;
+  const storyErrors = errors[root]?.story;
 
   return (
     <>
       <div className="grid gap-4 sm:grid-cols-2">
-        <TextField name="content.story.eyebrow" label={t("eyebrow")} hint={t("eyebrowHint")} max={80} />
-        <TextField name="content.story.title" label={t("heading")} max={160} />
+        <TextField name={`${root}.story.eyebrow`} label={t("eyebrow")} hint={t("eyebrowHint")} max={80} />
+        <TextField name={`${root}.story.title`} label={t("heading")} max={160} />
       </div>
 
       <fieldset className="flex flex-col gap-2">
@@ -171,7 +195,7 @@ function StoryFields() {
               aria-label={t("paragraph", { number: index + 1 })}
               rows={3}
               maxLength={1200}
-              {...register(`content.story.paragraphs.${index}.text`)}
+              {...register(`${root}.story.paragraphs.${index}.text`)}
             />
             <RowButtons
               onUp={index > 0 ? () => paragraphs.swap(index, index - 1) : undefined}
@@ -200,14 +224,14 @@ function StoryFields() {
                 placeholder={t("statValue")}
                 maxLength={16}
                 {...errorProps(`stat-${index}-value`, rowError?.value?.message)}
-                {...register(`content.story.stats.${index}.value`)}
+                {...register(`${root}.story.stats.${index}.value`)}
               />
               <Input
                 aria-label={t("statLabel")}
                 placeholder={t("statLabel")}
                 maxLength={60}
                 {...errorProps(`stat-${index}-label`, rowError?.label?.message)}
-                {...register(`content.story.stats.${index}.label`)}
+                {...register(`${root}.story.stats.${index}.label`)}
               />
               <RowButtons onRemove={() => stats.remove(index)} />
             </div>
@@ -221,76 +245,81 @@ function StoryFields() {
       </fieldset>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <TextField name="content.story.quoteText" label={t("quote")} max={300} multiline />
+        <TextField name={`${root}.story.quoteText`} label={t("quote")} max={300} multiline />
         <div className="flex flex-col gap-4">
-          <TextField name="content.story.quoteAuthor" label={t("quoteAuthor")} max={120} />
-          <TextField name="content.story.quoteLabel" label={t("quoteLabel")} hint={t("quoteLabelHint")} max={80} />
+          <TextField name={`${root}.story.quoteAuthor`} label={t("quoteAuthor")} max={120} />
+          <TextField name={`${root}.story.quoteLabel`} label={t("quoteLabel")} hint={t("quoteLabelHint")} max={80} />
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium">{t("image")}</span>
-        <div className="flex items-center gap-3">
-          <div className="flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-secondary">
-            {imageAssetId && imageUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={imageUrl} alt="" className="size-full object-cover" />
-            ) : (
-              <ImageIcon className="size-5 text-muted-foreground" aria-hidden />
-            )}
+      {/* One photo for both languages: it is picked on the German blocks. */}
+      {root === "content" && (
+        <>
+          <div className="flex flex-col gap-1.5">
+            <span className="text-sm font-medium">{t("image")}</span>
+            <div className="flex items-center gap-3">
+              <div className="flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-secondary">
+                {imageAssetId && imageUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={imageUrl} alt="" className="size-full object-cover" />
+                ) : (
+                  <ImageIcon className="size-5 text-muted-foreground" aria-hidden />
+                )}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button type="button" variant="outline" size="sm" onClick={() => setPicking(true)}>
+                  <ImagePlusIcon />
+                  {imageAssetId ? t("changeImage") : t("chooseImage")}
+                </Button>
+                {imageAssetId && (
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setValue(`${root}.story.imageAssetId`, "", { shouldDirty: true });
+                      setValue(`${root}.story.imageUrl`, "");
+                    }}
+                  >
+                    <XIcon />
+                    {t("removeImage")}
+                  </Button>
+                )}
+              </div>
+            </div>
+            <p className="text-xs text-muted-foreground">{t("imageHint")}</p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            <Button type="button" variant="outline" size="sm" onClick={() => setPicking(true)}>
-              <ImagePlusIcon />
-              {imageAssetId ? t("changeImage") : t("chooseImage")}
-            </Button>
-            {imageAssetId && (
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => {
-                  setValue("content.story.imageAssetId", "", { shouldDirty: true });
-                  setValue("content.story.imageUrl", "");
-                }}
-              >
-                <XIcon />
-                {t("removeImage")}
-              </Button>
-            )}
-          </div>
-        </div>
-        <p className="text-xs text-muted-foreground">{t("imageHint")}</p>
-      </div>
-      <MediaPicker
-        open={picking}
-        single
-        exclude={imageAssetId ? [imageAssetId] : []}
-        onClose={() => setPicking(false)}
-        onPick={([asset]) => {
-          if (!asset) return;
-          setValue("content.story.imageAssetId", asset.id, { shouldDirty: true });
-          setValue("content.story.imageUrl", thumbOf(asset));
-        }}
-      />
+          <MediaPicker
+            open={picking}
+            single
+            exclude={imageAssetId ? [imageAssetId] : []}
+            onClose={() => setPicking(false)}
+            onPick={([asset]) => {
+              if (!asset) return;
+              setValue(`${root}.story.imageAssetId`, asset.id, { shouldDirty: true });
+              setValue(`${root}.story.imageUrl`, thumbOf(asset));
+            }}
+          />
+        </>
+      )}
     </>
   );
 }
 
-function FeatureFields() {
+function FeatureFields({ root }: { root: Root }) {
   const t = useTranslations("admin.product.content.features");
   const { control, register } = useFormContext<ProductFormValues>();
-  const { errors } = useFormState({ control, name: "content.features" });
-  const items = useFieldArray({ control, name: "content.features.items", keyName: "key" });
-  const featureErrors = errors.content?.features;
+  const { errors } = useFormState({ control, name: `${root}.features` });
+  const items = useFieldArray({ control, name: `${root}.features.items`, keyName: "key" });
+  const featureErrors = errors[root]?.features;
 
   return (
     <>
       <div className="grid gap-4 sm:grid-cols-2">
-        <TextField name="content.features.eyebrow" label={t("eyebrow")} hint={t("eyebrowHint")} max={80} />
-        <TextField name="content.features.title" label={t("heading")} max={160} />
+        <TextField name={`${root}.features.eyebrow`} label={t("eyebrow")} hint={t("eyebrowHint")} max={80} />
+        <TextField name={`${root}.features.title`} label={t("heading")} max={160} />
       </div>
-      <TextField name="content.features.intro" label={t("intro")} max={400} multiline />
+      <TextField name={`${root}.features.intro`} label={t("intro")} max={400} multiline />
 
       <fieldset className="flex flex-col gap-3">
         <legend className="mb-1.5 text-sm font-medium">{t("items")}</legend>
@@ -311,14 +340,14 @@ function FeatureFields() {
                   placeholder={t("label")}
                   maxLength={60}
                   {...errorProps(`feature-${index}-label`, rowError?.label?.message)}
-                  {...register(`content.features.items.${index}.label`)}
+                  {...register(`${root}.features.items.${index}.label`)}
                 />
                 <Input
                   aria-label={t("itemTitle")}
                   placeholder={t("itemTitle")}
                   maxLength={80}
                   {...errorProps(`feature-${index}-title`, rowError?.title?.message)}
-                  {...register(`content.features.items.${index}.title`)}
+                  {...register(`${root}.features.items.${index}.title`)}
                 />
               </div>
               <Textarea
@@ -327,20 +356,20 @@ function FeatureFields() {
                 rows={2}
                 maxLength={500}
                 {...errorProps(`feature-${index}-body`, rowError?.body?.message)}
-                {...register(`content.features.items.${index}.body`)}
+                {...register(`${root}.features.items.${index}.body`)}
               />
               <div className="grid gap-2 sm:grid-cols-2">
                 <Input
                   aria-label={t("footnote")}
                   placeholder={t("footnote")}
                   maxLength={60}
-                  {...register(`content.features.items.${index}.footnote`)}
+                  {...register(`${root}.features.items.${index}.footnote`)}
                 />
                 <Input
                   aria-label={t("footnoteValue")}
                   placeholder={t("footnoteValue")}
                   maxLength={60}
-                  {...register(`content.features.items.${index}.footnoteValue`)}
+                  {...register(`${root}.features.items.${index}.footnoteValue`)}
                 />
               </div>
               {(rowError?.label || rowError?.title || rowError?.body) && (
@@ -362,9 +391,9 @@ function FeatureFields() {
   );
 }
 
-function BoxField() {
+function BoxField({ root }: { root: Root }) {
   const t = useTranslations("admin.product.content.box");
-  return <TextField name="content.inTheBox" label={t("items")} hint={t("itemsHint")} max={2000} multiline />;
+  return <TextField name={`${root}.inTheBox`} label={t("items")} hint={t("itemsHint")} max={2000} multiline />;
 }
 
 function RowButtons({ onUp, onRemove }: { onUp?: () => void; onRemove: () => void }) {

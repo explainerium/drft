@@ -88,7 +88,7 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
 
       <section className="bg-surface pt-8 pb-16 lg:pt-10 lg:pb-24">
         {/* Phone order: gallery, purchase box, highlight. Desktop: gallery + highlight left, box right. */}
-        <Container className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_456px] lg:grid-rows-[auto_1fr] lg:gap-x-10">
+        <Container className="grid grid-cols-[minmax(0,1fr)] items-start gap-6 lg:grid-cols-[minmax(0,1fr)_456px] lg:grid-rows-[auto_1fr] lg:gap-x-10">
           <div className="lg:col-start-1 lg:row-start-1">
             <ProductGallery
               images={images}

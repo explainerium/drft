@@ -83,7 +83,17 @@ export const EMPTY_CONTENT: ContentFormValues = {
 };
 
 export function toContentForm(product: AdminProduct): ContentFormValues {
-  const content = product.content ?? {};
+  const image = product.storyImage;
+  return contentFormOf(product.content, image ? (image.sizes.thumb?.url ?? image.url) : "");
+}
+
+/** The English blocks as form values. The story photo is shared, so it is not part of them. */
+export function toEnContentForm(product: AdminProduct): ContentFormValues {
+  return contentFormOf(product.translations?.en?.content ?? null, "");
+}
+
+function contentFormOf(stored: ProductContentInput | null | undefined, imageUrl: string): ContentFormValues {
+  const content = stored ?? {};
   const { story, features } = content;
   return {
     profile: content.profile ?? "",
@@ -98,7 +108,7 @@ export function toContentForm(product: AdminProduct): ContentFormValues {
       quoteText: story?.quote?.text ?? "",
       quoteAuthor: story?.quote?.author ?? "",
       imageAssetId: story?.imageAssetId ?? "",
-      imageUrl: product.storyImage ? (product.storyImage.sizes.thumb?.url ?? product.storyImage.url) : "",
+      imageUrl,
     },
     features: {
       eyebrow: features?.eyebrow ?? "",
