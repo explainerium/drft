@@ -1,8 +1,9 @@
 "use client";
 
-import { UserRoundIcon } from "lucide-react";
+import { PencilLineIcon, UserRoundIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { useTextEditing } from "@/components/siteTexts/useTextEditing";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,13 +13,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { STAFF_ROLES } from "@/constants/auth";
 import { ACCOUNT_LINKS } from "@/constants/navigation";
 import { useIsClient } from "@/hooks/useIsClient";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useLogoutMutation, useSession } from "@/redux/api/authApi";
 import type { User } from "@/types/auth";
 
-/** Header account menu: sign in / create account for visitors, account links and sign out once signed in. */
+/**
+ * Header account menu: sign in / create account for visitors, account links and
+ * sign out once signed in. Staff also get on-page text editing.
+ */
 export function AccountMenu() {
   return useIsClient() ? <LiveAccountMenu /> : <AccountMenuView user={null} />;
 }
@@ -32,6 +37,8 @@ function AccountMenuView({ user }: { user: User | null }) {
   const t = useTranslations("layout.account");
   const [logout] = useLogoutMutation();
   const router = useRouter();
+  const { start } = useTextEditing();
+  const isStaff = !!user && (STAFF_ROLES as readonly string[]).includes(user.role);
 
   const signOut = async () => {
     await logout()
@@ -63,6 +70,16 @@ function AccountMenuView({ user }: { user: User | null }) {
             <DropdownMenuItem asChild>
               <Link href={ACCOUNT_LINKS.wishlist}>{t("wishlist")}</Link>
             </DropdownMenuItem>
+            {isStaff && (
+              <DropdownMenuItem
+                onSelect={async () => {
+                  if (!(await start(window.location.pathname + window.location.search))) toast.error(t("editTextsFailed"));
+                }}
+              >
+                <PencilLineIcon />
+                {t("editTexts")}
+              </DropdownMenuItem>
+            )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={signOut}>{t("signOut")}</DropdownMenuItem>
           </>

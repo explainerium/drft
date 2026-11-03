@@ -3,6 +3,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Toaster } from "sonner";
 import { StoreProvider } from "@/components/providers/StoreProvider";
+import { SiteContentSync } from "@/components/siteTexts/SiteContentSync";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ADMIN_LOCALE, ADMIN_TIME_ZONE } from "@/constants/admin";
 import { fontVariables } from "@/lib/fonts";
@@ -26,6 +27,7 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
       <body className="admin flex min-h-full flex-col bg-surface" suppressHydrationWarning>
         <NextIntlClientProvider locale={ADMIN_LOCALE} messages={messages} timeZone={ADMIN_TIME_ZONE}>
           <StoreProvider>
+            <SiteContentSync />
             <TooltipProvider>{children}</TooltipProvider>
           </StoreProvider>
           <Toaster position="top-right" />

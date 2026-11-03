@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { ADMIN_LINKS, ADMIN_TIME_ZONE } from "@/constants/admin";
+import { announceSiteChange } from "@/lib/siteTexts/sync";
 import { revalidateTags } from "@/redux/api/adminCatalogApi";
 import {
   useCreatePageMutation,
@@ -77,7 +78,13 @@ export function ContentEditor({ kind, id }: { kind: Kind; id?: string }) {
   const post = useGetAdminPostQuery(id ?? "", { skip: kind !== "post" || !id });
   const page = useGetAdminPageQuery(id ?? "", { skip: kind !== "page" || !id });
   const query = kind === "post" ? post : page;
-  const back = kind === "post" ? { href: ADMIN_LINKS.journal, label: t("backJournal") } : { href: ADMIN_LINKS.pages, label: t("backPages") };
+  const back = kind === "post" ? { href: ADMIN_LINKS.journal, label: t("backJournal") } : { href: ADMIN_LINKS.sitePages, label: t("backPages") };
+  // Saved somewhere else (the page edited on the site, in another tab): an untouched form
+  // shows the new version at once; a form with edits keeps them and says so.
+  const [dirty, setDirty] = useState(false);
+  const [shown, setShown] = useState<string | null>(null);
+  const latest = query.data?.updatedAt ?? null;
+  if (latest !== null && latest !== shown && (shown === null || !dirty)) setShown(latest);
 
   if (query.isError) {
     return (
@@ -95,17 +102,37 @@ export function ContentEditor({ kind, id }: { kind: Kind; id?: string }) {
       </div>
     );
   }
-  return <EditorForm key={query.data?.id ?? "new"} kind={kind} item={query.data} back={back} />;
+  return (
+    <EditorForm
+      key={`${query.data?.id ?? "new"}:${shown}`}
+      kind={kind}
+      item={query.data}
+      back={back}
+      stale={latest !== shown}
+      onReload={() => {
+        setDirty(false);
+        setShown(latest);
+      }}
+      onDirtyChange={setDirty}
+    />
+  );
 }
 
 function EditorForm({
   kind,
   item,
   back,
+  stale,
+  onReload,
+  onDirtyChange,
 }: {
   kind: Kind;
   item?: AdminPost | AdminPage;
   back: { href: string; label: string };
+  /** A newer version was saved elsewhere while this form has edits. */
+  stale: boolean;
+  onReload: () => void;
+  onDirtyChange: (dirty: boolean) => void;
 }) {
   const t = useTranslations("admin.contentEditor");
   const uid = useId();
@@ -177,6 +204,8 @@ function EditorForm({
   const coverChanged = kind === "post" && (cover?.id ?? null) !== (post?.coverAssetId ?? null);
   const dirty = isDirty || coverChanged;
 
+  useEffect(() => onDirtyChange(dirty), [dirty, onDirtyChange]);
+
   useEffect(() => {
     if (!dirty) return;
     const warn = (event: BeforeUnloadEvent) => event.preventDefault();
@@ -218,6 +247,7 @@ function EditorForm({
           };
           saved = page ? await updatePage({ id: page.id, body }).unwrap() : await createPage(body).unwrap();
           await revalidateTags(["pages", ...new Set([page?.slug, saved.slug].filter(Boolean).map((s) => `page:${s}`))]);
+          announceSiteChange("pages");
         }
         toast.success(item ? t("saved") : t("created"));
         if (item) {
@@ -265,6 +295,18 @@ function EditorForm({
           }
         />
       </div>
+
+      {stale && (
+        <div
+          role="status"
+          className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-signal/30 bg-signal-soft px-4 py-3 text-sm"
+        >
+          <p>{t("changedElsewhere")}</p>
+          <Button type="button" variant="outline" size="sm" onClick={onReload}>
+            {t("reload")}
+          </Button>
+        </div>
+      )}
 
       <div className="grid grid-cols-[minmax(0,1fr)] items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <Card>
@@ -450,7 +492,7 @@ function DeleteContent({ kind, item }: { kind: Kind; item: AdminPost | AdminPage
         await revalidateTags(["pages", `page:${item.slug}`]);
       }
       toast.success(t("deleted", { title: item.title }));
-      router.replace(kind === "post" ? ADMIN_LINKS.journal : ADMIN_LINKS.pages);
+      router.replace(kind === "post" ? ADMIN_LINKS.journal : ADMIN_LINKS.sitePages);
     } catch (error) {
       toast.error(apiErrorMessage(error) ?? t("failed"));
     }

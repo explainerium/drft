@@ -13,6 +13,7 @@ import {
   ShoppingBagIcon,
   SlidersHorizontalIcon,
   TruckIcon,
+  TypeIcon,
   UsersIcon,
   type LucideIcon,
 } from "lucide-react";
@@ -45,6 +46,9 @@ export const ADMIN_LINKS = {
   pages: "/admin/pages",
   newPage: "/admin/pages/new",
   page: (id: string) => `/admin/pages/${id}`,
+  siteTexts: "/admin/texts",
+  sitePages: "/admin/texts?section=pages",
+  siteText: (key: string) => `/admin/texts?key=${encodeURIComponent(key)}`,
   faq: "/admin/faq",
   newsletter: "/admin/newsletter",
   messages: "/admin/messages",
@@ -60,6 +64,7 @@ type NavKey =
   | "media"
   | "journal"
   | "pages"
+  | "siteTexts"
   | "faq"
   | "newsletter"
   | "messages"
@@ -73,7 +78,8 @@ type NavKey =
 export const ADMIN_NAV: {
   group: "store" | "catalog" | "content" | "setup";
   adminOnly?: boolean;
-  items: { key: NavKey; href: string; icon: LucideIcon }[];
+  /** `also`: other paths that belong to the item (it stays marked there). */
+  items: { key: NavKey; href: string; icon: LucideIcon; also?: readonly string[] }[];
 }[] = [
   {
     group: "store",
@@ -95,6 +101,7 @@ export const ADMIN_NAV: {
   {
     group: "content",
     items: [
+      { key: "siteTexts", href: ADMIN_LINKS.siteTexts, icon: TypeIcon, also: [ADMIN_LINKS.pages] },
       ...(FEATURES.journal ? [{ key: "journal" as const, href: ADMIN_LINKS.journal, icon: NewspaperIcon }] : []),
       ...(FEATURES.faq ? [{ key: "faq" as const, href: ADMIN_LINKS.faq, icon: CircleHelpIcon }] : []),
       { key: "newsletter", href: ADMIN_LINKS.newsletter, icon: MailIcon },

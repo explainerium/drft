@@ -134,9 +134,11 @@ function ItemIcon({ icon: Icon }: { icon: ComponentType<{ className?: string }> 
 /** Without a pathname nothing is marked active (the prerendered fallback). */
 function AdminNavView({ pathname }: { pathname?: string }) {
   const t = useTranslations("admin.nav");
-  const isActive = (href: string) =>
+  const isActive = (href: string, also: readonly string[] = []) =>
     !!pathname &&
-    (href === ADMIN_LINKS.dashboard ? pathname === href : pathname === href || pathname.startsWith(`${href}/`));
+    (href === ADMIN_LINKS.dashboard
+      ? pathname === href
+      : [href, ...also].some((path) => pathname === path || pathname.startsWith(`${path}/`)));
 
   return ADMIN_NAV.map(({ group, items, adminOnly }) => {
     const section = (
@@ -144,8 +146,8 @@ function AdminNavView({ pathname }: { pathname?: string }) {
         <SidebarGroupLabel className="text-xs text-subtle-foreground">{t(`groups.${group}`)}</SidebarGroupLabel>
         <SidebarGroupContent>
           <SidebarMenu className="gap-1">
-            {items.map(({ key, href, icon }) => {
-              const active = isActive(href);
+            {items.map(({ key, href, icon, also }) => {
+              const active = isActive(href, also);
               return (
                 <SidebarMenuItem key={key}>
                   <SidebarMenuButton asChild isActive={active} tooltip={t(key)} className={itemClass}>

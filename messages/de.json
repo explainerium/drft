@@ -33,7 +33,9 @@
       "signOut": "Abmelden",
       "signedOut": "Sie sind abgemeldet",
       "greeting": "Hallo, {name}",
-      "wishlist": "Merkliste"
+      "wishlist": "Merkliste",
+      "editTexts": "Seite bearbeiten",
+      "editTextsFailed": "Die Textbearbeitung konnte nicht starten. Bitte melden Sie sich erneut an."
     },
     "cart": {
       "text": "Warenkorb ({count})",

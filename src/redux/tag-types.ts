@@ -23,6 +23,7 @@ export const tagTypes = [
   "Faq",
   "Subscriber",
   "Message",
+  "SiteText",
 ] as const;
 
 export type TagType = (typeof tagTypes)[number];

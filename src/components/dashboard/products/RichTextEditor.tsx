@@ -22,23 +22,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-/**
- * Product description editor. It only offers what the API keeps when it
- * sanitizes the HTML (paragraphs, headings, lists, emphasis, quotes, links),
- * so what staff see is what the storefront shows.
- */
-export function RichTextEditor({
-  id,
-  value,
-  onChange,
-  label,
-}: {
+interface EditorOptions {
   id: string;
   value: string;
   onChange: (html: string) => void;
   label: string;
-}) {
-  const editor = useEditor({
+}
+
+/**
+ * The rich text editor (Tiptap). It only offers what the API keeps when it
+ * sanitizes the HTML (paragraphs, headings, lists, emphasis, quotes, links),
+ * so what staff see is what the storefront shows. `className` styles the
+ * editable area; on its own the editor is a form field (RichTextEditor), on
+ * the storefront it takes the page's own typography.
+ */
+export function useRichTextEditor({ id, value, onChange, label, className }: EditorOptions & { className: string }) {
+  return useEditor({
     extensions: [
       StarterKit.configure({
         heading: { levels: [2, 3] },
@@ -51,19 +50,18 @@ export function RichTextEditor({
     // The admin renders in the browser only, but the hook must not render during hydration.
     immediatelyRender: false,
     shouldRerenderOnTransaction: true,
-    editorProps: {
-      attributes: {
-        id,
-        "aria-label": label,
-        class: "rich-text min-h-40 px-3 py-2.5 text-sm leading-6 outline-none",
-      },
-    },
+    editorProps: { attributes: { id, "aria-label": label, class: className } },
     onUpdate: ({ editor }) => onChange(editor.isEmpty ? "" : editor.getHTML()),
   });
+}
+
+/** Product descriptions and page texts in the admin forms. */
+export function RichTextEditor(options: EditorOptions) {
+  const editor = useRichTextEditor({ ...options, className: "rich-text min-h-40 px-3 py-2.5 text-sm leading-6 outline-none" });
 
   return (
     <div className="overflow-hidden rounded-lg border border-input focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50">
-      {editor && <Toolbar editor={editor} />}
+      {editor && <RichTextToolbar editor={editor} />}
       <EditorContent editor={editor} />
     </div>
   );
@@ -82,7 +80,7 @@ type ToolKey =
   | "undo"
   | "redo";
 
-function Toolbar({ editor }: { editor: Editor }) {
+export function RichTextToolbar({ editor, className }: { editor: Editor; className?: string }) {
   const t = useTranslations("admin.product.editor");
   const [linking, setLinking] = useState(false);
   const [href, setHref] = useState("");
@@ -150,7 +148,7 @@ function Toolbar({ editor }: { editor: Editor }) {
   };
 
   return (
-    <div className="border-b border-input bg-secondary/60">
+    <div className={cn("border-b border-input bg-secondary/60", className)}>
       <div role="toolbar" aria-label={t("toolbar")} className="flex flex-wrap gap-0.5 p-1">
         {tools.map(({ key, icon: Icon, active, run, disabled }) => (
           <Button

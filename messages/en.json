@@ -33,7 +33,9 @@
       "signOut": "Sign out",
       "signedOut": "You’re signed out",
       "greeting": "Hi, {name}",
-      "wishlist": "Wishlist"
+      "wishlist": "Wishlist",
+      "editTexts": "Edit this page",
+      "editTextsFailed": "Text editing couldn’t start. Sign in again and retry."
     },
     "cart": {
       "text": "Cart ({count})",
@@ -653,6 +655,7 @@
       "newPost": "New post",
       "post": "Post",
       "pages": "Pages",
+      "siteTexts": "Site texts",
       "newPage": "New page",
       "page": "Page",
       "faq": "FAQ",
@@ -689,6 +692,7 @@
       "settings": "Settings",
       "journal": "Journal",
       "pages": "Pages",
+      "siteTexts": "Site texts",
       "faq": "FAQ",
       "newsletter": "Newsletter",
       "messages": "Messages"
@@ -1742,7 +1746,9 @@
         "title": "English version",
         "hint": "Shown on the English site (/en). Leave a field empty to show the German text there.",
         "body": "Body (English)"
-      }
+      },
+      "changedElsewhere": "This page was just changed in another tab. Saving here would replace that change.",
+      "reload": "Show the new version"
     },
     "journal": {
       "title": "Journal",
@@ -1775,6 +1781,114 @@
       },
       "empty": "No pages yet.",
       "hint": "Footer links point to these addresses. Legal and policy pages start as drafts with placeholder text: replace it before publishing."
+    },
+    "siteTexts": {
+      "title": "Site texts",
+      "description": "Every text on the storefront, in German and English. Change it here or click it on the site.",
+      "editOnSite": "Edit on the site",
+      "search": "Search texts",
+      "all": "All texts",
+      "changed": "Changed ({count})",
+      "sections": "Sections",
+      "groups": {
+        "layout": "Header, menu and footer",
+        "home": "Home page",
+        "shop": "Shop",
+        "product": "Product page",
+        "cart": "Cart",
+        "checkout": "Checkout",
+        "order": "Order confirmation",
+        "auth": "Sign-in and registration",
+        "account": "Customer account",
+        "wishlist": "Wishlist",
+        "content": "Contact and newsletter",
+        "notFound": "Page not found"
+      },
+      "pages": {
+        "nav": "Page content",
+        "intro": "The about page and the legal pages: longer texts with headings, lists and links, in German and English. Each one opens in the page editor.",
+        "updated": "Updated {date}",
+        "empty": "No pages yet.",
+        "editOnSite": "Edit on the site",
+        "settings": "More settings"
+      },
+      "results": "{count, plural, =0 {No texts match “{q}”.} one {# text matches “{q}”.} other {# texts match “{q}”.}}",
+      "noChanges": "No text has been changed yet.",
+      "languages": {
+        "de": "German",
+        "en": "English"
+      },
+      "changedBy": "Changed by {name}, {date}",
+      "changedOn": "Changed {date}",
+      "default": "Default: {text}",
+      "useDefault": "Use default",
+      "emptyHint": "Leave it empty to use the default.",
+      "filledIn": "The page fills in {list}. Keep them as written.",
+      "dropped": "No longer shows {list}.",
+      "issues": {
+        "syntax": "Check the curly braces and tags: the text can’t be read like this.",
+        "unknownValue": "The page doesn’t fill in {name}.",
+        "unknownTag": "The tag {name} is not part of this text.",
+        "valueUse": "Use {name} the way the default text does."
+      },
+      "unsaved": "{count, plural, one {# unsaved change} other {# unsaved changes}}",
+      "discard": "Discard",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "{count, plural, one {Text saved} other {# texts saved}}. The site shows the change now.",
+      "failed": "The texts couldn’t be saved. Try again.",
+      "fixFirst": "Fix the marked texts first.",
+      "history": {
+        "show": "History",
+        "title": "Earlier versions",
+        "empty": "This text hasn’t been changed yet.",
+        "default": "Default text",
+        "use": "Use this",
+        "by": "{name}, {date}"
+      },
+      "editor": {
+        "title": "Editing texts",
+        "edit": "Edit",
+        "browse": "Browse",
+        "mode": "Click mode",
+        "hint": "Click a text to change it. Switch to Browse to use links and buttons.",
+        "onPage": "On this page ({count})",
+        "hidden": "Not visible",
+        "allTexts": "All texts",
+        "done": "Done",
+        "close": "Close",
+        "cancel": "Cancel",
+        "save": "Save",
+        "openInList": "Open in the list",
+        "staffOnly": "Sign in with a staff account to edit texts.",
+        "failedToStart": "Text editing couldn’t start. Sign in again and retry.",
+        "pageTitle": "Page title",
+        "editPage": "Click to edit this page here",
+        "pageContent": "Page content"
+      },
+      "pageEditor": {
+        "title": "Editing the page",
+        "language": "Language",
+        "titleLabel": "Page title",
+        "introLabel": "Introduction",
+        "introPlaceholder": "A short introduction (optional)",
+        "bodyLabel": "Page text",
+        "fallback": "Empty fields show the German text on the English page.",
+        "titleRequired": "The page needs a title.",
+        "moreSettings": "More settings",
+        "cancel": "Cancel",
+        "save": "Save page",
+        "saving": "Saving…",
+        "discardQuestion": "Discard your changes?",
+        "keepEditing": "Keep editing",
+        "discard": "Discard",
+        "saved": "Page saved.",
+        "failed": "The page couldn’t be saved. Try again.",
+        "loading": "Loading the page…",
+        "loadFailed": "The page couldn’t be loaded. Reload and try again."
+      },
+      "editOnSiteHint": "Opens the site in a new tab",
+      "liveUpdated": "Updated with the changes made on the site."
     },
     "faq": {
       "title": "FAQ",

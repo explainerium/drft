@@ -2,7 +2,6 @@ import { z } from "zod";
 import type {
   AdminAttribute,
   AdminProduct,
-  ProductContentInput,
   ProductInput,
   ProductStatus,
   ProductTranslations,
