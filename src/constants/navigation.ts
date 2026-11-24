@@ -1,6 +1,6 @@
 /**
  * Storefront navigation. Labels are message keys under `layout.nav` / `layout.footer.links`.
- * About and the legal pages are CMS pages (admin → Pages) with these slugs.
+ * About, payment & shipping and the legal pages are CMS pages with these slugs.
  */
 export const MAIN_NAV = [
   { key: "home", href: "/" },
@@ -12,7 +12,10 @@ export const MAIN_NAV = [
 export const FOOTER_COLUMNS = [
   {
     key: "shop",
-    links: [{ key: "products", href: "/shop" }],
+    links: [
+      { key: "products", href: "/shop" },
+      { key: "payment", href: "/zahlung-und-versand" },
+    ],
   },
   {
     key: "company",

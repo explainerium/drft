@@ -58,6 +58,7 @@
       },
       "links": {
         "products": "Produkte",
+        "payment": "Zahlung & Versand",
         "about": "Über DRFT",
         "contact": "Kontakt"
       },
@@ -135,6 +136,13 @@
       "backorder": "Nachbestellbar",
       "soldOut": "Ausverkauft",
       "low": "Nur noch wenige verfügbar"
+    },
+    "legalGuarantee": {
+      "trigger": "Ihre gesetzlichen Gewährleistungsrechte",
+      "title": "Gesetzliche Gewährleistung",
+      "alt": "EU-Hinweis zur gesetzlichen Gewährleistung: mindestens zwei Jahre Gewährleistung für Waren, die in der EU verkauft werden, was bei vertragswidrigen Waren zu tun ist und wo es weitere Informationen gibt.",
+      "more": "Mehr zu Ihren Rechten auf europa.eu",
+      "close": "Schließen"
     },
     "gallery": {
       "readyToDispatch": "Versandbereit",
@@ -433,7 +441,27 @@
     "continue": "Weiter einkaufen",
     "heading": "Bestellung {number}",
     "placedOn": "Bestellt am {date}",
-    "backToOrders": "Alle Bestellungen"
+    "backToOrders": "Alle Bestellungen",
+    "return": {
+      "title": "Rücksendung",
+      "body": "Möchten Sie Artikel aus dieser Bestellung zurücksenden? Melden Sie die Rücksendung hier an, dann erhalten Sie eine Anleitung.",
+      "start": "Rücksendung anmelden",
+      "confirm": "Rücksendung für Bestellung {number} jetzt anmelden?",
+      "yes": "Ja, anmelden",
+      "cancel": "Abbrechen",
+      "failed": "Die Rücksendung konnte nicht angemeldet werden. Bitte versuchen Sie es erneut.",
+      "requested": {
+        "title": "Rücksendung angemeldet",
+        "on": "Angemeldet am {date}",
+        "intro": "Wir haben Ihre Rücksendung erhalten. So geht es weiter:",
+        "pack": "Verpacken Sie die Artikel sicher, am besten in der Originalverpackung.",
+        "note": "Legen Sie einen Zettel mit Ihrer Bestellnummer {number} bei.",
+        "sendTo": "Senden Sie das Paket an:",
+        "sendToImprint": "Senden Sie das Paket an die Adresse in unserem <imprint>Impressum</imprint>.",
+        "reply": "Sobald das Paket bei uns angekommen ist, melden wir uns per E-Mail bei Ihnen.",
+        "email": "Diese Anleitung haben wir Ihnen auch per E-Mail geschickt."
+      }
+    }
   },
   "auth": {
     "side": {

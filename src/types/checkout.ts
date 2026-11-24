@@ -98,6 +98,10 @@ export interface Order {
   paymentProvider: PaymentProvider | null;
   reservedUntil: string | null;
   paidAt: string | null;
+  /** When the customer asked to return it from their account. */
+  returnRequestedAt: string | null;
+  /** Whether a return can be asked for now (shipped, not asked yet). */
+  canReturn: boolean;
   createdAt: string;
 }
 

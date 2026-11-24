@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { StatusPill } from "@/components/dashboard/orders/StatusPill";
+import { ReturnPill, StatusPill } from "@/components/dashboard/orders/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -194,7 +194,10 @@ function OrderRow({ order }: { order: AdminOrderRow }) {
         </div>
       </TableCell>
       <TableCell>
-        <StatusPill status={order.status} />
+        <div className="flex flex-wrap gap-1.5">
+          <StatusPill status={order.status} />
+          {order.returnRequestedAt && <ReturnPill />}
+        </div>
       </TableCell>
       <TableCell className="pr-4 text-right font-medium tabular-nums">{f.money(order.total, order.currency)}</TableCell>
     </TableRow>

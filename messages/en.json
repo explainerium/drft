@@ -58,6 +58,7 @@
       },
       "links": {
         "products": "Products",
+        "payment": "Payment & shipping",
         "about": "About DRFT",
         "contact": "Contact"
       },
@@ -135,6 +136,13 @@
       "backorder": "Available on backorder",
       "soldOut": "Sold out",
       "low": "Only a few left"
+    },
+    "legalGuarantee": {
+      "trigger": "Your legal guarantee rights",
+      "title": "Legal guarantee",
+      "alt": "EU notice on the legal guarantee: at least two years of legal guarantee for goods sold in the EU, what to do when goods are faulty and where to find more information.",
+      "more": "More about your rights on europa.eu",
+      "close": "Close"
     },
     "gallery": {
       "readyToDispatch": "Ready to ship",
@@ -433,7 +441,27 @@
     "continue": "Continue shopping",
     "heading": "Order {number}",
     "placedOn": "Placed on {date}",
-    "backToOrders": "All orders"
+    "backToOrders": "All orders",
+    "return": {
+      "title": "Return",
+      "body": "Want to send items from this order back? Request the return here and you will get instructions.",
+      "start": "Request a return",
+      "confirm": "Request a return for order {number} now?",
+      "yes": "Yes, request it",
+      "cancel": "Cancel",
+      "failed": "The return could not be requested. Please try again.",
+      "requested": {
+        "title": "Return requested",
+        "on": "Requested on {date}",
+        "intro": "We have received your return request. Here is what to do next:",
+        "pack": "Pack the items safely, ideally in their original packaging.",
+        "note": "Add a note with your order number {number}.",
+        "sendTo": "Send the parcel to:",
+        "sendToImprint": "Send the parcel to the address in our <imprint>imprint</imprint>.",
+        "reply": "We will email you as soon as the parcel has arrived.",
+        "email": "We have also sent you these instructions by email."
+      }
+    }
   },
   "auth": {
     "side": {
@@ -881,6 +909,11 @@
       "updated": "Order set to {status}.",
       "failed": "That didn’t work. Try again.",
       "shippedAt": "Shipped {date}",
+      "return": {
+        "pill": "Return requested",
+        "title": "Return requested",
+        "body": "The customer asked to return this order on {date} and got the return instructions by email."
+      },
       "tracking": {
         "title": "Tracking",
         "edit": "Edit tracking",

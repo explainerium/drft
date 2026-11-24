@@ -10,6 +10,7 @@ import { ACCOUNT_LINKS } from "@/constants/navigation";
 import { useGetOrderQuery } from "@/redux/api/checkoutApi";
 import type { Order, PostalAddress } from "@/types/checkout";
 import { formatPrice } from "@/utils/format";
+import { OrderReturn } from "@/components/account/OrderReturn";
 import { OrderStatusBadge } from "./OrderStatusBadge";
 
 const skeleton = <div aria-hidden className="h-[480px] animate-pulse rounded-md bg-card" />;
@@ -20,16 +21,25 @@ type Mode = "confirmation" | "account";
 /**
  * One order: the checkout confirmation page and the account order page. Only
  * the buyer can read it (their account, or the order cookie from checkout).
+ * The account page also offers the return; `storeAddress` is where returns go.
  */
-export function OrderComplete({ orderId, mode = "confirmation" }: { orderId: string; mode?: Mode }) {
+export function OrderComplete({
+  orderId,
+  mode = "confirmation",
+  storeAddress = "",
+}: {
+  orderId: string;
+  mode?: Mode;
+  storeAddress?: string;
+}) {
   if (!useIsClient()) return skeleton;
-  return <LiveOrder orderId={orderId} mode={mode} />;
+  return <LiveOrder orderId={orderId} mode={mode} storeAddress={storeAddress} />;
 }
 
-function LiveOrder({ orderId, mode }: { orderId: string; mode: Mode }) {
+function LiveOrder({ orderId, mode, storeAddress }: { orderId: string; mode: Mode; storeAddress: string }) {
   const { data: order, isLoading, error, refetch } = useGetOrderQuery(orderId);
   if (isLoading) return skeleton;
-  if (order) return <OrderDetails order={order} mode={mode} />;
+  if (order) return <OrderDetails order={order} mode={mode} storeAddress={storeAddress} />;
   // 400 (not an order id) and 404 (no such order, or not this buyer's) read the same.
   const missing = !!error && "status" in error && (error.status === 404 || error.status === 400);
   return <OrderProblem missing={missing} onRetry={refetch} />;
@@ -58,7 +68,7 @@ function OrderProblem({ missing, onRetry }: { missing: boolean; onRetry: () => v
   );
 }
 
-function OrderDetails({ order, mode }: { order: Order; mode: Mode }) {
+function OrderDetails({ order, mode, storeAddress }: { order: Order; mode: Mode; storeAddress: string }) {
   const t = useTranslations("order");
   const locale = useLocale();
   const format = useFormatter();
@@ -96,6 +106,8 @@ function OrderDetails({ order, mode }: { order: Order; mode: Mode }) {
         )}
         {cancelled && <p className="rounded-sm bg-secondary p-4 text-sm text-muted-foreground">{t("cancelled")}</p>}
       </header>
+
+      {mode === "account" && <OrderReturn order={order} storeAddress={storeAddress} />}
 
       <div className="grid items-start gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <section aria-labelledby="order-items" className="flex flex-col gap-4 rounded-md bg-card p-6 shadow-xs">

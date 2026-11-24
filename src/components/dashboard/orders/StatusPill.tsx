@@ -1,3 +1,4 @@
+import { Undo2Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { OrderStatus } from "@/types/checkout";
@@ -27,6 +28,22 @@ export function StatusPill({ status, className }: { status: OrderStatus; classNa
     >
       <span aria-hidden className="size-1.5 rounded-full bg-(--dot)" />
       {t(status)}
+    </span>
+  );
+}
+
+/** Beside the status: the customer asked to return the order from their account. */
+export function ReturnPill({ className }: { className?: string }) {
+  const t = useTranslations("admin.order.return");
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-md bg-signal-soft px-2.5 py-0.5 text-xs font-medium whitespace-nowrap text-signal",
+        className,
+      )}
+    >
+      <Undo2Icon aria-hidden className="size-3" />
+      {t("pill")}
     </span>
   );
 }

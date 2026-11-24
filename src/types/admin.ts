@@ -22,6 +22,7 @@ export interface AdminOrderRow {
   total: string;
   currency: string;
   paymentProvider: PaymentProvider | null;
+  returnRequestedAt: string | null;
   createdAt: string;
 }
 

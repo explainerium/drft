@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import { OrderComplete } from "@/components/checkout/OrderComplete";
 import { SignedIn } from "@/components/account/AccountShell";
+import { getPublicSettings } from "@/lib/content";
 
 type Props = PageProps<"/[locale]/account/orders/[id]">;
 
@@ -12,10 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function OrderFor({ params }: { params: Props["params"] }) {
-  const { id } = await params;
+  const [{ id }, settings] = await Promise.all([params, getPublicSettings().catch(() => null)]);
   return (
     <SignedIn>
-      <OrderComplete orderId={id} mode="account" />
+      {/* Returns go to the store address from the settings. */}
+      <OrderComplete orderId={id} mode="account" storeAddress={settings?.store.address ?? ""} />
     </SignedIn>
   );
 }

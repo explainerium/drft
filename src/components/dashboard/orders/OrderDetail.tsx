@@ -1,11 +1,11 @@
 "use client";
 
-import { ExternalLinkIcon, PencilIcon, TruckIcon } from "lucide-react";
+import { ExternalLinkIcon, PencilIcon, TruckIcon, Undo2Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { StatusPill } from "@/components/dashboard/orders/StatusPill";
+import { ReturnPill, StatusPill } from "@/components/dashboard/orders/StatusPill";
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -58,6 +58,7 @@ function OrderView({ order, back }: { order: AdminOrder; back: { href: string; l
           <span className="flex flex-wrap items-center gap-3">
             {order.number}
             <StatusPill status={order.status} />
+            {order.returnRequestedAt && <ReturnPill />}
           </span>
         }
         description={t("placed", { date: f.dateTime(order.createdAt) })}
@@ -172,6 +173,15 @@ function StatusCard({ order }: { order: AdminOrder }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
+        {order.returnRequestedAt && (
+          <div className="flex flex-col gap-1 rounded-lg bg-signal-soft p-3">
+            <span className="flex items-center gap-2 text-sm font-medium text-signal">
+              <Undo2Icon className="size-4" />
+              {t("return.title")}
+            </span>
+            <p className="text-xs text-muted-foreground">{t("return.body", { date: f.dateTime(order.returnRequestedAt) })}</p>
+          </div>
+        )}
         {order.nextStatuses.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t("noActions")}</p>
         ) : (

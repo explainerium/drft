@@ -1,6 +1,7 @@
 import type { Address, AddressInput, User } from "@/types/auth";
-import type { OrderSummary, PageMeta } from "@/types/checkout";
+import type { Order, OrderSummary, PageMeta } from "@/types/checkout";
 import { baseApi } from "./baseApi";
+import { checkoutApi } from "./checkoutApi";
 
 interface Envelope<T> {
   data: T;
@@ -41,6 +42,19 @@ export const accountApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Order"],
     }),
+    /** Asks to return a shipped order; answers with the order, which the order page shows at once. */
+    requestReturn: build.mutation<Order, string>({
+      query: (id) => ({ url: `/account/orders/${id}/return`, method: "POST" }),
+      transformResponse: (response: Envelope<Order>) => response.data,
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(checkoutApi.util.updateQueryData("getOrder", id, () => data));
+        } catch {
+          // The caller shows the error; the order stays as it was.
+        }
+      },
+    }),
   }),
 });
 
@@ -52,4 +66,5 @@ export const {
   useUpdateAddressMutation,
   useDeleteAddressMutation,
   useGetMyOrdersQuery,
+  useRequestReturnMutation,
 } = accountApi;

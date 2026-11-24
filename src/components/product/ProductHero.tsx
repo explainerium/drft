@@ -14,6 +14,7 @@ import type { ProductDetail } from "@/types/catalog";
 import { apiErrorMessage } from "@/utils/apiError";
 import { formatPrice } from "@/utils/format";
 import { defaultVariant, isAvailable, pickVariant, selectionOf } from "@/utils/variants";
+import { LegalGuaranteeNotice } from "./LegalGuaranteeNotice";
 import { ProductGallery } from "./ProductGallery";
 
 // The backend allows 10 per line too, and less when stock is lower.
@@ -261,6 +262,7 @@ export function ProductHero({ product, breadcrumb }: { product: ProductDetail; b
                 </li>
               ))}
             </ul>
+            <LegalGuaranteeNotice />
           </div>
         </Container>
       </section>

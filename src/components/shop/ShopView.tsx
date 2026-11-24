@@ -48,17 +48,29 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
     return search ? `${path}?${search}` : path;
   };
 
-  const activeRoot = found ? (found.ancestors[0] ?? found.category).slug : undefined;
+  // The chips are the top-level categories with products. When everything sits
+  // in one of them (the shop's "Produkte"), they are its subcategories instead.
   const withProducts = tree.filter((c) => c.productCount > 0);
-  // With a single category the chips would only repeat "All".
-  const chips: FilterChip[] = withProducts.length < 2 ? [] : [
-    { key: "all", label: t("filters.all"), href: withQuery("/shop"), count: all.meta.total, active: !categorySlug },
-    ...withProducts.map((c) => ({
+  const parent = withProducts.length === 1 ? withProducts[0] : null;
+  const level = parent ? parent.children : withProducts;
+  const trail = found ? [...found.ancestors, found.category] : [];
+  const activeSlug = trail.find((c) => level.some((l) => l.id === c.id))?.slug;
+  // A single top-level category without subcategories would only repeat "All".
+  const showChips = parent ? level.length > 0 : level.length > 1;
+  const chips: FilterChip[] = !showChips ? [] : [
+    {
+      key: "all",
+      label: t("filters.all"),
+      href: withQuery("/shop"),
+      count: all.meta.total,
+      active: !categorySlug || found?.category.id === parent?.id,
+    },
+    ...level.map((c) => ({
         key: c.slug,
         label: c.name,
         href: withQuery(`/shop/${c.slug}`),
         count: c.productCount,
-        active: c.slug === activeRoot,
+        active: c.slug === activeSlug,
       })),
   ];
 
@@ -95,7 +107,8 @@ export async function ShopView({ categorySlug, searchParams }: { categorySlug?: 
               )}
               {found && (
                 <>
-                  {found.ancestors.map((a) => (
+                  {/* The single top-level category is what the shop crumb already stands for. */}
+                  {found.ancestors.filter((a) => a.id !== parent?.id).map((a) => (
                     <Fragment key={a.id}>
                       <li aria-hidden className="text-subtle-foreground">
                         /

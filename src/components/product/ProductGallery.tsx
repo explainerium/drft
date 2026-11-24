@@ -6,7 +6,11 @@ import { CatalogImageView } from "@/components/shared/CatalogImageView";
 import { cn } from "@/lib/utils";
 import type { CatalogImage } from "@/types/catalog";
 
-/** Main image + thumbnail strip. `images` comes in display order (variant image first). */
+/**
+ * Main image + thumbnail strip. `images` comes in display order (variant image first).
+ * Photos are never cropped: the frame takes the shape of the first photo and
+ * every photo is shown whole inside it.
+ */
 export function ProductGallery({
   images,
   name,
@@ -20,10 +24,16 @@ export function ProductGallery({
   const [index, setIndex] = useState(0);
   // A variant change can shorten the list; never point past its end.
   const active = images[Math.min(index, images.length - 1)];
+  const first = images[0];
+  const ratio = first?.width && first.height ? first.width / first.height : 3 / 2;
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-accent">
+      {/* No higher than the screen below the header and breadcrumb bar. */}
+      <div
+        className="relative max-h-[calc(100svh-13rem)] overflow-hidden rounded-lg bg-accent"
+        style={{ aspectRatio: ratio }}
+      >
         {active ? (
           <CatalogImageView
             key={active.id}
@@ -31,7 +41,7 @@ export function ProductGallery({
             alt={active.alt ?? name}
             sizes="(min-width: 1280px) 660px, (min-width: 1024px) 55vw, 100vw"
             priority
-            className="size-full object-cover"
+            className="size-full object-contain"
           />
         ) : (
           <div aria-hidden className="flex size-full items-center justify-center font-heading text-4xl text-subtle-foreground/40">
@@ -65,7 +75,7 @@ export function ProductGallery({
                   image.id === active?.id ? "ring-2 ring-foreground" : "opacity-80 hover:opacity-100",
                 )}
               >
-                <CatalogImageView image={image} alt="" sizes="160px" className="size-full object-cover" />
+                <CatalogImageView image={image} alt="" sizes="160px" className="size-full object-contain" />
               </button>
             </li>
           ))}
